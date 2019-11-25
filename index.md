@@ -14,6 +14,3 @@ Use the links below to navigate the different sections :)
   <a href="http://arielslepyan.me/interests">Interests</a> |
   <a href="http://arielslepyan.me/resume">Resume</a> |
 </p>
-
-
-
