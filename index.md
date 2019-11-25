@@ -1,5 +1,7 @@
 ## **Hello!** Welcome to my website!
 
+![Picture of Me](https://octodex.github.com/images/yaktocat.png)
+
 Here you can find some basic information about me and some of my interests.
 
 Use the links below to navigate the different sections :)
