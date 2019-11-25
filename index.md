@@ -1,6 +1,6 @@
 ## **Hello!** Welcome to my website!
 
-![Picture of Me](https://octodex.github.com/images/yaktocat.png)
+![Picture of Me](/propicforstuff.jpg)
 
 Here you can find some basic information about me and some of my interests.
 
