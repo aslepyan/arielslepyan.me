@@ -8,9 +8,9 @@ Use the links below to navigate the different sections :)
 
 
 <p align="center">
-  <a href="http://arielslepyan.me/aboutme">About Me</a> |         
-  <a href="http://arielslepyan.me/projects">Projects</a> |
-  <a href="http://arielslepyan.me/fun">Fun</a> |
-  <a href="http://arielslepyan.me/interests">Interests</a> |
-  <a href="http://arielslepyan.me/resume">Resume</a> |
+  <a href="http://arielslepyan.me/Aboutme">About Me</a> |         
+  <a href="http://arielslepyan.me/Projects">Projects</a> |
+  <a href="http://arielslepyan.me/Fun">Fun</a> |
+  <a href="http://arielslepyan.me/Interests">Interests</a> |
+  <a href="http://arielslepyan.me/Resume">Resume</a> |
 </p>
