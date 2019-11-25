@@ -8,13 +8,12 @@ Use the links below to navigate the different sections :)
 
 
 <p align="center">
-  <a href="https://www.google.com">About Me</a> |         
-  <a href="https://www.google.com">Projects</a> |
-  <a href="https://www.google.com">Fun</a> |
-  <a href="https://www.google.com">Interests</a> |
-  <a href="https://www.google.com">Resume</a> |
+  <a href="http://arielslepyan.me/aboutme">About Me</a> |         
+  <a href="http://arielslepyan.me/projects">Projects</a> |
+  <a href="http://arielslepyan.me/fun">Fun</a> |
+  <a href="http://arielslepyan.me/interests">Interests</a> |
+  <a href="http://arielslepyan.me/resume">Resume</a> |
 </p>
-
 
 
 
