@@ -1,10 +1,6 @@
 ## **Hello!** Welcome to my website!
 
-![Picture of Me](/propicforstuff.jpg | width=100px)
-
-
-[[/propicforstuff.jpg|width=100px]]
-
+<img src="propicforstuff.jpg" width="100" />
 
 
 Here you can find some basic information about me and some of my interests.
