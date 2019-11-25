@@ -1,6 +1,6 @@
 ## Interests
 
-While this list is frequently changing, these are the overall topics that I think about and I am interested in scienfitically:
+While this list is frequently changing, these are the general topics that I think about and I am interested in scientifically:
 
 1. Brain interfacing
     - Neural implant, bci, e-skin,  2 photon tms
