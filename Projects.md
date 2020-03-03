@@ -31,6 +31,7 @@
 - Electrokinetic flow focusing in a microfluidic device (2018)
 
 - Biomedical Data Science project - sorting atrial and ventricular cardiomyocytes (2018)
+  - Classification of embryonic stem cell-derived cardiomyocites
 
 - Vaccum based droplet loading for microfluidics (2018-2019)
 
