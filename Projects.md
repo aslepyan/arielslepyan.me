@@ -2,6 +2,10 @@
 
 - NFC based sensing (2020)
   - A. Slepyan and N. Thakor "**Wireless and modular event-based sensing grids using NFC**"
+  
+- Teleoperation of the UR5 robotic arm with an attached prosthetic hand (3D printed), with soft fingertips and flexible, fabric-based force sensors. (2020)
+  
+- Fully autonomous navigation robot with color coded navigation cues and distance sensors (2020)
 
 - RFID based sensing (2019)
   - A. Slepyan and N. Thakor "***Towards scalable soft e-skin* - Flexible event-based tactile sensors using wireless sensor elements embedded in soft elastomer**"
@@ -20,15 +24,19 @@
 
 - Wireless biogaming (2019)
 
-- Measuring enzyme kinetics (2017)
+- ECG amplifier (2019)
 
-- Electrokinetic flow focusing (2018)
+- Measuring enzyme kinetics using droplet microfluidics (2017)
 
-- Vaccum based droplet loading (2018-2019)
+- Electrokinetic flow focusing in a microfluidic device (2018)
 
-- Droplet sorting (2018)
+- Biomedical Data Science project - sorting atrial and ventricular cardiomyocytes (2018)
 
-- PPOC (2017 - present)
+- Vaccum based droplet loading for microfluidics (2018-2019)
+
+- Droplet sorting using dielectrophoresis (DEP) in a silicon microchip (2018)
+
+- PPOC = paper-based point of care diagnostics (2017 - present)
 
 - Medhacks (2017)
 
