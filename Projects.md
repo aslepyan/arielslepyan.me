@@ -5,7 +5,7 @@
   
 - Teleoperation of a UR5 robotic arm with an attached prosthetic hand (3D printed), with soft fingertips and flexible, fabric-based force sensors. (2020)
 
-<img src="/pictures/TeleoperationDiagram.png" width="400" />
+<img src="/pictures/TeleoperationDiagram.png" width="600" />
 <img src="/pictures/HelpingHandDiagram.png" width="400" />
   
 - Autonomous navigation robot with color coded navigation cues and distance sensors (2020)
