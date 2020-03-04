@@ -6,7 +6,7 @@
 - Teleoperation of a UR5 robotic arm with an attached prosthetic hand (3D printed), with soft fingertips and flexible, fabric-based force sensors. (2020)
 <img src="/pictures/RFIDhand.jpg" width="400" />
   
-- Fully autonomous navigation robot with color coded navigation cues and distance sensors (2020)
+- Autonomous navigation robot with color coded navigation cues and distance sensors (2020)
 
 - RFID based sensing (2019)
   - A. Slepyan and N. Thakor "***Towards scalable soft e-skin* - Flexible event-based tactile sensors using wireless sensor elements embedded in soft elastomer**"
