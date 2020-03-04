@@ -3,7 +3,8 @@
 - NFC based sensing (2020)
   - A. Slepyan and N. Thakor "**Wireless and modular event-based sensing grids using NFC**"
   
-- Teleoperation of the UR5 robotic arm with an attached prosthetic hand (3D printed), with soft fingertips and flexible, fabric-based force sensors. (2020)
+- Teleoperation of a UR5 robotic arm with an attached prosthetic hand (3D printed), with soft fingertips and flexible, fabric-based force sensors. (2020)
+<img src="/pictures/RFIDhand.jpg" width="400" />
   
 - Fully autonomous navigation robot with color coded navigation cues and distance sensors (2020)
 
@@ -19,6 +20,8 @@
   - Presented at the Do Good Robotics Symposium (DGRS) sponsored by IEEE Robotics & Automation Society (October 2019)
 
 <img src="/pictures/softfinger.jpg" width="400" />
+
+- Two-finger soft robotic gripper (2019)
 
 - Wireless UV sensing wristband (2019)
 
