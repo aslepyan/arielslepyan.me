@@ -1,15 +1,37 @@
 ## Interests
 
-While this list is frequently changing, these are the general topics that I think about and I am interested in scientifically:
+Some of my interests
 
-1. Brain interfacing
-    - Neural implant, bci, e-skin,  2 photon tms
-2. Bio computing
-    - Neuron computing, DNA data storage
-3. Artificial biology
-    - Self assembly, 4D assembly (proteins), Organ on chip
-4. IC Photonics
-5. POC diagnostics
+. 
+- On-chip de novo DNA synthesis
+- DNA data storage
+- Self assembled nanostructures
+		
+.
+- Neural implants
+- Brain-computer interface with sensory feedback
+- Implantable neural stimulation for learning
+		
+.
+- Neuromuscular electrical stimulation for developing 'muscle memory'
+
+.
+- Robotics/Mechatronics
+- Neuromorphic design
+- Event-based sensing
+- E-skins
+
+.
+- IC photonics
+- Bio computing
+- Organ on chip
+
+
+- Microfabrication
+- Droplet microfluidics
+- POC diagnostics
+- Paper-based microfluidics
+
 
 <p align="center">
   <a href="http://arielslepyan.me/Aboutme">About Me</a> |         
