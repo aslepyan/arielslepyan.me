@@ -49,7 +49,7 @@
 
 - Vaccum based droplet loading for microfluidics (2018-2019)
 
-<img src="/pictures/vacuchipPNG.png" width="400" />
+<img src="/pictures/vacuchipPNG.PNG" width="400" />
 
 - Droplet sorting using dielectrophoresis (DEP) in a silicon microchip (2018)
 
