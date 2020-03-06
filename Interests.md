@@ -2,36 +2,35 @@
 
 Some of my interests
 		
-Group 1:
+Neural:
 - Neural implants
 - Brain-computer interface with sensory feedback
 - Implantable neural stimulation for learning
 
-Group 2:
-- On-chip de novo DNA synthesis
-- DNA data storage
-- Self assembled nanostructures
-		
-Group 3:
-- Neuromuscular electrical stimulation for developing 'muscle memory'
+Micro:
+- Microfabrication
+- Droplet microfluidics
+- POC diagnostics
+- Paper-based microfluidics
+- Organ on chip
 
-Group 4:
+Instrumentation:
 - Robotics/Mechatronics
 - Neuromorphic design
 - Event-based sensing
 - E-skins
 
-Group 5:
+DNA:
+- On-chip de novo DNA synthesis
+- DNA data storage
+- Self assembled nanostructures
+
+Computing:
 - IC photonics
 - Bio computing
-- Organ on chip
 
-Group 6:
-- Microfabrication
-- Droplet microfluidics
-- POC diagnostics
-- Paper-based microfluidics
-
+Misc:
+- Neuromuscular electrical stimulation for developing 'muscle memory'
 
 <p align="center">
   <a href="http://arielslepyan.me/Aboutme">About Me</a> |         
