@@ -1,6 +1,6 @@
 ## Fun
 
-- PyGame -- please contact me for any code!
+- PyGame -- please contact me for any code! Pygame is a really fun library to explore in Python because it allows you to build your own video games! Below are some games I have made.
   - **Dodge The Bullet**
 
 <img src="/pictures/DodgeTheBullet.png" width="400" />
