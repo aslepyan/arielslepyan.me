@@ -1,6 +1,17 @@
 ## Fun
 
 - PyGame
+<img src="/pictures/DodgeTheBullet.png" width="400" />
+<img src="/pictures/MasterRoshiGame.png" width="400" />
+<img src="/pictures/RocketGame.png" width="400" />
+<img src="/pictures/SubGame.png" width="400" />
+<img src="/pictures/8keyPiano.png" width="400" />
+<img src="/pictures/TankGame.png" width="400" />
+<img src="/pictures/JumpThatCactus.png" width="400" />
+<img src="/pictures/SkateGame.png" width="400" />
+<img src="/pictures/PongGame.png" width="400" />
+<img src="/pictures/FirstGame.png" width="400" />
+
 - Photography
 - WJHU
 
