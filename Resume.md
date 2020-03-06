@@ -1,6 +1,6 @@
 ## Resume
 
-[Ariel Slepyan Resume](/files/Slepyan_Resume_2019.pdf)
+[Ariel Slepyan Resume](/files/Slepyan-Resume-2020.pdf)
 
 <p align="center">
   <a href="http://arielslepyan.me/Aboutme">About Me</a> |         
