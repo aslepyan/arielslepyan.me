@@ -32,6 +32,8 @@
 <img src="/pictures/FirstGame.png" width="400" />
 
 - Photography
+  - instagram = @slep47
+
 - WJHU
 
 <p align="center">
