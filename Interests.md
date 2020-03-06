@@ -6,6 +6,7 @@ Neural:
 - Neural implants
 - Brain-computer interface with sensory feedback
 - Implantable neural stimulation for learning
+- Wireless neural implants using RF/inductive link
 
 Micro:
 - Microfabrication
