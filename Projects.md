@@ -7,7 +7,11 @@
 
 <img src="/pictures/TeleoperationDiagram.png" width="600" />
 <img src="/pictures/HelpingHandDiagram.png" width="400" />
-  
+
+- A Monte Carlo Simulation of the spectral response of a 7-layered human skin model for diagnostic imaging (2020)
+
+<img src="/pictures/MonteCarlo.jpg" width="400" />
+
 - Autonomous navigation robot with color coded navigation cues and distance sensors (2020)
 
 <img src="/pictures/NavigationRobot.jpg" width="400" />
