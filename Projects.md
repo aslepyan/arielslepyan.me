@@ -10,7 +10,7 @@
 
 - A Monte Carlo Simulation of the spectral response of a 7-layered human skin model for diagnostic imaging (2020)
 
-<img src="/pictures/MonteCarlo.jpg" width="400" />
+<img src="/pictures/MonteCarlo.png" width="400" />
 
 - Autonomous navigation robot with color coded navigation cues and distance sensors (2020)
 
