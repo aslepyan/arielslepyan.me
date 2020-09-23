@@ -18,5 +18,5 @@ If you would like to contact me, please do so at my email address: **aslepya1@jh
   <a href="http://arielslepyan.me/Projects">Projects</a> |
   <a href="http://arielslepyan.me/Fun">Fun</a> |
   <a href="http://arielslepyan.me/Interests">Interests</a> |
-  <a href="http://arielslepyan.me/Resume">Resume</a> |
+  <a href="http://arielslepyan.me/CV">CV</a> |
 </p>
