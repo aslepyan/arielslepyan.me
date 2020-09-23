@@ -1,4 +1,4 @@
-## Resume
+## CV
 
 [Ariel Slepyan CV](/files/Ariel_Slepyan_CV.pdf)
 
