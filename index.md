@@ -12,5 +12,5 @@ Use the links below to navigate the different sections :)
   <a href="http://arielslepyan.me/Projects">Projects</a> |
   <a href="http://arielslepyan.me/Fun">Fun</a> |
   <a href="http://arielslepyan.me/Interests">Interests</a> |
-  <a href="http://arielslepyan.me/Resume">Resume</a> |
+  <a href="http://arielslepyan.me/CV">CV</a> |
 </p>
