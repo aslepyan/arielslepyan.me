@@ -12,9 +12,7 @@
   - A. Slepyan, M. Ainsworth, and J. Omoniyodo "**A flexible tactile sensing glove and a haptic feedback armband connected by bluetooth**"
   - Can be worn over existing prosthetic device for rapid and low-cost tactile feedback  
 
-<img src="/pictures/HapticTouchGlove.png" width="400" />
-
-<img src="/pictures/HapticTouchBand.png" width="400" />
+<img src="/pictures/HapticTouchGlove.png" width="400" /> <img src="/pictures/HapticTouchBand.png" width="400" />
   
 - NFC based sensing (2020)
   - A. Slepyan and N. Thakor "**Wireless and modular event-based sensing grids using NFC**"
