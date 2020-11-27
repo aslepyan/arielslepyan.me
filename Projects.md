@@ -1,5 +1,24 @@
 ## Projects
+- Scalable tactile sensing e-skins through spatial frequency encoding - My Master's Thesis! (2020)
+  - A. Slepyan, S. Sankar, and N. Thakor "**Texture discrimination using a biomimetic robotic finger with a novel and scalable tactile sensing e-skin**” 
+  - Submittted to 10th International IEEE/EMBS Conference on Neural Engineering, 2021
+  - More publications to come!
+  
+<img src="/pictures/TextureDiscrimination.png" width="400" />
 
+<img src="/pictures/TextureDiscrimination_STFT.png" width="400" />
+
+- Haptic Touch: An adaptable haptic feedback solution for prosthetic devices (2020)
+  - A. Slepyan, M. Ainsworth, and J. Omoniyodo "**A flexible tactile sensing glove and a haptic feedback armband connected by bluetooth**"
+  - Can be worn over existing prosthetic device for rapid and low-cost tactile feedback  
+
+<img src="/pictures/HapticTouchGlove.png" width="400" />
+
+<img src="/pictures/HapticTouchBand.png" width="400" />
+  
+- NFC based sensing (2020)
+  - A. Slepyan and N. Thakor "**Wireless and modular event-based sensing grids using NFC**"
+  
 - NFC based sensing (2020)
   - A. Slepyan and N. Thakor "**Wireless and modular event-based sensing grids using NFC**"
   
