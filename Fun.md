@@ -42,7 +42,7 @@
 <img src="/pictures/FirstGame.png" width="400" />
 
 - Photography
-  - instagram = @slep47
+  - instagram = [@slep47](https://www.instagram.com/slep47/)
 
 - [WJHU](https://wjhuradio.jhu.edu/our-execs/)
 
