@@ -46,6 +46,17 @@
 
 - WJHU
 
+- Guitar!
+  - Here you can find some nice russian folk guitar songs with tabs that are easy to play 
+    - [Kak po moryu](/files/narodnye-kak-po-moryu.gp5)
+    - [I'll have never been the young](/files/narodnye-ill-have-never-been-the-young.gp5)
+    - [I've met you](/files/narodnye-ive-met-you.gp5)
+    - [Step de step krugom](/files/narodnye-step-da-step-krugom.gp5)
+    - [Gorod zolotoy](/files/Aquarium-Gorod-Zolotoy.gp5)
+    - [Starik Kozlodoev](/files/Aquarium-Starik-Kozlodoev.gp5)
+  - Here is a good website to visualize gp5 files for free:
+  https://www.soundslice.com/guitar-pro-viewer/  
+
 <p align="center">
   <a href="http://arielslepyan.me/Aboutme">About Me</a> |         
   <a href="http://arielslepyan.me/Projects">Projects</a> |
