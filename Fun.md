@@ -44,7 +44,7 @@
 - Photography
   - instagram = @slep47
 
-- WJHU
+- [WJHU](https://wjhuradio.jhu.edu/our-execs/)
 
 - Guitar!
   - Here you can find some nice russian folk guitar songs with tabs that are easy to play 
