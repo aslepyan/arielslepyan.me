@@ -17,9 +17,6 @@
 - NFC based sensing (2020)
   - A. Slepyan and N. Thakor "**Wireless and modular event-based sensing grids using NFC**"
   
-- NFC based sensing (2020)
-  - A. Slepyan and N. Thakor "**Wireless and modular event-based sensing grids using NFC**"
-  
 - Teleoperation of a UR5 robotic arm with an attached prosthetic hand (3D printed), with soft fingertips and flexible, fabric-based force sensors. (2020)
 
 <img src="/pictures/TeleoperationDiagram.png" width="600" />
