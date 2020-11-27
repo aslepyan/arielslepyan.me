@@ -6,7 +6,7 @@
   
 <img src="/pictures/TextureDiscrimination.png" width="400" />
 
-<img src="/pictures/TextureDiscrimination_STFT.png" width="400" />
+<img src="/pictures/TextureDiscrimination_STFT.PNG" width="400" />
 
 - Haptic Touch: An adaptable haptic feedback solution for prosthetic devices (2020)
   - A. Slepyan, M. Ainsworth, and J. Omoniyodo "**A flexible tactile sensing glove and a haptic feedback armband connected by bluetooth**"
