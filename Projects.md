@@ -1,5 +1,17 @@
 ## Projects
-- Scalable tactile sensing e-skins through spatial frequency encoding - My Master's Thesis! (2020)
+- Proper covid mask-fit detection using thermal imaging + schlieren imaging validation (2021)
+
+<img src="/pictures/thermal.gif" width="400" /> <img src="/pictures/schlieren.gif" width="400" />
+
+- Predicting 2D motion of primate hands with a KNN classifier using data from sensorimotor cortex implanted electrode arrays (2 utah arrays) (2021)
+  
+<img src="/pictures/thermal.gif" width="400" /> <img src="/pictures/schlieren.gif" width="400" />
+
+- Simulating ECG in COMSOL (2021)
+
+<img src="/pictures/comsolecg.png" width="400" /> <img src="/pictures/comsolEandI.png" width="400" />
+
+- Scalable tactile sensing e-skins through spatial frequency encoding - My Master's Thesis! (2020-21)
   - A. Slepyan, S. Sankar, and N. Thakor "**Texture discrimination using a biomimetic robotic finger with a novel and scalable tactile sensing e-skin**” 
   - Submittted to 10th International IEEE/EMBS Conference on Neural Engineering, 2021
   - More publications to come!
