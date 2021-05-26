@@ -5,7 +5,7 @@
 
 - Predicting 2D motion of primate hands with a KNN classifier using data from sensorimotor cortex implanted electrode arrays (2 utah arrays) (2021)
   
-<img src="/pictures/thermal.gif" width="400" /> <img src="/pictures/schlieren.gif" width="400" />
+<img src="/pictures/knnoverview.png" width="400" /> <img src="/pictures/3dplotting.png" width="400" />
 
 - Simulating ECG in COMSOL (2021)
 
