@@ -1,5 +1,5 @@
 ## Fun
-- Image synthesizers! -- [download the MATLAB code here,](/files/image_making.zip) or  [the matlab executable app here!](/files/image_maker_installer.exe). I wrote these two functions that allow you to remake an image with another image! You can get really creative and make some cool art. The first function tries to recreate a first image using pieces of a second image. The second function tries to recreate a first image using many small tiles of the second image with varying hues, saturations, and values. See two examples below!
+- Image synthesizers! -- [download the MATLAB code here,](/files/image_making.zip) or  [the windows executable app here!](/files/image_maker_installer.exe). I wrote these two functions that allow you to remake an image with another image! You can get really creative and make some cool art. The first function tries to recreate a first image using pieces of a second image. The second function tries to recreate a first image using many small tiles of the second image with varying hues, saturations, and values. See two examples below!
 
 <img src="/pictures/dbztiger.png" width="400" /> <img src="/pictures/bidentrump.png" width="400" />
 
