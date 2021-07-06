@@ -59,10 +59,10 @@
   
   
 - [Chopin](/files/chopinOp9No1.mp3)
-<script>
-var audio = new Audio(/files/chopinOp9No1.mp3)
-audio.play()
-</script>
+
+
+<audio src="/files/chopinOp9No1.mp3" controls preload></audio>
+
 
 <p align="center">
   <a href="http://arielslepyan.me/Aboutme">About Me</a> |         
