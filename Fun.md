@@ -57,7 +57,12 @@
   - Here is a good website to visualize gp5 files for free:
   [soundslice](https://www.soundslice.com/guitar-pro-viewer/) 
   
-  - [Chopin](/files/chopinOp9No1.mp3)
+  
+- [Chopin](/files/chopinOp9No1.mp3)
+<script>
+var audio = new Audio(/files/chopinOp9No1.mp3)
+audio.play()
+</script>
 
 <p align="center">
   <a href="http://arielslepyan.me/Aboutme">About Me</a> |         
