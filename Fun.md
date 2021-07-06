@@ -58,9 +58,8 @@
   [soundslice](https://www.soundslice.com/guitar-pro-viewer/) 
   
   
-- [Chopin](/files/chopinOp9No1.mp3)
 
-
+- Chopin Op9 No1
 <audio src="/files/chopinOp9No1.mp3" controls preload></audio>
 
 
