@@ -59,8 +59,7 @@
   
   
 
-Chopin Op9 No1
-<audio src="/files/chopinOp9No1.mp3" controls preload></audio>
+Chopin Op9 No1 <audio src="/files/chopinOp9No1.mp3" controls preload></audio>
 
 
 <p align="center">
