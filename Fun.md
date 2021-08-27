@@ -4,7 +4,7 @@
 <img src="/pictures/dbztiger.png" width="400" /> <img src="/pictures/bidentrump.png" width="400" />
 
 - PyGame -- please contact me for any code! PyGame is a really fun library to explore in Python because it allows you to build your own video games! Below are some games I have made.
-  - **Dodge The Bullet**
+  - **Dodge The Bullet** -- [download the game here!](/files/dodgethebullet.7z)
 
 <img src="/pictures/DodgeTheBullet.png" width="400" />
 
