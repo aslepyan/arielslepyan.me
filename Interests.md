@@ -1,37 +1,28 @@
 ## Interests
 
-Some of my interests
-		
-Neural:
-- Neural implants
-- Brain-computer interface with sensory feedback
-- Implantable neural stimulation for learning
-- Wireless neural implants using RF/inductive link
+Some of my recent research interests
 
-Micro:
-- Microfabrication
-- Droplet microfluidics
-- POC diagnostics
-- Paper-based microfluidics
-- Organ on chip
-
-Instrumentation:
-- Robotics/Mechatronics
-- Neuromorphic design
+**Scalable Sensing**
+- Compressed sensing
 - Event-based sensing
-- E-skins
+- High-speed asynchronous sensing
 
-DNA:
-- On-chip de novo DNA synthesis
-- DNA data storage
-- Self assembled nanostructures
+**Instrumentation**
+- Neuromorphic design
+- Electronic skin (e-skin)
+- Robotics/Mechatronics
 
-Computing:
-- IC photonics
-- Bio computing
+**Prosthethics**
+- Tactile sensory feedback
 
-Misc:
-- Neuromuscular electrical stimulation for developing 'muscle memory'
+**Micro**
+- Piezoelectric sensors
+- Microfabrication
+- Microfluidics
+
+**Neural**
+- Scalable neural interfaces
+
 
 <p align="center">
   <a href="http://arielslepyan.me/Aboutme">About Me</a> |         
