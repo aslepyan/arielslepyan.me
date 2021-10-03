@@ -3,9 +3,11 @@
 Some of my recent research interests
 
 **Scalable Sensing**
+- High-speed asynchronous sensing
+- High-density sensors
+- Wireless sensing
 - Compressed sensing
 - Event-based sensing
-- High-speed asynchronous sensing
 
 **Instrumentation**
 - Neuromorphic design
@@ -14,6 +16,7 @@ Some of my recent research interests
 
 **Prosthethics**
 - Tactile sensory feedback
+- Prosthetic tactile skin
 
 **Micro**
 - Piezoelectric sensors
