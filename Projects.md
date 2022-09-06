@@ -5,23 +5,23 @@
 
 - Multi-Dimensional Sum Compression for Large Sensor Arrays (2022)
 
-<img src="/pictures/RCSC.png" width="400" />
+<img src="/pictures/RCSC.png" width="400" /> <img src="/pictures/RCSC2.png" width="400" />
 
 - A Frequency Multiplexed Tactile Sensor Without Electronics Using Piezoelectric Cantilevers (2022)
 
-<img src="/pictures/piezoskin1.png" width="400" /> <img src="/pictures/piezoskin2.png" width="400" />
+<img src="/pictures/piezoskin1.png" width="400" /> <img src="/pictures/piezoskin2.png" width="400" />  <img src="/pictures/piezoskin3.png" width="400" />
 
 - A Miniaturized Joule Thief to Extend the Life of AAA Batteries (2022)
 
-<img src="/pictures/joulethief.png" width="400" />
+<img src="/pictures/joulethief1.png" width="400" /> <img src="/pictures/joulethief2.png" width="400" /> <img src="/pictures/joulethief3.png" width="400" />
 
 - Wavelet Decomposition and Reconstruction of High-Frequency Oscillations in Somatosensory Evoked Potentials during Ischemia (2022)
 
-<img src="/pictures/waveletHFO.png" width="400" />
+<img src="/pictures/waveletHFO1.png" width="400" /> <img src="/pictures/waveletHFO2.png" width="400" />
 
 - Haptic Touch 2: A retrofittable tactile sensing glove and haptic feedback armband for scalable and robust tactile sensory feedback (2022)
 
-<img src="/pictures/haptictouch2.png" width="400" />
+<img src="/pictures/haptictouch2_1.png" width="400" /> <img src="/pictures/haptictouch2_2.png" width="400" /> <img src="/pictures/haptictouch2_3.png" width="400" /> <img src="/pictures/haptictouch2_4.png" width="400" />
 
 - Proper covid mask-fit detection using thermal imaging + schlieren imaging validation (2021)
 
@@ -39,7 +39,9 @@
   - A. Slepyan, S. Sankar, and N. Thakor "**Texture discrimination using a biomimetic robotic finger with a novel and scalable tactile sensing e-skin**” 
   - Submittted to 10th International IEEE/EMBS Conference on Neural Engineering, 2021
   - More publications to come!
-  
+
+<img src="/pictures/neuromimetic_freq.png" width="400" />
+
 <img src="/pictures/TextureDiscrimination.png" width="400" />
 
 <img src="/pictures/TextureDiscrimination_STFT.PNG" width="400" />
