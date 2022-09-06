@@ -23,9 +23,6 @@ Some of my recent research interests
 - Microfabrication
 - Microfluidics
 
-**Neural**
-- Scalable neural interfaces
-
 
 <p align="center">
   <a href="http://arielslepyan.me/Aboutme">About Me</a> |         
