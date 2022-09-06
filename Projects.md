@@ -1,4 +1,24 @@
 ## Projects
+- Robotic contour following through tactile sensing and a recurrent neural network (2022)
+
+<img src="/pictures/contour1.gif" width="400" /> <img src="/pictures/contour2.gif" width="400" />
+
+- Multi-Dimensional Sum Compression for Large Sensor Arrays (2022)
+
+<img src="/pictures/RCSC.png" width="400" />
+
+- A Frequency Multiplexed Tactile Sensor Without Electronics Using Piezoelectric Cantilevers (2022)
+
+<img src="/pictures/piezoskin1.png" width="400" /> <img src="/pictures/piezoskin2.png" width="400" />
+
+- A Miniaturized Joule Thief to Extend the Life of AAA Batteries (2022)
+
+<img src="/pictures/joulethief.png" width="400" />
+
+- Wavelet Decomposition and Reconstruction of High-Frequency Oscillations in Somatosensory Evoked Potentials during Ischemia (2022)
+
+<img src="/pictures/waveletHFO.png" width="400" />
+
 - Proper covid mask-fit detection using thermal imaging + schlieren imaging validation (2021)
 
 <img src="/pictures/thermal.gif" width="400" /> <img src="/pictures/schlieren.gif" width="400" />
