@@ -19,6 +19,10 @@
 
 <img src="/pictures/waveletHFO.png" width="400" />
 
+- Haptic Touch 2: A retrofittable tactile sensing glove and haptic feedback armband for scalable and robust tactile sensory feedback (2022)
+
+<img src="/pictures/haptictouch2.png" width="400" />
+
 - Proper covid mask-fit detection using thermal imaging + schlieren imaging validation (2021)
 
 <img src="/pictures/thermal.gif" width="400" /> <img src="/pictures/schlieren.gif" width="400" />
