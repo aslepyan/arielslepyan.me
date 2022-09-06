@@ -1,7 +1,7 @@
 ## Projects
 - Robotic contour following through tactile sensing and a recurrent neural network (2022)
 
-<img src="/pictures/contour1.gif" width="400" /> <img src="/pictures/contour2.gif" width="400" />
+<img src="/pictures/contour1.gif" width="200" />
 
 - Multi-Dimensional Sum Compression for Large Sensor Arrays (2022)
 
