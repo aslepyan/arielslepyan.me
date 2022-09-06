@@ -1,6 +1,6 @@
 ## CV
 
-[Ariel Slepyan CV](/files/Ariel_Slepyan_CV_7_2021.pdf)
+[Ariel Slepyan CV](/files/Ariel_Slepyan_CV_9_6_2022.pdf)
 
 <p align="center">
   <a href="http://arielslepyan.me/Aboutme">About Me</a> |         
