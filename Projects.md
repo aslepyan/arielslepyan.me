@@ -10,13 +10,13 @@
 
 - A Frequency Multiplexed Tactile Sensor Without Electronics Using Piezoelectric Cantilevers (2022)
 
-<img src="/pictures/piezoskin1.png" width="800" /> 
+<img src="/pictures/piezoskin1.png" width="250" /> 
 <img src="/pictures/piezoskin2.png" width="800" />  
 <img src="/pictures/piezoskin3.png" width="800" />
 
 - A Miniaturized Joule Thief to Extend the Life of AAA Batteries (2022)
 
-<img src="/pictures/joulethief1.png" width="400" /> <img src="/pictures/joulethief2.png" width="400" /> <img src="/pictures/joulethief3.png" width="400" />
+<img src="/pictures/joulethief1.png" width="250" /> <img src="/pictures/joulethief2.png" width="400" /> <img src="/pictures/joulethief3.png" width="250" />
 
 - Wavelet Decomposition and Reconstruction of High-Frequency Oscillations in Somatosensory Evoked Potentials during Ischemia (2022)
 
@@ -43,13 +43,10 @@
 - Scalable tactile sensing e-skins through spatial frequency encoding - My Master's Thesis! (2020-21)
   - A. Slepyan, S. Sankar, and N. Thakor "**Texture discrimination using a biomimetic robotic finger with a novel and scalable tactile sensing e-skin**” 
   - Submittted to 10th International IEEE/EMBS Conference on Neural Engineering, 2021
-  - More publications to come!
 
 <img src="/pictures/neuromimetic_freq.png" width="400" />
 
 <img src="/pictures/TextureDiscrimination.png" width="400" />
-
-<img src="/pictures/TextureDiscrimination_STFT.PNG" width="400" />
 
 - Haptic Touch: An adaptable haptic feedback solution for prosthetic devices (2020)
   - A. Slepyan, M. Ainsworth, and J. Omoniyodo "**A flexible tactile sensing glove and a haptic feedback armband connected by bluetooth**"
