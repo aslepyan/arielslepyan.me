@@ -5,11 +5,14 @@
 
 - Multi-Dimensional Sum Compression for Large Sensor Arrays (2022)
 
-<img src="/pictures/RCSC.png" width="400" /> <img src="/pictures/RCSC2.png" width="400" />
+<img src="/pictures/RCSC.png" width="400" /> 
+<img src="/pictures/RCSC2.png" width="800" />
 
 - A Frequency Multiplexed Tactile Sensor Without Electronics Using Piezoelectric Cantilevers (2022)
 
-<img src="/pictures/piezoskin1.png" width="400" /> <img src="/pictures/piezoskin2.png" width="400" />  <img src="/pictures/piezoskin3.png" width="400" />
+<img src="/pictures/piezoskin1.png" width="800" /> 
+<img src="/pictures/piezoskin2.png" width="800" />  
+<img src="/pictures/piezoskin3.png" width="800" />
 
 - A Miniaturized Joule Thief to Extend the Life of AAA Batteries (2022)
 
@@ -17,11 +20,13 @@
 
 - Wavelet Decomposition and Reconstruction of High-Frequency Oscillations in Somatosensory Evoked Potentials during Ischemia (2022)
 
-<img src="/pictures/waveletHFO1.png" width="400" /> <img src="/pictures/waveletHFO2.png" width="400" />
+<img src="/pictures/waveletHFO1.png" width="400" /> 
+<img src="/pictures/waveletHFO2.png" width="400" />
 
 - Haptic Touch 2: A retrofittable tactile sensing glove and haptic feedback armband for scalable and robust tactile sensory feedback (2022)
 
-<img src="/pictures/haptictouch2_1.png" width="400" /> <img src="/pictures/haptictouch2_2.png" width="400" /> <img src="/pictures/haptictouch2_3.png" width="400" /> <img src="/pictures/haptictouch2_4.png" width="400" />
+<img src="/pictures/haptictouch2_1.png" width="800" /> 
+<img src="/pictures/haptictouch2_2.png" width="200" /> <img src="/pictures/haptictouch2_3.png" width="200" /> <img src="/pictures/haptictouch2_4.png" width="200" />
 
 - Proper covid mask-fit detection using thermal imaging + schlieren imaging validation (2021)
 
