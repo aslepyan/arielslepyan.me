@@ -26,7 +26,7 @@
 - Haptic Touch 2: A retrofittable tactile sensing glove and haptic feedback armband for scalable and robust tactile sensory feedback (2022)
 
 <img src="/pictures/haptictouch2_1.png" width="800" /> 
-<img src="/pictures/haptictouch2_2.png" width="200" /> <img src="/pictures/haptictouch2_3.png" width="200" /> <img src="/pictures/haptictouch2_4.png" width="200" />
+<img src="/pictures/haptictouch2_2.png" width="300" /> <img src="/pictures/haptictouch2_3.png" width="300" /> <img src="/pictures/haptictouch2_4.png" width="300" />
 
 - Proper covid mask-fit detection using thermal imaging + schlieren imaging validation (2021)
 
