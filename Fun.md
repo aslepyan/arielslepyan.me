@@ -1,4 +1,8 @@
 ## Fun
+- PCB Design Class (EN.520.299 PCB Design and Microcontroller Programming) -- This intersession at Hopkins I taught a class on PCB design and microcontroller programming! Here is the synopsis for the class and some pictures. All material was recorded/accessible by a shared online drive. Please contact me if you would like access to the link!
+<img src="/pictures/pcb_watch.png" width="400" /><img src="/pictures/pcb_watch.gif" width="400" />
+<img src="/pictures/pcb_class.png" width="600" />
+
 - Check out my [instructables page](https://www.instructables.com/member/avs131/)! 
 
 - Image synthesizers! -- [download the MATLAB code here,](/files/image_making.zip) or  [the windows executable app here!](/files/image_maker_installer.exe). I wrote these two functions that allow you to remake an image with another image! You can get really creative and make some cool art. The first function tries to recreate a first image using pieces of a second image. The second function tries to recreate a first image using many small tiles of the second image with varying hues, saturations, and values. See two examples below!
