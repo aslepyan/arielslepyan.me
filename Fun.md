@@ -1,4 +1,4 @@
-## Fun
+## Fun and Teaching
 - PCB Design Class (EN.520.299 PCB Design and Microcontroller Programming) -- This intersession at Hopkins I taught a class on PCB design and microcontroller programming! Here is the synopsis for the class and some pictures. All material was recorded/accessible by a shared online drive. Please contact me if you would like access to the link!
 <img src="/pictures/pcb_watch.png" width="400" /><img src="/pictures/pcb_watch.gif" width="400" />
 <img src="/pictures/pcb_class.png" width="600" />
