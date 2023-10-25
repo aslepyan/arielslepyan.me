@@ -1,4 +1,12 @@
 ## Projects
+- A Multi-Channel, Low-Voltage, High-Frequency Programmable Electrical Stimulator for Transcutaneous Sensory Feedback (2023)
+
+<img src="/pictures/stimulator.png" width="250" />
+
+- Robotic contour following through tactile sensing and a recurrent neural network (2022)
+
+<img src="/pictures/contour1.gif" width="200" />
+
 - Robotic contour following through tactile sensing and a recurrent neural network (2022)
 
 <img src="/pictures/contour1.gif" width="200" />
