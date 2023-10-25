@@ -7,10 +7,6 @@
 
 <img src="/pictures/contour1.gif" width="200" />
 
-- Robotic contour following through tactile sensing and a recurrent neural network (2022)
-
-<img src="/pictures/contour1.gif" width="200" />
-
 - Multi-Dimensional Sum Compression for Large Sensor Arrays (2022)
 
 <img src="/pictures/RCSC.png" width="400" /> 
