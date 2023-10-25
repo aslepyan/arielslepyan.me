@@ -2,7 +2,7 @@
 
 Some of my recent research interests
 
-**Scalable Sensing**
+**Scalable (Tactile) Sensing**
 - High-speed asynchronous sensing
 - High-density sensors
 - Wireless sensing
