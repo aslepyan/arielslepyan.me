@@ -7,12 +7,12 @@
 
 <img src="/pictures/contour1.gif" width="200" />
 
-- Multi-Dimensional Sum Compression for Large Sensor Arrays (2022)
+- Multi-Dimensional Sum Compression for Large Sensor Arrays (2022-present)
 
 <img src="/pictures/RCSC.png" width="400" /> 
 <img src="/pictures/RCSC2.png" width="800" />
 
-- A Frequency Multiplexed Tactile Sensor Without Electronics Using Piezoelectric Cantilevers (2022)
+- A Frequency Multiplexed Tactile Sensor Without Electronics Using Piezoelectric Cantilevers (2022-present)
 
 <img src="/pictures/piezoskin1.png" width="250" /> 
 <img src="/pictures/piezoskin2.png" width="800" />  
