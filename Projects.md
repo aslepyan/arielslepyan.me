@@ -64,7 +64,7 @@
 <img src="/pictures/TeleoperationDiagram.png" width="600" />
 <img src="/pictures/HelpingHandDiagram.png" width="400" />
 
-- A Monte Carlo Simulation of the spectral response of a 7-layered human skin model for diagnostic imaging (2020)
+- A Monte Carlo Simulation of the spectral response of a 7-layered human skin model for diagnostic imaging
 
 <img src="/pictures/MonteCarlo.png" width="400" />
 
@@ -81,7 +81,7 @@
 
 - Soft robotic finger 
   - A. Slepyan et al ‘**A biomimetic soft finger for palpation applications**’
-  - Presented at the Do Good Robotics Symposium (DGRS) sponsored by IEEE Robotics & Automation Society (October 2019)
+  - Presented at the Do Good Robotics Symposium (DGRS) sponsored by IEEE Robotics & Automation Society
 
 - Two-finger soft robotic gripper
 
@@ -104,7 +104,7 @@
 
 - Electrokinetic flow focusing in a microfluidic device 
 
-- Biomedical Data Science project - sorting atrial and ventricular cardiomyocytes (2018)
+- Biomedical Data Science project - sorting atrial and ventricular cardiomyocytes
   - Classification of embryonic stem cell-derived cardiomyocites
 
 - Vaccum based droplet loading for microfluidics
