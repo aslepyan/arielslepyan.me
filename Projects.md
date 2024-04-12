@@ -1,5 +1,5 @@
 ## Projects
-- A Multi-Channel, Low-Voltage, High-Frequency Programmable Electrical Stimulator for Transcutaneous Sensory Feedback (2023)
+- A Multi-Channel, Low-Voltage, High-Frequency Programmable Electrical Stimulator for Transcutaneous Sensory Feedback
 
 <img src="/pictures/stimulator.png" width="250" />
 
