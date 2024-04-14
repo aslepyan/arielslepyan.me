@@ -1,4 +1,7 @@
 ## Projects
+- Compressive Sampling for a Scalable Tactile Sensor Matrix
+- Single Pixel Compressive Tactile Skin
+- Sparsifying Tactile Data by Wavelet Transform
 - A Multi-Channel, Low-Voltage, High-Frequency Programmable Electrical Stimulator for Transcutaneous Sensory Feedback
 
 <img src="/pictures/stimulator.png" width="250" />
