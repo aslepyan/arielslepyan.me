@@ -4,7 +4,7 @@ My name is Ariel Slepyan, though many people call me Arik for short.
 
 I am a PhD student at Johns Hopkins studying electrical and computer engineering (ECE). I got my master's ('21) and bachelor's ('20) in biomedical engineering (BME) with a concentration in biomedical instrumentation and micro/nano technology also from Johns Hopkins.
 
-I am quite passionate about science research; and you can learn about some of my projects [here](http://arielslepyan.me/Projects), and research interests [here](http://arielslepyan.me/Interests).
+I am passionate about science research; and you can learn about some of my projects [here](http://arielslepyan.me/Projects), and research interests [here](http://arielslepyan.me/Interests).
 
 My family is of Russian and Jewish origin, and Russian is my first language (*although today I am more comfortable in english*).
 
