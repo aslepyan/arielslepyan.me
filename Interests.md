@@ -3,9 +3,7 @@
 Some of my recent research interests
 
 **Scalable (Tactile) Sensing**
-- High-speed asynchronous sensing
 - High-density sensors
-- Wireless sensing
 - Compressed sensing
 - Event-based sensing
 
@@ -14,7 +12,7 @@ Some of my recent research interests
 - Electronic skin (e-skin)
 - Robotics/Mechatronics
 
-**Prosthethics**
+**Prosthetics**
 - Tactile sensory feedback
 - Prosthetic tactile skin
 
