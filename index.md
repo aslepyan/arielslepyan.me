@@ -1,3 +1,6 @@
+<p style="background-image: "../pictures/good_small.jpg";">
+
+
 ## **Hello!** Welcome to my website!
 
 <img src="/pictures/good_small.jpg" width="400" />
@@ -5,7 +8,6 @@
 Here you can find some basic information about me and some of my interests.
 
 Use the links below to navigate the different sections :)
-
 
 <p align="center">
   <a href="http://arielslepyan.me/Aboutme">About Me</a> |         
