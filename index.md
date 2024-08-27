@@ -4,7 +4,7 @@ body {
 }
 </style>
 
-## Welcome
+<span style="font-weight: bold; font-size: 24px; color: black; background-color: white;">Welcome</span>
 
 <img src="/pictures/good_small.jpg" width="400" />
 
