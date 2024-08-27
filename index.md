@@ -5,8 +5,8 @@ body {
 }
 </style>
 
-<p style="color: white;">
-## **Hello!** Welcome to my website!
+<p style="color: white; font-size: 24px;">
+    <strong>Welcome</strong>
 </p>
 
 <img src="/pictures/good_small.jpg" width="400" />
