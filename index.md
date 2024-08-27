@@ -1,4 +1,4 @@
-<p style="background-image: url("/pictures/good_small.jpg");;">
+<p style="background-image: url("/pictures/good_small.jpg");">
 
 
 ## **Hello!** Welcome to my website!
