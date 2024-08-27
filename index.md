@@ -5,36 +5,24 @@ body {
 }
 </style>
 
-<span style="font-weight: bold; font-size: 24px; color: white; background-color: black;">Welcome</span>
+## Welcome
 
 <img src="/pictures/good_small.jpg" width="400" />
 
-<p style="font-size: 18px; color: white; background-color: black;">
 My name is Ariel Slepyan, though many people call me Arik for short.
-</p>
 
-<p style="font-size: 18px; color: white; background-color: black;">
 I am a PhD student at Johns Hopkins studying electrical and computer engineering (ECE). I got my master's ('21) and bachelor's ('20) in biomedical engineering (BME) with a concentration in biomedical instrumentation and micro/nano technology also from Johns Hopkins.
-</p>
 
-<p style="font-size: 18px; color: white; background-color: black;">
 My research focuses on compressive tactile sensing.
-</p>
 
-<p style="font-size: 18px; color: white; background-color: black;">
 My family is of Russian and Jewish origin, and Russian is my first language (*although today I am more comfortable in english*).
 For fun I enjoy playing basketball, and I love going skiing during the winters.
 I am also an amateur guitar player and photographer.
-</p>
 
-<p style="font-size: 18px; color: white; background-color: black;">
 If you would like to contact me, please do so at my email address: **aslepya1@jhu.edu**
-</p>
 
-<p style="font-size: 18px; color: white; background-color: black;">
 At this site you can find some basic information about me and some of my interests.
 Use the links below to navigate the different sections.
-</p>
 
 <p align="center" style="color: white; background-color: black;">
   <a href="http://arielslepyan.me/Projects">Projects</a> |
