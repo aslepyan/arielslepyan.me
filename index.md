@@ -7,7 +7,7 @@ body {
 
 ## **Hello!** Welcome to my website!
 
-<img src="/pictures/good_small.jpge" width="400" />
+<img src="/pictures/good_small.jpg" width="400" />
 
 Here you can find some basic information about me and some of my interests.
 
