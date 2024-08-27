@@ -1,6 +1,6 @@
 <style>
 body {
-  background-image: url('/pictures/dict_background_white.png'); background-size: 1000px;
+  background-image: url('/pictures/dict_background_white.png'); background-size: 2000px;
 }
 </style>
 
