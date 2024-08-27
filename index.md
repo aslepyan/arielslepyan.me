@@ -1,6 +1,7 @@
 <style>
 body {
   background-image: url('/pictures/good_small.jpg');
+  background-size: 50px;
 }
 </style>
 
