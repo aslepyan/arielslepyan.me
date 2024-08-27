@@ -7,6 +7,7 @@ body {
 
 <p style="color: white; font-size: 24px;">
     <strong>Welcome</strong>
+    <strong style="background-color: black;">This</strong> is a paragraph with white text and larger font size.
 </p>
 
 <img src="/pictures/good_small.jpg" width="400" />
