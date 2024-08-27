@@ -14,7 +14,7 @@ Here you can find some basic information about me and some of my interests.
 Use the links below to navigate the different sections :)
 </p>
 
-<p align="center" style="color: white;">
+<p align="center" style="color: white; background-color: black;">
   <a href="http://arielslepyan.me/Aboutme">About Me</a> |         
   <a href="http://arielslepyan.me/Projects">Projects</a> |
   <a href="http://arielslepyan.me/Fun">Fun and Teaching</a> |
