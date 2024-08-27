@@ -9,9 +9,12 @@ body {
 
 <img src="/pictures/good_small.jpg" width="400" />
 
-<p style="font-size: 24px; color: white; background-color: black;">
+<p style="font-size: 14px; color: white; background-color: black;">
 Here you can find some basic information about me and some of my interests.
-Use the links below to navigate the different sections :)
+</p>
+
+<p style="font-size: 14px; color: white; background-color: black;">
+Use the links below to navigate the different sections.
 </p>
 
 <p align="center" style="color: white; background-color: black;">
