@@ -6,10 +6,7 @@ body {
 </style>
 
 <p style="color: white; font-size: 24px;">
-    <strong>Welcome</strong>
-    <strong style="background-color: black;">This</strong> is a paragraph with white text and larger font size.
-    <span style="font-weight: bold; color: black; background-color: white;">This</span> is a paragraph with white text and larger font size.
-
+    <span style="font-weight: bold; color: white; background-color: black;">Welcome</span>
 </p>
 
 <img src="/pictures/good_small.jpg" width="400" />
