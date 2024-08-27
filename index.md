@@ -9,7 +9,9 @@ body {
 
 <img src="/pictures/good_small.jpg" width="400" />
 
-Here you can find some basic information about me and some of my interests.
+<p style="color: white;">
+
+  Here you can find some basic information about me and some of my interests.
 
 Use the links below to navigate the different sections :)
 
@@ -20,3 +22,7 @@ Use the links below to navigate the different sections :)
   <a href="http://arielslepyan.me/Interests">Interests</a> |
   <a href="http://arielslepyan.me/CV">CV</a> |
 </p>
+
+</p>
+
+
