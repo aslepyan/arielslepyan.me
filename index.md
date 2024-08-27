@@ -1,5 +1,8 @@
-<p style="background-image: url("/pictures/good_small.jpg");">
-
+<style>
+body {
+  background-image: url('/pictures/good_small.jpg');
+}
+</style>
 
 ## **Hello!** Welcome to my website!
 
