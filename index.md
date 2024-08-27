@@ -5,16 +5,12 @@ body {
 }
 </style>
 
-<p style="color: white; font-size: 24px;">
-    <span style="font-weight: bold; color: white; background-color: black;">Welcome</span>
-</p>
+<span style="font-weight: bold; font-size: 24px; color: white; background-color: black;">Welcome</span>
 
 <img src="/pictures/good_small.jpg" width="400" />
 
-<p style="color: white;">
-
+<p style="font-size: 24px; color: white; background-color: black;">
 Here you can find some basic information about me and some of my interests.
-
 Use the links below to navigate the different sections :)
 </p>
 
