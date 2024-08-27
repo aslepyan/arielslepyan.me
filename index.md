@@ -1,7 +1,7 @@
 <style>
 body {
   background-image: url('/pictures/dict_background_white.png'); # /pictures/dict_background_us.png
-  background-size: 1000px;
+  background-size: 2000px;
 }
 </style>
 
@@ -24,7 +24,7 @@ If you would like to contact me, please do so at my email address: **aslepya1@jh
 At this site you can find some basic information about me and some of my interests.
 Use the links below to navigate the different sections.
 
-<p align="center" style="color: white; background-color: black;">
+<p align="center" style="color: white;"> # background-color: black;
   <a href="http://arielslepyan.me/Projects">Projects</a> |
   <a href="http://arielslepyan.me/Teaching">Teaching</a> |
   <a href="http://arielslepyan.me/Fun">Fun Programs</a> |
