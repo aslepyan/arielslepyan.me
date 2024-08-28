@@ -1,3 +1,9 @@
+<style>
+body {
+  background-image: url('/pictures/dict_background_white.png'); background-size: 2000px;
+}
+</style>
+
 ## Fun and Teaching
 - PCB Design Class (EN.520.299 PCB Design and Microcontroller Programming) -- During intersession at Hopkins I teach a class on PCB design and microcontroller programming! Here is the synopsis for the class and some pictures. All material was recorded/accessible by a shared online drive. Please contact me if you would like access to the link. 
 
@@ -73,10 +79,9 @@ Below gif shows the watch's operation, showing the time 2:24. The watch is power
 Chopin Op9 No1 <audio src="/files/chopinOp9No1.mp3" controls preload></audio>
 
 
-<p align="center">
-  <a href="http://arielslepyan.me/Aboutme">About Me</a> |         
+<p align="center" style="color: black; background-color: white;">
   <a href="http://arielslepyan.me/Projects">Projects</a> |
-  <a href="http://arielslepyan.me/Fun">Fun and Teaching</a> |
-  <a href="http://arielslepyan.me/Interests">Interests</a> |
-  <a href="http://arielslepyan.me/CV">CV</a> |
+  <a href="http://arielslepyan.me/Teaching">Teaching</a> |
+  <a href="http://arielslepyan.me/Fun">Fun Programs</a> |
+  <a href="http://arielslepyan.me/CV">CV</a> 
 </p>
