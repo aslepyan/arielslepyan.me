@@ -1,7 +1,6 @@
 <style>
 body {
-  background-image: url('/pictures/dict_background_white.png'); # /pictures/dict_background_us.png
-  # background-size: # 2000px;
+  background-image: url('/pictures/dict_background_white.png'); background-size: 2000px;
 }
 </style>
 
@@ -136,7 +135,7 @@ body {
 
 - Thermotaxis
 
-<p align="center" style="color: white;"> # background-color: black;
+<p align="center" style="color: black; background-color: white;">
   <a href="http://arielslepyan.me/Projects">Projects</a> |
   <a href="http://arielslepyan.me/Teaching">Teaching</a> |
   <a href="http://arielslepyan.me/Fun">Fun Programs</a> |
