@@ -4,6 +4,10 @@ body {
 }
 </style>
 
+<div style="background-color:#FFFFFF; text-align:left; vertical-align: middle; padding:20px 47px;"> Example </div>
+
+
+
 ## CV
 
 [Ariel Slepyan CV](/files/cv.pdf)
