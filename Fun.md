@@ -4,23 +4,15 @@ body {
 }
 </style>
 
-## Fun and Teaching
-- PCB Design Class (EN.520.299 PCB Design and Microcontroller Programming) -- During intersession at Hopkins I teach a class on PCB design and microcontroller programming! Here is the synopsis for the class and some pictures. All material was recorded/accessible by a shared online drive. Please contact me if you would like access to the link. 
+## Fun Programs and Misc
 
-This course will teach you how to design a PCB (printed circuit board) in KiCAD and how to translate Arduino sketches to (truly micro) microcontrollers like the ATtiny that can be tightly integrated onto a PCB. This course is particularly valuable to engineers who are looking to translate a bulky prototype into a tightly integrated, mass-producible solution. The course will cover all aspects of PCB development, from schematic layout all the way to surface-mount assembly of components and programming. Students will learn the material by completing a project where each student will design, program, and assemble a PCB watch that they will keep after the course is over. The course is introductory and there are no prerequisites except for familiarity with Arduino and general electronics.
+- Check out my [instructables page](https://www.instructables.com/member/avs131/). 
 
-Below gif shows the watch's operation, showing the time 2:24. The watch is powered by a coin cell battery, is highly accurate using a standard 32.768kHz watch crystal, and is programmed to stay asleep (using minimal power) unless showing time. From the CR1220 battery the battery life is expected to last 3 years. 
-
-<img src="/pictures/pcb_watch.png" width="200" /><img src="/pictures/pcb_watch.gif" width="200" />
-<img src="/pictures/pcb_class.jpg" width="500" />
-
-- Check out my [instructables page](https://www.instructables.com/member/avs131/)! 
-
-- Image synthesizers! -- [download the MATLAB code here,](/files/image_making.zip) or  [the windows executable app here!](/files/image_maker_installer.exe). I wrote these two functions that allow you to remake an image with another image! You can get really creative and make some cool art. The first function tries to recreate a first image using pieces of a second image. The second function tries to recreate a first image using many small tiles of the second image with varying hues, saturations, and values. See two examples below!
+- Image synthesizers. -- [download the MATLAB code here,](/files/image_making.zip) or  [the windows executable app here!](/files/image_maker_installer.exe). I wrote these two functions that allow you to remake an image with another image! You can get really creative and make some cool art. The first function tries to recreate a first image using pieces of a second image. The second function tries to recreate a first image using many small tiles of the second image with varying hues, saturations, and values. See two examples below.
 
 <img src="/pictures/dbztiger.png" width="400" /> <img src="/pictures/bidentrump.png" width="400" />
 
-- PyGame -- please contact me for any code! PyGame is a really fun library to explore in Python because it allows you to build your own video games! Below are some games I have made.
+- PyGame -- please contact me for any code! PyGame is a really fun library to explore in Python because it allows you to build your own video games. Below are some games I have made.
   - **Dodge The Bullet** -- [download the windows executable game here!](/files/dodgethebullet.7z)
 
 <img src="/pictures/DodgeTheBullet.png" width="400" />
