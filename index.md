@@ -16,7 +16,9 @@ body {
 
 <span style="font-weight: bold; font-size: 24px; color: black; background-color: white;">Welcome</span>
 
-<img src="/pictures/good_small.jpg" width="400" />
+<p>
+  <img src="/pictures/good_small.jpg" width="400" />
+</p>
 
 <p style="font-size: 18px; color: black; background-color: white;">
 My name is Ariel Slepyan, though many people call me Arik for short.
