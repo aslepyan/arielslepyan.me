@@ -4,6 +4,16 @@ body {
 }
 </style>
 
+<style>
+.myDiv {
+  border: 5px outset red;
+  background-color: lightblue;    
+  text-align: center;
+}
+</style>
+
+<div class="myDiv">
+
 <span style="font-weight: bold; font-size: 24px; color: black; background-color: white;">Welcome</span>
 
 <img src="/pictures/good_small.jpg" width="400" />
@@ -41,3 +51,6 @@ Use the links below to navigate the different sections.
   <a href="http://arielslepyan.me/Fun">Fun Programs</a> |
   <a href="http://arielslepyan.me/CV">CV</a> 
 </p>
+
+</div>
+
