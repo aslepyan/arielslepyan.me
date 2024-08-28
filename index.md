@@ -14,9 +14,9 @@ body {
 
 <div class="myDiv">
 
-<span style="font-weight: bold; font-size: 24px; color: black;">Welcome</span>
+<span style="font-weight: bold; font-size: 24px; color: black; text-align: center;">Welcome</span>
 
-<p>
+<p style="text-align: center;">
   <img src="/pictures/good_small.jpg" width="400" />
 </p>
 
