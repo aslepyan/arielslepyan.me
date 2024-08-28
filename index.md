@@ -6,8 +6,8 @@ body {
 
 <style>
 .myDiv {
-  border: 5px outset red;
-  background-color: HoneyDew;    
+  border: 5px outset BlanchedAlmond;
+  background-color: Ivory;    
   text-align: left;
 }
 </style>
