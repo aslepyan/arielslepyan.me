@@ -4,7 +4,7 @@ body {
 }
 </style>
 
-<div style="background-color:#FFFFFF; text-align:left; vertical-align: middle; padding:20px 47px;"> Example </div>
+<div style="background-color:#000000; text-align:left; vertical-align: middle; padding:20px 47px;"> Example </div>
 
 
 
