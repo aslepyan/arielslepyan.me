@@ -171,7 +171,6 @@ Projects
 <img src="/pictures/NavigationRobot.jpg" width="400" />
 </p>
 
-</p>
 <p style="font-size: 18px; color: black; ">
 - RFID based sensing 
 </p>
