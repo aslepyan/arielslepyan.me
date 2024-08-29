@@ -23,7 +23,7 @@ Welcome
 </p>
 
 <p style="font-size: 18px; color: black; ">
-My name is Ariel Slepyan, though many people call me Arik for short.
+My name is Ariel (Arik) Slepyan.
 </p>
 
 <p style="font-size: 18px; color: black; ">
