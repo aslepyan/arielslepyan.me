@@ -1,11 +1,18 @@
 <style>
 body {
-  background-image: url('/pictures/dict_background_white.png'); background-size: 2000px;
+  background-image: url('/pictures/dict_background_us.png'); background-size: 2000px;
 }
 </style>
 
-<div style="background-color:#000000; text-align:left; vertical-align: middle; padding:20px 47px;"> Example </div>
+<style>
+.myDiv {
+  border: 5px outset BlanchedAlmond;
+  background-color: Ivory;    
+  text-align: left;
+}
+</style>
 
+<div class="myDiv">
 
 
 ## CV
@@ -18,3 +25,5 @@ body {
   <a href="http://arielslepyan.me/Fun">Fun Programs</a> |
   <a href="http://arielslepyan.me/CV">CV</a> 
 </p>
+
+</div>
