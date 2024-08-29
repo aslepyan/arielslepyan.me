@@ -17,7 +17,7 @@ body {
 
 ## CV
 
-[Ariel Slepyan CV](/files/cv.pdf)
+<a href="/files/cv.pdf">Ariel Slepyan CV</a>
 
 <p align="center" style="color: black; background-color: white;">
   <a href="http://arielslepyan.me/Projects">Projects</a> |
