@@ -18,7 +18,6 @@ body {
 Fun Programs and Misc
 </p>
 
-</p>
 <p style="font-size: 18px; color: black; ">
 - Check out my [instructables page](https://www.instructables.com/member/avs131/). 
 
