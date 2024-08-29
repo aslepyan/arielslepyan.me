@@ -1,8 +1,18 @@
 <style>
 body {
-  background-image: url('/pictures/dict_background_white.png'); background-size: 2000px;
+  background-image: url('/pictures/dict_background_us.png'); background-size: 2000px;
 }
 </style>
+
+<style>
+.myDiv {
+  border: 5px outset BlanchedAlmond;
+  background-color: Ivory;    
+  text-align: left;
+}
+</style>
+
+<div class="myDiv">
 
 ## Projects
 - Compressive Sampling for a Scalable Tactile Sensor Matrix
@@ -141,3 +151,6 @@ body {
   <a href="http://arielslepyan.me/Fun">Fun Programs</a> |
   <a href="http://arielslepyan.me/CV">CV</a> 
 </p>
+
+</div>
+
