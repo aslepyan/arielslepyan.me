@@ -35,8 +35,8 @@ My research focuses on compressive tactile sensing.
 </p>
 
 <p style="font-size: 18px; color: black;">
-My family is of Russian and Jewish origin, and Russian is my first language (*although today I am more comfortable in english*).
-For fun I enjoy playing basketball, and I love going skiing during the winters.
+I am Russian and Jewish, and Russian is my first language (*although today I am more comfortable in english*).
+For fun I enjoy playing basketball, and I love going skiing.
 I am also an amateur guitar player and photographer.
 </p>
 
