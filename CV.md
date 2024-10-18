@@ -14,9 +14,6 @@ body {
 
 <div class="myDiv">
 
-
-## CV
-
 <a href="/files/cv.pdf">Ariel Slepyan CV</a>
 
 <p align="center" style="color: black; background-color: white;">
