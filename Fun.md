@@ -122,27 +122,27 @@ Fun Programs and Misc
   - Here you can find some nice russian folk guitar songs with tabs that are easy to play 
 </p>
 <p style="font-size: 18px; color: black; ">
-    - [Kak po moryu](/files/narodnye-kak-po-moryu.gp5)
+   <a href="/files/narodnye-kak-po-moryu.gp5">Kak po moryu</a>
 </p>
 <p style="font-size: 18px; color: black; ">
-    - [I'll have never been the young](/files/narodnye-ill-have-never-been-the-young.gp5)
+   <a href="/files/narodnye-ill-have-never-been-the-young.gp5">I'll have never been the young</a>
 </p>
 <p style="font-size: 18px; color: black; ">
-    - [I've met you](/files/narodnye-ive-met-you.gp5)
+   <a href="/files/narodnye-ive-met-you.gp5">I've met you</a>
 </p>
 <p style="font-size: 18px; color: black; ">
-    - [Step de step krugom](/files/narodnye-step-da-step-krugom.gp5)
+   <a href="/files/narodnye-step-da-step-krugom.gp5">Step de step krugom</a>
 </p>
 <p style="font-size: 18px; color: black; ">
-    - [Gorod zolotoy](/files/Aquarium-Gorod-Zolotoy.gp5)
+   <a href="/files/Aquarium-Gorod-Zolotoy.gp5">Gorod zolotoy</a>
 </p>
 <p style="font-size: 18px; color: black; ">
-    - [Starik Kozlodoev](/files/Aquarium-Starik-Kozlodoev.gp5)
+   <a href="/files/Aquarium-Starik-Kozlodoev.gp5">Starik Kozlodoev</a>
 </p>
 <p style="font-size: 18px; color: black; ">
   - Here is a good website to visualize gp5 files for free:
-  [soundslice](https://www.soundslice.com/guitar-pro-viewer/) 
-  </p>
+  <a href="https://www.soundslice.com/guitar-pro-viewer/">soundslice</a>
+</p>
 
   
 
