@@ -23,7 +23,6 @@ My research focuses on developing scalable tactile sensing systems, to acquire h
 <a href="https://scholar.google.com/citations?hl=en&user=8uVwi4UAAAAJ">My Google Scholar Page is here</a>
 </p>
 <br>
-<br>
 
 <p style="font-weight: bold; font-size: 20px; color: black;">
 Published Work
