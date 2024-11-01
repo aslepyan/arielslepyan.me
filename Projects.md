@@ -25,75 +25,124 @@ Projects
 <img src="/pictures/stimulator.png" width="250" />
 </p>
 
-- Adaptive Subsampling and Learned Model Improve Spatiotemporal Resolution of Tactile Skin
-- A Slepyan, D Li, A Aug, S Sankar, T Tran, N Thakor
-- arXiv preprint arXiv:2410.13847 2024
-
 <p style="font-size: 18px; color: black; ">
-- SensoPatch: A Reconfigurable Haptic Feedback with High-Density Tactile Sensing Glove
-- Y Angkanapiwat, A Slepyan, RJ Greene, N Thakor
-- arXiv preprint arXiv:2409.19155 2024
+Adaptive Subsampling and Learned Model Improve Spatiotemporal Resolution of Tactile Skin
+</p>
+<p style="font-size: 18px; color: black; ">
+A Slepyan, D Li, A Aug, S Sankar, T Tran, N Thakor
+<p style="font-size: 18px; color: black; ">
+arXiv preprint arXiv:2410.13847 2024
 </p>
 
 <p style="font-size: 18px; color: black; ">
-- Wavelet Transforms Significantly Sparsify and Compress Tactile Interactions
-- A Slepyan, M Zakariaie, T Tran, N Thakor
-- Sensors 24 (13), 4243	2024
+SensoPatch: A Reconfigurable Haptic Feedback with High-Density Tactile Sensing Glove
+</p>
+<p style="font-size: 18px; color: black; ">
+Y Angkanapiwat, A Slepyan, RJ Greene, N Thakor
+</p>
+<p style="font-size: 18px; color: black; ">
+arXiv preprint arXiv:2409.19155 2024
 </p>
 
 <p style="font-size: 18px; color: black; ">
-- A Multi-Channel, Low-Voltage, High-Frequency Programmable Electrical Stimulator for Sensory Feedback
-- A Slepyan, S Krishnan, T Li, N Thakor
-- 2023 IEEE Biomedical Circuits and Systems Conference (BioCAS), 1-5 2023
+Wavelet Transforms Significantly Sparsify and Compress Tactile Interactions
+</p>
+<p style="font-size: 18px; color: black; ">
+A Slepyan, M Zakariaie, T Tran, N Thakor
+</p>
+<p style="font-size: 18px; color: black; ">
+Sensors 24 (13), 4243	2024
 </p>
 
 <p style="font-size: 18px; color: black; ">
-- Time-Frequency Analysis of Somatosensory Evoked High-Frequency (600 Hz) Oscillations as an Early Indicator of Arousal Recovery after Hypoxic-Ischemic Brain Injury
-- Z Ou, Y Guo, P Gharibani, A Slepyan, D Routkevitch, A Bezerianos, ...
-- Brain Sciences 13 (1), 2 2022
+A Multi-Channel, Low-Voltage, High-Frequency Programmable Electrical Stimulator for Sensory Feedback
+</p>
+<p style="font-size: 18px; color: black; ">
+A Slepyan, S Krishnan, T Li, N Thakor
+</p>
+<p style="font-size: 18px; color: black; ">
+2023 IEEE Biomedical Circuits and Systems Conference (BioCAS), 1-5 2023
 </p>
 
 <p style="font-size: 18px; color: black; ">
-- Flexible multilayer tactile sensor on a soft robotic fingertip
-- S Sankar, A Slepyan, MM Iskarous, WY Cheng, R DeBrabander, J Zhang, ...
-- 2022 IEEE Sensors, 1-4 2022
+Time-Frequency Analysis of Somatosensory Evoked High-Frequency (600 Hz) Oscillations as an Early Indicator of Arousal Recovery after Hypoxic-Ischemic Brain Injury
+</p>
+<p style="font-size: 18px; color: black; ">
+Z Ou, Y Guo, P Gharibani, A Slepyan, D Routkevitch, A Bezerianos, ...
+</p>
+<p style="font-size: 18px; color: black; ">
+Brain Sciences 13 (1), 2 2022
 </p>
 
 <p style="font-size: 18px; color: black; ">
-- Real-time, dynamic sensory feedback using neuromorphic tactile signals and transcutaneous electrical nerve stimulation
-- Y Tian, A Slepyan, MM Iskarous, S Sankar, CL Hunt, NV Thakor
-- 2022 IEEE Biomedical Circuits and Systems Conference (BioCAS), 399-403 2022
+Flexible multilayer tactile sensor on a soft robotic fingertip
+</p>
+<p style="font-size: 18px; color: black; ">
+S Sankar, A Slepyan, MM Iskarous, WY Cheng, R DeBrabander, J Zhang, ...
+</p>
+<p style="font-size: 18px; color: black; ">
+2022 IEEE Sensors, 1-4 2022
 </p>
 
 <p style="font-size: 18px; color: black; ">
-- Scalable, event-based sensing using wireless sensor elements embedded in flexible elastomer
-- A SLEPYAN
-- WO Patent App. PCT/US2022/022,869 2022
+Real-time, dynamic sensory feedback using neuromorphic tactile signals and transcutaneous electrical nerve stimulation
+</p>
+<p style="font-size: 18px; color: black; ">
+Y Tian, A Slepyan, MM Iskarous, S Sankar, CL Hunt, NV Thakor
+</p>
+<p style="font-size: 18px; color: black; ">
+2022 IEEE Biomedical Circuits and Systems Conference (BioCAS), 399-403 2022
+</p>
+
+<p style="font-size: 18px; color: black; ">
+Scalable, event-based sensing using wireless sensor elements embedded in flexible elastomer
+</p>
+<p style="font-size: 18px; color: black; ">
+A SLEPYAN
+</p>
+<p style="font-size: 18px; color: black; ">
+WO Patent App. PCT/US2022/022,869 2022
 </p>
 
 
 <p style="font-size: 18px; color: black; ">
-- Haptic Touch: A retrofittable tactile sensing glove and haptic feedback armband for scalable and robust sensory feedback
-- A Aug, A Slepyan, E Levenshus, N Thakor
-- 2022 9th IEEE RAS/EMBS International Conference for Biomedical Robotics and … 2022
+Haptic Touch: A retrofittable tactile sensing glove and haptic feedback armband for scalable and robust sensory feedback
+</p>
+<p style="font-size: 18px; color: black; ">
+A Aug, A Slepyan, E Levenshus, N Thakor
+</p>
+<p style="font-size: 18px; color: black; ">
+2022 9th IEEE RAS/EMBS International Conference for Biomedical Robotics and … 2022
 </p>
 
 <p style="font-size: 18px; color: black; ">
-- Scalable Tactile Sensing E-Skins Through Spatial Frequency Encoding
-- A Slepyan
-- Johns Hopkins University 2021
+Scalable Tactile Sensing E-Skins Through Spatial Frequency Encoding
+</p>
+<p style="font-size: 18px; color: black; ">
+A Slepyan
+</p>
+<p style="font-size: 18px; color: black; ">
+Johns Hopkins University 2021
 </p>
 
 <p style="font-size: 18px; color: black; ">
-- Texture discrimination using a neuromimetic asynchronous flexible tactile sensor array with spatial frequency encoding
-- A Slepyan, S Sankar, N Thakor
-- 2021 10th International IEEE/EMBS Conference on Neural Engineering (NER … 2021
+Texture discrimination using a neuromimetic asynchronous flexible tactile sensor array with spatial frequency encoding
+</p>
+<p style="font-size: 18px; color: black; ">
+A Slepyan, S Sankar, N Thakor
+</p>
+<p style="font-size: 18px; color: black; ">
+2021 10th International IEEE/EMBS Conference on Neural Engineering (NER … 2021
 </p>
 
 <p style="font-size: 18px; color: black; ">
-- Towards scalable soft e-skin: Flexible event-based tactile-sensors using wireless sensor elements embedded in soft elastomer
-- A Slepyan, N Thakor
-- 2020 8th IEEE RAS/EMBS International Conference for Biomedical Robotics and … 2020
+Towards scalable soft e-skin: Flexible event-based tactile-sensors using wireless sensor elements embedded in soft elastomer
+</p>
+<p style="font-size: 18px; color: black; ">
+A Slepyan, N Thakor
+</p>
+<p style="font-size: 18px; color: black; ">
+2020 8th IEEE RAS/EMBS International Conference for Biomedical Robotics and … 2020
 </p>
 
 
