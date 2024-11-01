@@ -18,6 +18,9 @@ body {
 Projects
 </p>
 
+<a href="http://arielslepyan.me/old_projects">Old Projects Page</a>
+
+
 <p style="font-size: 18px; color: black; ">
 - Compressive Sampling for a Scalable Tactile Sensor Matrix
 </p>
