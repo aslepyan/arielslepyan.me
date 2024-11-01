@@ -85,7 +85,7 @@ S Sankar, A Slepyan, MM Iskarous, WY Cheng, R DeBrabander, J Zhang, ...
 <br>
 2022 IEEE Sensors, 1-4 2022
 <br>
-<img src="9967059-fig-1-source-small.gif" width="300" />
+<img src="/pictures/9967059-fig-1-source-small.gif" width="300" />
 <br><br>
 
 
@@ -95,7 +95,7 @@ Y Tian, A Slepyan, MM Iskarous, S Sankar, CL Hunt, NV Thakor
 <br>
 2022 IEEE Biomedical Circuits and Systems Conference (BioCAS), 399-403 2022
 <br>
-<img src="tian1-p5-tian-large.gif" width="300" />
+<img src="/pictures/tian1-p5-tian-large.gif" width="300" />
 <br><br>
 
 <a href="https://patents.google.com/patent/US20240185007A1/en">Scalable, event-based sensing using wireless sensor elements embedded in flexible elastomer</a>
