@@ -65,7 +65,7 @@ A Slepyan, S Krishnan, T Li, N Thakor
 <br>
 2023 IEEE Biomedical Circuits and Systems Conference (BioCAS), 1-5 2023
 <br>
-<img src="/pictures/stimulator.png" width="250" />
+<img src="/pictures/stimulator.png" width="300" />
 <br><br>
 
 
