@@ -23,16 +23,13 @@ Research Projects
 
 <p style="font-size: 18px; color: black; ">
 <a href="https://arxiv.org/abs/2410.13847">Adaptive Subsampling and Learned Model Improve Spatiotemporal Resolution of Tactile Skin</a>
-</p>
-<p style="font-size: 18px; color: black; ">
+<br>
 A Slepyan, D Li, A Aug, S Sankar, T Tran, N Thakor
-<p style="font-size: 18px; color: black; ">
+<br>
 arXiv preprint arXiv:2410.13847 2024
-</p>
 <br><br>
 
 
-<p style="font-size: 18px; color: black; ">
   <a href="https://arxiv.org/abs/2409.19155">SensoPatch: A Reconfigurable Haptic Feedback with High-Density Tactile Sensing Glove</a>
 </p>
 <p style="font-size: 18px; color: black; ">
