@@ -144,7 +144,7 @@ A Slepyan, N Thakor
 <br><br>
 </p>
 
-<p style="font-size: 20px; color: black; ">
+<p style="font-size: 20px; color: purple; text-align: right">
 <a href="http://arielslepyan.me/old_projects">Old Projects Page</a>
 </p>
 
