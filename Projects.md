@@ -35,7 +35,7 @@ Published Work
 A Slepyan, D Li, A Aug, S Sankar, T Tran, N Thakor
 <br>
 arXiv preprint arXiv:2410.13847 2024
-<img src="/pictures/tactile_subsampling.png" width="300" />
+<img src="/pictures/tactile_subsampling.PNG" width="300" />
 <br><br>
 
 
@@ -44,7 +44,7 @@ arXiv preprint arXiv:2410.13847 2024
 Y Angkanapiwat, A Slepyan, RJ Greene, N Thakor
 <br>
 arXiv preprint arXiv:2409.19155 2024
-<img src="/pictures/sensopatch.png" width="300" />
+<img src="/pictures/sensopatch.PNG" width="300" />
 <br><br>
 
 
