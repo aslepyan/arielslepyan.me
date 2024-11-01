@@ -35,6 +35,7 @@ Published Work
 A Slepyan, D Li, A Aug, S Sankar, T Tran, N Thakor
 <br>
 arXiv preprint arXiv:2410.13847 2024
+<img src="/pictures/tactile_subsampling.png" width="300" />
 <br><br>
 
 
@@ -43,6 +44,7 @@ arXiv preprint arXiv:2410.13847 2024
 Y Angkanapiwat, A Slepyan, RJ Greene, N Thakor
 <br>
 arXiv preprint arXiv:2409.19155 2024
+<img src="/pictures/sensopatch.png" width="300" />
 <br><br>
 
 
@@ -51,6 +53,7 @@ arXiv preprint arXiv:2409.19155 2024
 A Slepyan, M Zakariaie, T Tran, N Thakor
 <br>
 Sensors 24 (13), 4243	2024
+<img src="/pictures/wavelet.webp" width="300" />
 <br><br>
 
 
@@ -69,6 +72,7 @@ A Slepyan, S Krishnan, T Li, N Thakor
 Z Ou, Y Guo, P Gharibani, A Slepyan, D Routkevitch, A Bezerianos, ...
 <br>
 Brain Sciences 13 (1), 2 2022
+<img src="/pictures/brainsci-13-00002-g002-550.webp" width="300" />
 <br><br>
 
 
@@ -77,6 +81,7 @@ Brain Sciences 13 (1), 2 2022
 S Sankar, A Slepyan, MM Iskarous, WY Cheng, R DeBrabander, J Zhang, ...
 <br>
 2022 IEEE Sensors, 1-4 2022
+<img src="9967059-fig-1-source-small.gif" width="300" />
 <br><br>
 
 
@@ -85,6 +90,7 @@ S Sankar, A Slepyan, MM Iskarous, WY Cheng, R DeBrabander, J Zhang, ...
 Y Tian, A Slepyan, MM Iskarous, S Sankar, CL Hunt, NV Thakor
 <br>
 2022 IEEE Biomedical Circuits and Systems Conference (BioCAS), 399-403 2022
+<img src="tian1-p5-tian-large.gif" width="300" />
 <br><br>
 
 <a href="https://patents.google.com/patent/US20240185007A1/en">Scalable, event-based sensing using wireless sensor elements embedded in flexible elastomer</a>
@@ -101,7 +107,6 @@ A Aug, A Slepyan, E Levenshus, N Thakor
 <br>
 2022 9th IEEE RAS/EMBS International Conference for Biomedical Robotics and … 2022
 <img src="/pictures/haptictouch2_1.png" width="800" /> 
-<img src="/pictures/haptictouch2_2.png" width="300" /> <img src="/pictures/haptictouch2_3.png" width="300" /> <img src="/pictures/haptictouch2_4.png" width="300" />
 <br><br>
 
 
@@ -129,6 +134,7 @@ A Slepyan, N Thakor
 <br>
 2020 8th IEEE RAS/EMBS International Conference for Biomedical Robotics and … 2020
 <br><br>
+<img src="/pictures/RFIDhandAndGUI.png" width="400" />
 </p>
 
 <p style="font-size: 20px; color: black; ">
