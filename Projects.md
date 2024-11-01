@@ -112,7 +112,7 @@ A Aug, A Slepyan, E Levenshus, N Thakor
 <br>
 2022 9th IEEE RAS/EMBS International Conference for Biomedical Robotics and … 2022
 <br>
-<img src="/pictures/haptictouch2_1.png" width="800" /> 
+<img src="/pictures/haptictouch2_1.png" width="300" /> 
 <br><br>
 
 
@@ -130,7 +130,7 @@ A Slepyan, S Sankar, N Thakor
 <br>
 2021 10th International IEEE/EMBS Conference on Neural Engineering (NER … 2021
 <br>
-<img src="/pictures/neuromimetic_freq.png" width="400" />
+<img src="/pictures/neuromimetic_freq.png" width="300" />
 <br><br>
 
 
@@ -140,7 +140,7 @@ A Slepyan, N Thakor
 <br>
 2020 8th IEEE RAS/EMBS International Conference for Biomedical Robotics and … 2020
 <br>
-<img src="/pictures/RFIDhandAndGUI.png" width="400" />
+<img src="/pictures/RFIDhandAndGUI.png" width="300" />
 <br><br>
 </p>
 
