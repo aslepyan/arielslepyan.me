@@ -193,5 +193,4 @@ A Slepyan, N Thakor
   <a href="http://arielslepyan.me/CV">CV</a> 
 </p>
 
-</div>
 
