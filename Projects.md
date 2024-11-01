@@ -20,6 +20,8 @@ Projects
 
 <a href="http://arielslepyan.me/old_projects">Old Projects Page</a>
 
+<a href="https://scholar.google.com/citations?hl=en&user=8uVwi4UAAAAJ">My Google Scholar Page</a>
+
 
 <p style="font-size: 18px; color: black; ">
 - Compressive Sampling for a Scalable Tactile Sensor Matrix
