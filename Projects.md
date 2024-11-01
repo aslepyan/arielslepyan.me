@@ -25,11 +25,9 @@ Projects
 <img src="/pictures/stimulator.png" width="250" />
 </p>
 
-<p style="font-size: 18px; color: black; ">
 - Adaptive Subsampling and Learned Model Improve Spatiotemporal Resolution of Tactile Skin
 - A Slepyan, D Li, A Aug, S Sankar, T Tran, N Thakor
 - arXiv preprint arXiv:2410.13847 2024
-</p>
 
 <p style="font-size: 18px; color: black; ">
 - SensoPatch: A Reconfigurable Haptic Feedback with High-Density Tactile Sensing Glove
