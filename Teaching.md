@@ -36,7 +36,7 @@ Below gif shows the watch's operation, showing the time 2:24. The watch is power
 </p>
 
 <p align="center" style="color: black; background-color: white;">
-  <a href="http://arielslepyan.me/Projects">Projects</a> |
+  <a href="http://arielslepyan.me/Projects">Research Projects</a> |
   <a href="http://arielslepyan.me/Teaching">Teaching</a> |
   <a href="http://arielslepyan.me/Fun">Fun Programs</a> |
   <a href="http://arielslepyan.me/CV">CV</a> 
