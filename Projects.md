@@ -45,7 +45,7 @@ Y Angkanapiwat, A Slepyan, RJ Greene, N Thakor
 <p style="font-size: 18px; color: black; ">
 arXiv preprint arXiv:2409.19155 2024
 </p>
-
+<br><br>
 
 
 <p style="font-size: 18px; color: black; ">
@@ -57,7 +57,7 @@ A Slepyan, M Zakariaie, T Tran, N Thakor
 <p style="font-size: 18px; color: black; ">
 Sensors 24 (13), 4243	2024
 </p>
-
+<br><br>
 
 
 <p style="font-size: 18px; color: black; ">
@@ -69,7 +69,7 @@ A Slepyan, S Krishnan, T Li, N Thakor
 <p style="font-size: 18px; color: black; ">
 2023 IEEE Biomedical Circuits and Systems Conference (BioCAS), 1-5 2023
 </p>
-
+<br><br>
 
 
 <p style="font-size: 18px; color: black; ">
@@ -81,7 +81,7 @@ Z Ou, Y Guo, P Gharibani, A Slepyan, D Routkevitch, A Bezerianos, ...
 <p style="font-size: 18px; color: black; ">
 Brain Sciences 13 (1), 2 2022
 </p>
-
+<br><br>
 
 
 <p style="font-size: 18px; color: black; ">
@@ -93,7 +93,7 @@ S Sankar, A Slepyan, MM Iskarous, WY Cheng, R DeBrabander, J Zhang, ...
 <p style="font-size: 18px; color: black; ">
 2022 IEEE Sensors, 1-4 2022
 </p>
-
+<br><br>
 
 
 <p style="font-size: 18px; color: black; ">
@@ -105,7 +105,7 @@ Y Tian, A Slepyan, MM Iskarous, S Sankar, CL Hunt, NV Thakor
 <p style="font-size: 18px; color: black; ">
 2022 IEEE Biomedical Circuits and Systems Conference (BioCAS), 399-403 2022
 </p>
-
+<br><br>
 
 
 <p style="font-size: 18px; color: black; ">
@@ -117,7 +117,7 @@ A SLEPYAN
 <p style="font-size: 18px; color: black; ">
 WO Patent App. PCT/US2022/022,869 2022
 </p>
-
+<br><br>
 
 
 <p style="font-size: 18px; color: black; ">
@@ -129,7 +129,7 @@ A Aug, A Slepyan, E Levenshus, N Thakor
 <p style="font-size: 18px; color: black; ">
 2022 9th IEEE RAS/EMBS International Conference for Biomedical Robotics and … 2022
 </p>
-
+<br><br>
 
 
 <p style="font-size: 18px; color: black; ">
@@ -141,7 +141,7 @@ A Slepyan
 <p style="font-size: 18px; color: black; ">
 Johns Hopkins University 2021
 </p>
-
+<br><br>
 
 
 <p style="font-size: 18px; color: black; ">
@@ -153,7 +153,7 @@ A Slepyan, S Sankar, N Thakor
 <p style="font-size: 18px; color: black; ">
 2021 10th International IEEE/EMBS Conference on Neural Engineering (NER … 2021
 </p>
-
+<br><br>
 
 
 <p style="font-size: 18px; color: black; ">
@@ -165,7 +165,7 @@ A Slepyan, N Thakor
 <p style="font-size: 18px; color: black; ">
 2020 8th IEEE RAS/EMBS International Conference for Biomedical Robotics and … 2020
 </p>
-
+<br><br>
 
 
 
