@@ -47,8 +47,12 @@ If you would like to contact me, please do so at my email address: aslepya1@jhu.
 <p style="font-size: 18px; color: black; ">
 At this site you can find some basic information about me and some of my interests.
 Use the links below to navigate the different sections.
+</p>
+
+<p style="font-size: 8px; color: black; ">
 (background is a Tactile Dictionary)
 </p>
+
 
 <p align="center" style="color: black; ">
   <a href="http://arielslepyan.me/Projects">Research Projects</a> |
