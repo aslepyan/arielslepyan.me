@@ -22,12 +22,7 @@ Projects
 
 
 <p style="font-size: 18px; color: black; ">
-<img src="/pictures/stimulator.png" width="250" />
-</p>
-
-<p style="font-size: 18px; color: black; ">
 <a href="https://arxiv.org/abs/2410.13847">Adaptive Subsampling and Learned Model Improve Spatiotemporal Resolution of Tactile Skin</a>
-
 </p>
 <p style="font-size: 18px; color: black; ">
 A Slepyan, D Li, A Aug, S Sankar, T Tran, N Thakor
@@ -39,7 +34,6 @@ arXiv preprint arXiv:2410.13847 2024
 
 <p style="font-size: 18px; color: black; ">
   <a href="https://arxiv.org/abs/2409.19155">SensoPatch: A Reconfigurable Haptic Feedback with High-Density Tactile Sensing Glove</a>
-
 </p>
 <p style="font-size: 18px; color: black; ">
 Y Angkanapiwat, A Slepyan, RJ Greene, N Thakor
@@ -52,7 +46,6 @@ arXiv preprint arXiv:2409.19155 2024
 
 <p style="font-size: 18px; color: black; ">
 <a href="https://www.mdpi.com/1424-8220/24/13/4243">Wavelet Transforms Significantly Sparsify and Compress Tactile Interactions</a>
-
 </p>
 <p style="font-size: 18px; color: black; ">
 A Slepyan, M Zakariaie, T Tran, N Thakor
@@ -65,7 +58,6 @@ Sensors 24 (13), 4243	2024
 
 <p style="font-size: 18px; color: black; ">
   <a href="https://ieeexplore.ieee.org/abstract/document/10388769">A Multi-Channel, Low-Voltage, High-Frequency Programmable Electrical Stimulator for Sensory Feedback</a>
-
 </p>
 <p style="font-size: 18px; color: black; ">
 A Slepyan, S Krishnan, T Li, N Thakor
@@ -73,12 +65,14 @@ A Slepyan, S Krishnan, T Li, N Thakor
 <p style="font-size: 18px; color: black; ">
 2023 IEEE Biomedical Circuits and Systems Conference (BioCAS), 1-5 2023
 </p>
+<p style="font-size: 18px; color: black; ">
+<img src="/pictures/stimulator.png" width="250" />
+</p>
 <br><br>
 
 
 <p style="font-size: 18px; color: black; ">
   <a href="https://www.mdpi.com/2076-3425/13/1/2">Time-Frequency Analysis of Somatosensory Evoked High-Frequency (600 Hz) Oscillations as an Early Indicator of Arousal Recovery after Hypoxic-Ischemic Brain Injury</a>
-
 </p>
 <p style="font-size: 18px; color: black; ">
 Z Ou, Y Guo, P Gharibani, A Slepyan, D Routkevitch, A Bezerianos, ...
@@ -91,7 +85,6 @@ Brain Sciences 13 (1), 2 2022
 
 <p style="font-size: 18px; color: black; ">
   <a href="https://ieeexplore.ieee.org/abstract/document/9967059">Flexible multilayer tactile sensor on a soft robotic fingertip</a>
-
 </p>
 <p style="font-size: 18px; color: black; ">
 S Sankar, A Slepyan, MM Iskarous, WY Cheng, R DeBrabander, J Zhang, ...
@@ -104,7 +97,6 @@ S Sankar, A Slepyan, MM Iskarous, WY Cheng, R DeBrabander, J Zhang, ...
 
 <p style="font-size: 18px; color: black; ">
   <a href="https://ieeexplore.ieee.org/abstract/document/9948609">Real-time, dynamic sensory feedback using neuromorphic tactile signals and transcutaneous electrical nerve stimulation</a>
-
 </p>
 <p style="font-size: 18px; color: black; ">
 Y Tian, A Slepyan, MM Iskarous, S Sankar, CL Hunt, NV Thakor
@@ -117,7 +109,6 @@ Y Tian, A Slepyan, MM Iskarous, S Sankar, CL Hunt, NV Thakor
 
 <p style="font-size: 18px; color: black; ">
   <a href="https://patents.google.com/patent/US20240185007A1/en">Scalable, event-based sensing using wireless sensor elements embedded in flexible elastomer</a>
-
 </p>
 <p style="font-size: 18px; color: black; ">
 A SLEPYAN
@@ -130,7 +121,6 @@ WO Patent App. PCT/US2022/022,869 2022
 
 <p style="font-size: 18px; color: black; ">
   <a href="https://ieeexplore.ieee.org/abstract/document/9925475">Haptic Touch: A retrofittable tactile sensing glove and haptic feedback armband for scalable and robust sensory feedback</a>
-
 </p>
 <p style="font-size: 18px; color: black; ">
 A Aug, A Slepyan, E Levenshus, N Thakor
@@ -138,12 +128,15 @@ A Aug, A Slepyan, E Levenshus, N Thakor
 <p style="font-size: 18px; color: black; ">
 2022 9th IEEE RAS/EMBS International Conference for Biomedical Robotics and … 2022
 </p>
+<p style="font-size: 18px; color: black; ">
+<img src="/pictures/haptictouch2_1.png" width="800" /> 
+<img src="/pictures/haptictouch2_2.png" width="300" /> <img src="/pictures/haptictouch2_3.png" width="300" /> <img src="/pictures/haptictouch2_4.png" width="300" />
+</p>
 <br><br>
 
 
 <p style="font-size: 18px; color: black; ">
   <a href="https://jscholarship.library.jhu.edu/server/api/core/bitstreams/9128d7eb-9d65-42e8-b34e-e8668984575b/content">Scalable Tactile Sensing E-Skins Through Spatial Frequency Encoding</a>
-
 </p>
 <p style="font-size: 18px; color: black; ">
 A Slepyan
@@ -156,7 +149,6 @@ Johns Hopkins University 2021
 
 <p style="font-size: 18px; color: black; ">
   <a href="https://ieeexplore.ieee.org/abstract/document/9441136">Texture discrimination using a neuromimetic asynchronous flexible tactile sensor array with spatial frequency encodinge</a>
-
 </p>
 <p style="font-size: 18px; color: black; ">
 A Slepyan, S Sankar, N Thakor
@@ -164,12 +156,14 @@ A Slepyan, S Sankar, N Thakor
 <p style="font-size: 18px; color: black; ">
 2021 10th International IEEE/EMBS Conference on Neural Engineering (NER … 2021
 </p>
+<p style="font-size: 18px; color: black; ">
+<img src="/pictures/neuromimetic_freq.png" width="400" />
+</p>
 <br><br>
 
 
 <p style="font-size: 18px; color: black; ">
   <a href="https://ieeexplore.ieee.org/abstract/document/9224353">Towards scalable soft e-skin: Flexible event-based tactile-sensors using wireless sensor elements embedded in soft elastomer</a>
-
 </p>
 <p style="font-size: 18px; color: black; ">
 A Slepyan, N Thakor
@@ -187,92 +181,6 @@ A Slepyan, N Thakor
 <a href="http://arielslepyan.me/old_projects">Old Projects Page</a>
 
 
-
-
-<p style="font-size: 18px; color: black; ">
-- Robotic contour following through tactile sensing and a recurrent neural network
-</p>
-
-<p style="font-size: 18px; color: black; ">
-<img src="/pictures/contour1.gif" width="200" />
-</p>
-
-<p style="font-size: 18px; color: black; ">
-- Multi-Dimensional Sum Compression for Large Sensor Arrays
-</p>
-
-<p style="font-size: 18px; color: black; ">
-<img src="/pictures/RCSC.png" width="400" /> 
-<img src="/pictures/RCSC2.png" width="800" />
-</p>
-
-<p style="font-size: 18px; color: black; ">
-- A Frequency Multiplexed Tactile Sensor Without Electronics Using Piezoelectric Cantilevers
-</p>
-
-<p style="font-size: 18px; color: black; ">
-<img src="/pictures/piezoskin1.png" width="250" /> 
-</p>
-
-<p style="font-size: 18px; color: black; ">
-- A Miniaturized Joule Thief to Extend the Life of AAA Batteries
-</p>
-
-<p style="font-size: 18px; color: black; ">
-<img src="/pictures/joulethief1.png" width="250" /> <img src="/pictures/joulethief2.png" width="400" /> <img src="/pictures/joulethief3.png" width="250" />
-</p>
-
-<p style="font-size: 18px; color: black; ">
-- Wavelet Decomposition and Reconstruction of High-Frequency Oscillations in Somatosensory Evoked Potentials during Ischemia 
-</p>
-
-<p style="font-size: 18px; color: black; ">
-<img src="/pictures/waveletHFO1.png" width="400" /> 
-<img src="/pictures/waveletHFO2.png" width="400" />
-</p>
-
-<p style="font-size: 18px; color: black; ">
-- Haptic Touch 2: A retrofittable tactile sensing glove and haptic feedback armband for scalable and robust tactile sensory feedback
-</p>
-
-<p style="font-size: 18px; color: black; ">
-<img src="/pictures/haptictouch2_1.png" width="800" /> 
-<img src="/pictures/haptictouch2_2.png" width="300" /> <img src="/pictures/haptictouch2_3.png" width="300" /> <img src="/pictures/haptictouch2_4.png" width="300" />
-</p>
-
-<p style="font-size: 18px; color: black; ">
-- Proper covid mask-fit detection using thermal imaging + schlieren imaging validation
-</p>
-
-<p style="font-size: 18px; color: black; ">
-<img src="/pictures/thermal.gif" width="400" /> <img src="/pictures/schlieren.gif" width="400" />
-</p>
-
-<p style="font-size: 18px; color: black; ">
-- Predicting 2D motion of primate hands with a KNN classifier using data from sensorimotor cortex implanted electrode arrays (2 utah arrays)
-</p>
-
-<p style="font-size: 18px; color: black; ">
-<img src="/pictures/knnoverview.png" width="400" /> <img src="/pictures/3dplotting.png" width="400" />
-</p>
-
-<p style="font-size: 18px; color: black; ">
-- Simulating ECG in COMSOL 
-</p>
-
-<p style="font-size: 18px; color: black; ">
-<img src="/pictures/comsolecg.png" width="400" /> <img src="/pictures/comsolEandI.png" width="400" />
-</p>
-
-<p style="font-size: 18px; color: black; ">
-- Scalable tactile sensing e-skins through spatial frequency encoding - My Master's Thesis/
-</p>
-<p style="font-size: 18px; color: black; ">
-  - A. Slepyan, S. Sankar, and N. Thakor "**Texture discrimination using a biomimetic robotic finger with a novel and scalable tactile sensing e-skin**” 
-</p>
-<p style="font-size: 18px; color: black; ">
-  - Submittted to 10th International IEEE/EMBS Conference on Neural Engineering
-</p>
 
 <p style="font-size: 18px; color: black; ">
 <img src="/pictures/neuromimetic_freq.png" width="400" />
