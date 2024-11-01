@@ -14,11 +14,12 @@ body {
 
 <div class="myDiv">
 
-text-align: center;">
+
+<p style="font-weight: bold; font-size: 20px; color: black; text-align: center;">
 </br>
 <a href="/files/cv.pdf">Ariel Slepyan CV</a>
 </br>
-
+</p>
 
 <p align="center" style="color: black; background-color: white;">
   <a href="http://arielslepyan.me/Projects">Research Projects</a> |
