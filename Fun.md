@@ -33,8 +33,7 @@ Fun Programs and Misc
 - PyGame -- please contact me for any code! PyGame is a really fun library to explore in Python because it allows you to build your own video games. Below are some games I have made.
 </p>
 <p style="font-size: 18px; color: black; ">
-  - **Dodge The Bullet** -- [download the windows executable game here!](/files/dodgethebullet.7z)
-
+  - **Dodge The Bullet** -- <a href="/files/dodgethebullet.7z">download the windows executable game here!</a>
 </p>
 <p style="font-size: 18px; color: black; ">
 <img src="/pictures/DodgeTheBullet.png" width="400" />
