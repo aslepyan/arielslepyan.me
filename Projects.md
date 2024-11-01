@@ -33,7 +33,7 @@ arXiv preprint arXiv:2410.13847 2024
 <a href="https://arxiv.org/abs/2409.19155">SensoPatch: A Reconfigurable Haptic Feedback with High-Density Tactile Sensing Glove</a>
 <br>
 Y Angkanapiwat, A Slepyan, RJ Greene, N Thakor
-<br><p style="font-size: 18px; color: black; ">
+<br>
 arXiv preprint arXiv:2409.19155 2024
 <br><br>
 
