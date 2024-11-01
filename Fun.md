@@ -109,12 +109,8 @@ Fun Programs and Misc
 </p>
 <p style="font-size: 18px; color: black; ">
 <img src="/pictures/FirstGame.png" width="400" />
-
 </p>
-<p style="font-size: 18px; color: black; ">
-- [WJHU](https://wjhuradio.jhu.edu/our-execs/)
 
-</p>
 <p style="font-size: 18px; color: black; ">
 - Guitar!
 </p>
