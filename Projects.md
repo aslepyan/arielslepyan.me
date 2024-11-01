@@ -18,7 +18,10 @@ body {
 Research Projects
 </p>
 
-<a href="https://scholar.google.com/citations?hl=en&user=8uVwi4UAAAAJ">My Google Scholar Page</a>
+<p style="font-size: 18px; color: black; ">
+My research focuses on developing scalable tactile sensing systems, to acquire high-resolution tactile data over large areas with high-speed. I work generally in robotics, prosthetics, and wearable devices. I have also worked on wavelet analysis and sensory feedback.
+<a href="https://scholar.google.com/citations?hl=en&user=8uVwi4UAAAAJ">My Google Scholar Page is here</a>
+</p>
 
 
 <p style="font-size: 18px; color: black; ">
