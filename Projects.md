@@ -25,7 +25,9 @@ My research focuses on developing scalable tactile sensing systems, to acquire h
 <br>
 <br>
 
-
+<p style="font-weight: bold; font-size: 20px; color: black;">
+Published Work
+</p>
 
 <p style="font-size: 18px; color: black; ">
 <a href="https://arxiv.org/abs/2410.13847">Adaptive Subsampling and Learned Model Improve Spatiotemporal Resolution of Tactile Skin</a>
