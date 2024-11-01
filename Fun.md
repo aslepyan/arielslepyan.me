@@ -154,7 +154,7 @@ Chopin Op9 No1 <audio src="/files/chopinOp9No1.mp3" controls preload></audio>
 
 
 <p align="center" style="color: black; background-color: white;">
-  <a href="http://arielslepyan.me/Projects">Projects</a> |
+  <a href="http://arielslepyan.me/Projects">Research Projects</a> |
   <a href="http://arielslepyan.me/Teaching">Teaching</a> |
   <a href="http://arielslepyan.me/Fun">Fun Programs</a> |
   <a href="http://arielslepyan.me/CV">CV</a> 
