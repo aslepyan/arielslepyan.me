@@ -18,26 +18,107 @@ body {
 Projects
 </p>
 
-<a href="http://arielslepyan.me/old_projects">Old Projects Page</a>
-
 <a href="https://scholar.google.com/citations?hl=en&user=8uVwi4UAAAAJ">My Google Scholar Page</a>
 
 
 <p style="font-size: 18px; color: black; ">
-- Compressive Sampling for a Scalable Tactile Sensor Matrix
-</p>
-<p style="font-size: 18px; color: black; ">
-- Single Pixel Compressive Tactile Skin
-</p>
-<p style="font-size: 18px; color: black; ">
-- Sparsifying Tactile Data by Wavelet Transform
-</p>
-<p style="font-size: 18px; color: black; ">
-- A Multi-Channel, Low-Voltage, High-Frequency Programmable Electrical Stimulator for Transcutaneous Sensory Feedback
-</p>
-<p style="font-size: 18px; color: black; ">
 <img src="/pictures/stimulator.png" width="250" />
 </p>
+
+<p style="font-size: 18px; color: black; ">
+- Adaptive Subsampling and Learned Model Improve Spatiotemporal Resolution of Tactile Skin
+- A Slepyan, D Li, A Aug, S Sankar, T Tran, N Thakor
+- arXiv preprint arXiv:2410.13847 2024
+</p>
+
+<p style="font-size: 18px; color: black; ">
+  SensoPatch: A Reconfigurable Haptic Feedback with High-Density Tactile Sensing Glove
+Y Angkanapiwat, A Slepyan, RJ Greene, N Thakor
+arXiv preprint arXiv:2409.19155
+2024
+</p>
+
+<p style="font-size: 18px; color: black; ">
+ Wavelet Transforms Significantly Sparsify and Compress Tactile Interactions
+A Slepyan, M Zakariaie, T Tran, N Thakor
+Sensors 24 (13), 4243
+1	2024
+</p>
+
+<p style="font-size: 18px; color: black; ">
+A Multi-Channel, Low-Voltage, High-Frequency Programmable Electrical Stimulator for Sensory Feedback
+A Slepyan, S Krishnan, T Li, N Thakor
+2023 IEEE Biomedical Circuits and Systems Conference (BioCAS), 1-5
+1	2023
+</p>
+
+<p style="font-size: 18px; color: black; ">
+Time-Frequency Analysis of Somatosensory Evoked High-Frequency (600 Hz) Oscillations as an Early Indicator of Arousal Recovery after Hypoxic-Ischemic Brain Injury
+Z Ou, Y Guo, P Gharibani, A Slepyan, D Routkevitch, A Bezerianos, ...
+Brain Sciences 13 (1), 2
+9	2022
+</p>
+
+<p style="font-size: 18px; color: black; ">
+Flexible multilayer tactile sensor on a soft robotic fingertip
+S Sankar, A Slepyan, MM Iskarous, WY Cheng, R DeBrabander, J Zhang, ...
+2022 IEEE Sensors, 1-4
+1	2022
+</p>
+
+<p style="font-size: 18px; color: black; ">
+Real-time, dynamic sensory feedback using neuromorphic tactile signals and transcutaneous electrical nerve stimulation
+Y Tian, A Slepyan, MM Iskarous, S Sankar, CL Hunt, NV Thakor
+2022 IEEE Biomedical Circuits and Systems Conference (BioCAS), 399-403
+4	2022
+</p>
+
+
+
+
+<p style="font-size: 18px; color: black; ">
+Scalable, event-based sensing using wireless sensor elements embedded in flexible elastomer
+A SLEPYAN
+WO Patent App. PCT/US2022/022,869
+2022
+</p>
+
+
+<p style="font-size: 18px; color: black; ">
+Haptic Touch: A retrofittable tactile sensing glove and haptic feedback armband for scalable and robust sensory feedback
+A Aug, A Slepyan, E Levenshus, N Thakor
+2022 9th IEEE RAS/EMBS International Conference for Biomedical Robotics and …
+3	2022
+</p>
+
+
+<p style="font-size: 18px; color: black; ">
+Scalable Tactile Sensing E-Skins Through Spatial Frequency Encoding
+A Slepyan
+Johns Hopkins University
+2021
+</p>
+
+<p style="font-size: 18px; color: black; ">
+Texture discrimination using a neuromimetic asynchronous flexible tactile sensor array with spatial frequency encoding
+A Slepyan, S Sankar, N Thakor
+2021 10th International IEEE/EMBS Conference on Neural Engineering (NER …
+4	2021
+Towards scalable soft e-skin: Flexible event-based tactile-sensors using wireless sensor elements embedded in soft elastomer
+A Slepyan, N Thakor
+</p>
+
+
+
+
+
+
+
+
+<a href="http://arielslepyan.me/old_projects">Old Projects Page</a>
+
+
+
 
 <p style="font-size: 18px; color: black; ">
 - Robotic contour following through tactile sensing and a recurrent neural network
