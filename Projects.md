@@ -20,7 +20,7 @@ Research Projects
 
 <p style="font-size: 18px; color: black; ">
 My research focuses on developing scalable tactile sensing systems, to acquire high-resolution tactile data over large areas with high-speed. I work generally in robotics, prosthetics, and wearable devices. I have also worked on wavelet analysis and sensory feedback.
-<a href="https://scholar.google.com/citations?hl=en&user=8uVwi4UAAAAJ">My Google Scholar Page is here</a>
+<a href="https://scholar.google.com/citations?hl=en&user=8uVwi4UAAAAJ">My Google Scholar Page is here.</a>
 </p>
 <br>
 
@@ -65,7 +65,7 @@ A Slepyan, S Krishnan, T Li, N Thakor
 <br>
 2023 IEEE Biomedical Circuits and Systems Conference (BioCAS), 1-5 2023
 <br>
-<img src="/pictures/stimulator.png" width="250" />
+<img src="/pictures/stimulator.png" width="300" />
 <br><br>
 
 
@@ -112,7 +112,7 @@ A Aug, A Slepyan, E Levenshus, N Thakor
 <br>
 2022 9th IEEE RAS/EMBS International Conference for Biomedical Robotics and … 2022
 <br>
-<img src="/pictures/haptictouch2_1.png" width="800" /> 
+<img src="/pictures/haptictouch2_1.png" width="300" /> 
 <br><br>
 
 
@@ -130,7 +130,7 @@ A Slepyan, S Sankar, N Thakor
 <br>
 2021 10th International IEEE/EMBS Conference on Neural Engineering (NER … 2021
 <br>
-<img src="/pictures/neuromimetic_freq.png" width="400" />
+<img src="/pictures/neuromimetic_freq.png" width="300" />
 <br><br>
 
 
@@ -140,12 +140,12 @@ A Slepyan, N Thakor
 <br>
 2020 8th IEEE RAS/EMBS International Conference for Biomedical Robotics and … 2020
 <br>
-<img src="/pictures/RFIDhandAndGUI.png" width="400" />
+<img src="/pictures/RFIDhandAndGUI.png" width="300" />
 <br><br>
 </p>
 
-<p style="font-size: 20px; color: black; ">
-<a href="http://arielslepyan.me/old_projects">Old Projects Page</a>
+<p style="font-size: 20px; color: purple; text-align: right;">
+<mark> <a href="http://arielslepyan.me/old_projects">Old Projects Page</a> </mark>
 </p>
 
 

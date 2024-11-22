@@ -15,7 +15,7 @@ body {
 <div class="myDiv">
 
 <p style="font-weight: bold; font-size: 24px; color: black; text-align: center;">
-Projects
+Old Projects
 </p>
 
 <p style="font-size: 18px; color: black; ">

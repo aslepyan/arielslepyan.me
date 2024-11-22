@@ -49,6 +49,11 @@ At this site you can find some basic information about me and some of my interes
 Use the links below to navigate the different sections.
 </p>
 
+<p style="font-size: 12px; color: black; ">
+~Background is a Tactile Dictionary~
+</p>
+
+
 <p align="center" style="color: black; ">
   <a href="http://arielslepyan.me/Projects">Research Projects</a> |
   <a href="http://arielslepyan.me/Teaching">Teaching</a> |
