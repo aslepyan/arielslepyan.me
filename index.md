@@ -31,7 +31,7 @@ I am a PhD student at Johns Hopkins studying electrical and computer engineering
 </p>
 
 <p style="font-size: 18px; color: black; ">
-My research focuses on scalable, high-speed tactile sensing.
+My research focuses on scalable (tactile) sensing.
 </p>
 
 <p style="font-size: 18px; color: black;">
