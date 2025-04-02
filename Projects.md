@@ -49,11 +49,11 @@ arXiv preprint arXiv:2410.13847 2024
 <br><br>
 
 
-<a href="https://arxiv.org/abs/2409.19155">SensoPatch: A Reconfigurable Haptic Feedback with High-Density Tactile Sensing Glove</a>
+<a href="https://ieeexplore.ieee.org/document/10798282">SensoPatch: A Reconfigurable Haptic Feedback with High-Density Tactile Sensing Glove</a>
 <br>
 Y Angkanapiwat, A Slepyan, RJ Greene, N Thakor
 <br>
-arXiv preprint arXiv:2409.19155 2024
+2024 IEEE Biomedical Circuits and Systems Conference (BioCAS), 1-5 2023
 <br>
 <img src="/pictures/sensopatch.PNG" width="300" />
 <br><br>
