@@ -36,7 +36,7 @@ S Sankar, W Cheng, J Zhang, A Slepyan, et al
 <br>
 Science Advances, 2025
 <br>
-Featured in JHU HUB - <a href="https://hub.jhu.edu/2025/03/05/prosthetic-robotic-hand/">
+<a href="https://hub.jhu.edu/2025/03/05/prosthetic-robotic-hand/">Featured in JHU HUB</a>
 <br>
 <img src="/pictures/hybrid_hand.PNG" width="300" />
 <br><br>
