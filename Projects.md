@@ -51,6 +51,16 @@ arXiv preprint arXiv:2410.13847 2024
 <br><br>
 
 
+<a href="https://arxiv.org/abs/2411.18507">At First Contact: Stiffness Estimation Using Vibrational Information for Prosthetic Grasp Modulation</a>
+<br>
+A Pimpalkar, A Slepyan, N Thakor
+<br>
+arXiv preprint arXiv:2411.18507
+<br>
+<img src="/pictures/at_first_contact.PNG" width="300" />
+<br><br>
+
+
 <a href="https://ieeexplore.ieee.org/document/10798282">SensoPatch: A Reconfigurable Haptic Feedback with High-Density Tactile Sensing Glove</a>
 <br>
 Y Angkanapiwat, A Slepyan, RJ Greene, N Thakor
