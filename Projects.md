@@ -29,6 +29,16 @@ Published Work
 </p>
 
 <p style="font-size: 18px; color: black; ">
+
+<a href="https://www.science.org/doi/full/10.1126/sciadv.adr9300">A natural biomimetic prosthetic hand with neuromorphic tactile sensing for precise and compliant grasping</a>
+<br>
+S Sankar, W Cheng, J Zhang, A Slepyan, et al
+<br>
+Science Advances, 2025
+<br>
+<img src="/pictures/hybrid_hand.PNG" width="300" />
+<br><br>
+
 <a href="https://arxiv.org/abs/2410.13847">Adaptive Subsampling and Learned Model Improve Spatiotemporal Resolution of Tactile Skin</a>
 <br>
 A Slepyan, D Li, A Aug, S Sankar, T Tran, N Thakor
