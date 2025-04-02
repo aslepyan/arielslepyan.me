@@ -71,6 +71,16 @@ Y Angkanapiwat, A Slepyan, RJ Greene, N Thakor
 <br><br>
 
 
+<a href="https://arxiv.org/abs/2411.17060">Invariant neuromorphic representations of tactile stimuli improve robustness of a real-time texture classification system</a>
+<br>
+M Iskarous, Z Chaudhry, F Li, S Bello, S Sankar, A Slepyan, et al 
+<br>
+arXiv preprint 	arXiv:2411.17060
+<br>
+<img src="/pictures/neuromorphic_invariance.PNG" width="300" />
+<br><br>
+
+
 <a href="https://www.mdpi.com/1424-8220/24/13/4243">Wavelet Transforms Significantly Sparsify and Compress Tactile Interactions</a>
 <br>
 A Slepyan, M Zakariaie, T Tran, N Thakor
@@ -78,6 +88,16 @@ A Slepyan, M Zakariaie, T Tran, N Thakor
 Sensors 24 (13), 4243	2024
 <br>
 <img src="/pictures/wavelet.webp" width="300" />
+<br><br>
+
+
+<a href="https://ieeexplore.ieee.org/abstract/document/10782539">Channel selection and wavelet transformation-baseddata compression preserve motor unit information</a>
+<br>
+S Wang, K Quinn, A Slepyan, L Qin, N Thakor
+<br>
+2024 46th Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC)
+<br>
+<img src="/pictures/wavelet_emg.PNG" width="300" />
 <br><br>
 
 
