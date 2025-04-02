@@ -55,7 +55,7 @@ arXiv preprint arXiv:2410.13847 2024
 <br>
 A Pimpalkar, A Slepyan, N Thakor
 <br>
-arXiv preprint arXiv:2411.18507
+arXiv preprint arXiv:2411.18507 2024
 <br>
 <img src="/pictures/at_first_contact.PNG" width="300" />
 <br><br>
@@ -75,7 +75,7 @@ Y Angkanapiwat, A Slepyan, RJ Greene, N Thakor
 <br>
 M Iskarous, Z Chaudhry, F Li, S Bello, S Sankar, A Slepyan, et al 
 <br>
-arXiv preprint 	arXiv:2411.17060
+arXiv preprint 	arXiv:2411.17060 2024
 <br>
 <img src="/pictures/neuromorphic_invariance.PNG" width="300" />
 <br><br>
