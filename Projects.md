@@ -172,7 +172,7 @@ A Slepyan, N Thakor
 </p>
 
 <p style="font-size: 20px; color: purple; text-align: right;">
-<mark> <a href="http://arielslepyan.me/old_projects">Old Projects Page</a> </mark>
+<mark> <a href="http://arielslepyan.me/old_projects">Undergrad/Old Projects Page</a> </mark>
 </p>
 
 
