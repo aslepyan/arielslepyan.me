@@ -29,6 +29,18 @@ Published Work
 </p>
 
 <p style="font-size: 18px; color: black; ">
+
+<a href="https://www.science.org/doi/full/10.1126/sciadv.adr9300">A natural biomimetic prosthetic hand with neuromorphic tactile sensing for precise and compliant grasping</a>
+<br>
+S Sankar, W Cheng, J Zhang, A Slepyan, et al
+<br>
+Science Advances, 2025
+<br>
+<a href="https://hub.jhu.edu/2025/03/05/prosthetic-robotic-hand/">Featured in JHU HUB</a>
+<br>
+<img src="/pictures/hybrid_hand.PNG" width="300" />
+<br><br>
+
 <a href="https://arxiv.org/abs/2410.13847">Adaptive Subsampling and Learned Model Improve Spatiotemporal Resolution of Tactile Skin</a>
 <br>
 A Slepyan, D Li, A Aug, S Sankar, T Tran, N Thakor
@@ -39,13 +51,33 @@ arXiv preprint arXiv:2410.13847 2024
 <br><br>
 
 
-<a href="https://arxiv.org/abs/2409.19155">SensoPatch: A Reconfigurable Haptic Feedback with High-Density Tactile Sensing Glove</a>
+<a href="https://arxiv.org/abs/2411.18507">At First Contact: Stiffness Estimation Using Vibrational Information for Prosthetic Grasp Modulation</a>
+<br>
+A Pimpalkar, A Slepyan, N Thakor
+<br>
+arXiv preprint arXiv:2411.18507 2024
+<br>
+<img src="/pictures/at_first_contact.PNG" width="300" />
+<br><br>
+
+
+<a href="https://ieeexplore.ieee.org/document/10798282">SensoPatch: A Reconfigurable Haptic Feedback with High-Density Tactile Sensing Glove</a>
 <br>
 Y Angkanapiwat, A Slepyan, RJ Greene, N Thakor
 <br>
-arXiv preprint arXiv:2409.19155 2024
+2024 IEEE Biomedical Circuits and Systems Conference (BioCAS), 1-5 2023
 <br>
 <img src="/pictures/sensopatch.PNG" width="300" />
+<br><br>
+
+
+<a href="https://arxiv.org/abs/2411.17060">Invariant neuromorphic representations of tactile stimuli improve robustness of a real-time texture classification system</a>
+<br>
+M Iskarous, Z Chaudhry, F Li, S Bello, S Sankar, A Slepyan, et al 
+<br>
+arXiv preprint 	arXiv:2411.17060 2024
+<br>
+<img src="/pictures/neuromorphic_invariance.PNG" width="300" />
 <br><br>
 
 
@@ -56,6 +88,16 @@ A Slepyan, M Zakariaie, T Tran, N Thakor
 Sensors 24 (13), 4243	2024
 <br>
 <img src="/pictures/wavelet.webp" width="300" />
+<br><br>
+
+
+<a href="https://ieeexplore.ieee.org/abstract/document/10782539">Channel selection and wavelet transformation-baseddata compression preserve motor unit information</a>
+<br>
+S Wang, K Quinn, A Slepyan, L Qin, N Thakor
+<br>
+2024 46th Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC)
+<br>
+<img src="/pictures/wavelet_emg.PNG" width="300" />
 <br><br>
 
 
@@ -98,13 +140,6 @@ Y Tian, A Slepyan, MM Iskarous, S Sankar, CL Hunt, NV Thakor
 <img src="/pictures/tian1-p5-tian-large.gif" width="300" />
 <br><br>
 
-<a href="https://patents.google.com/patent/US20240185007A1/en">Scalable, event-based sensing using wireless sensor elements embedded in flexible elastomer</a>
-<br>
-A SLEPYAN
-<br>
-WO Patent App. PCT/US2022/022,869 2022
-<br><br>
-
 
 <a href="https://ieeexplore.ieee.org/abstract/document/9925475">Haptic Touch: A retrofittable tactile sensing glove and haptic feedback armband for scalable and robust sensory feedback</a>
 <br>
@@ -113,14 +148,6 @@ A Aug, A Slepyan, E Levenshus, N Thakor
 2022 9th IEEE RAS/EMBS International Conference for Biomedical Robotics and … 2022
 <br>
 <img src="/pictures/haptictouch2_1.png" width="300" /> 
-<br><br>
-
-
-<a href="https://jscholarship.library.jhu.edu/server/api/core/bitstreams/9128d7eb-9d65-42e8-b34e-e8668984575b/content">Scalable Tactile Sensing E-Skins Through Spatial Frequency Encoding</a>
-<br>
-A Slepyan
-<br>
-Johns Hopkins University 2021
 <br><br>
 
 
