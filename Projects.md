@@ -140,13 +140,6 @@ Y Tian, A Slepyan, MM Iskarous, S Sankar, CL Hunt, NV Thakor
 <img src="/pictures/tian1-p5-tian-large.gif" width="300" />
 <br><br>
 
-<a href="https://patents.google.com/patent/US20240185007A1/en">Scalable, event-based sensing using wireless sensor elements embedded in flexible elastomer</a>
-<br>
-A SLEPYAN
-<br>
-WO Patent App. PCT/US2022/022,869 2022
-<br><br>
-
 
 <a href="https://ieeexplore.ieee.org/abstract/document/9925475">Haptic Touch: A retrofittable tactile sensing glove and haptic feedback armband for scalable and robust sensory feedback</a>
 <br>
@@ -155,14 +148,6 @@ A Aug, A Slepyan, E Levenshus, N Thakor
 2022 9th IEEE RAS/EMBS International Conference for Biomedical Robotics and … 2022
 <br>
 <img src="/pictures/haptictouch2_1.png" width="300" /> 
-<br><br>
-
-
-<a href="https://jscholarship.library.jhu.edu/server/api/core/bitstreams/9128d7eb-9d65-42e8-b34e-e8668984575b/content">Scalable Tactile Sensing E-Skins Through Spatial Frequency Encoding</a>
-<br>
-A Slepyan
-<br>
-Johns Hopkins University 2021
 <br><br>
 
 
