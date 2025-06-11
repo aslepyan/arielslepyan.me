@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino 32x32 Dynamic Plotter</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; margin-top: 20px; }
+        #controls { margin-bottom: 20px; }
+        #plotContainer { display: flex; align-items: flex-start; }
+        canvas { border: 1px solid black; image-rendering: pixelated; /* For sharp pixels */ }
+        #heatmapCanvas { width: 480px; height: 480px; }
+        #status { margin-top: 10px; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <button id="connectButton">Connect to Arduino</button>
+        Baud Rate: <input type="number" id="baudRateInput" value="115200" style="width: 100px;">
+    </div>
+
+    <div id="plotContainer">
+        <canvas id="heatmapCanvas"></canvas>
+    </div>
+    <div id="status">Status: Disconnected</div>
+
+    <script>
+        const connectButton = document.getElementById('connectButton');
+        const baudRateInput = document.getElementById('baudRateInput');
+        const statusDiv = document.getElementById('status');
+        const heatmapCanvas = document.getElementById('heatmapCanvas');
+        const heatmapCtx = heatmapCanvas.getContext('2d');
+
+        // const M = 255; // REMOVED - M is now dynamic per data line
+
+        const N_TOTAL_ELEMENTS = 1024; // Total elements in the 1D vector (32*32)
+        const IMG_DIM = 32;     // Dimension of the square image (32x32)
+
+        const CLIM_MIN = 0;
+        const CLIM_MAX = 1023;
+
+        let port;
+        let reader;
+        let keepReading = false;
+        let lineBuffer = '';
+
+        heatmapCanvas.width = IMG_DIM;
+        heatmapCanvas.height = IMG_DIM;
+
+        let imgv = new Array(N_TOTAL_ELEMENTS).fill(-1);
+
+        function getColor(value, min, max) {
+            if (value < min) value = min;
+            if (value > max) value = max;
+            if (value === -1) return 'rgb(50,50,50)';
+
+            const dv = max - min;
+            let v = (value - min) / (dv || 1);
+
+            let r = 0, g = 0, b = 0;
+            if (v < 0.125) { b = 0.5 + (v / 0.125) * 0.5; }
+            else if (v < 0.375) { b = 1; g = (v - 0.125) / 0.25; }
+            else if (v < 0.625) { g = 1; b = 1 - (v - 0.375) / 0.25; r = (v - 0.375) / 0.25; }
+            else if (v < 0.875) { r = 1; g = 1 - (v - 0.625) / 0.25; }
+            else { r = 1 - (v - 0.875) / 0.125 * 0.5; }
+            return `rgb(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(b * 255)})`;
+        }
+
+        function drawHeatmap() {
+            heatmapCtx.clearRect(0, 0, heatmapCanvas.width, heatmapCanvas.height);
+            for (let r = 0; r < IMG_DIM; r++) {
+                for (let c = 0; c < IMG_DIM; c++) {
+                    const index1D = r * IMG_DIM + c;
+                    const value = imgv[index1D];
+                    heatmapCtx.fillStyle = getColor(value, CLIM_MIN, CLIM_MAX);
+                    heatmapCtx.fillRect(c, r, 1, 1);
+                }
+            }
+        }
+
+        async function connectSerial() {
+            try {
+                const currentBaudRate = parseInt(baudRateInput.value);
+                if (isNaN(currentBaudRate) || currentBaudRate <= 0) {
+                    statusDiv.textContent = "Error: Invalid baud rate.";
+                    return;
+                }
+
+                port = await navigator.serial.requestPort();
+                await port.open({ baudRate: currentBaudRate });
+                statusDiv.textContent = `Connected. Baud: ${currentBaudRate}. Waiting for data...`;
+                connectButton.textContent = 'Disconnect';
+                keepReading = true;
+                baudRateInput.disabled = true;
+
+                imgv.fill(-1);
+                drawHeatmap();
+                readLoop();
+            } catch (error) {
+                statusDiv.textContent = 'Error: ' + error.message;
+                console.error('Serial connection error:', error);
+                if (port && port.readable) {
+                    try {
+                        if (reader) {
+                             reader.cancel().catch(e => console.warn("Reader cancel error on connect fail:", e));
+                        }
+                        await port.close().catch(e => console.warn("Port close error on connect fail:", e));
+                    } catch (closeError) {
+                        console.error("Error cleaning up port after connection failure:", closeError);
+                    }
+                }
+                port = null;
+                reader = null;
+                connectButton.textContent = 'Connect to Arduino';
+                baudRateInput.disabled = false;
+            }
+        }
+
+        async function disconnectSerial() {
+            keepReading = false;
+            if (reader) {
+                try { await reader.cancel(); }
+                catch (cancelError) { console.warn("Error cancelling reader on disconnect:", cancelError); }
+            }
+            if (port) {
+                try { await port.close(); }
+                catch (e) { console.error("Error closing port on disconnect:", e); }
+            }
+            port = null;
+            reader = null;
+            statusDiv.textContent = 'Status: Disconnected';
+            connectButton.textContent = 'Connect to Arduino';
+            baudRateInput.disabled = false;
+            lineBuffer = '';
+        }
+
+        async function readLoop() {
+            const textDecoder = new TextDecoderStream();
+            const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+            reader = textDecoder.readable.getReader();
+
+            try {
+                while (port && port.readable && keepReading) {
+                    const { value, done } = await reader.read();
+                    if (done) break;
+                    if (value) {
+                        lineBuffer += value;
+                        let newlineIndex;
+                        while ((newlineIndex = lineBuffer.indexOf('\n')) >= 0) {
+                            const line = lineBuffer.substring(0, newlineIndex).trim();
+                            lineBuffer = lineBuffer.substring(newlineIndex + 1);
+                            if (line) {
+                                statusDiv.textContent = "Status: Receiving data...";
+                                processData(line);
+                            }
+                        }
+                    }
+                }
+            } catch (error) {
+                if (keepReading) {
+                    console.error('Read loop error:', error);
+                    statusDiv.textContent = 'Error reading: ' + error.message;
+                    await disconnectSerial();
+                }
+            } finally {
+                if(reader) reader.releaseLock();
+                if (keepReading && port && !port.readable) {
+                     console.log("Port became unreadable. Disconnecting.");
+                     await disconnectSerial();
+                } else if (!keepReading && connectButton.textContent === 'Disconnect') {
+                    disconnectSerial();
+                }
+            }
+        }
+
+        function processData(line) {
+            try {
+                imgv.fill(-1); // Clear previous frame's data for the new incoming data
+
+                const parts = line.split(',').map(s => parseFloat(s.trim()));
+                const totalValues = parts.length;
+
+                // If the line was just whitespace or only commas leading to no actual numbers,
+                // parts might be an array of NaNs or an empty array if all were empty strings.
+                // A more robust check for actual numbers:
+                const validParts = parts.filter(p => !isNaN(p));
+                const numValidValues = validParts.length;
+
+                if (numValidValues === 0) {
+                    // console.warn("No valid numeric data found in line:", line);
+                    drawHeatmap(); // Draw the cleared heatmap
+                    return;
+                }
+
+                if (numValidValues % 2 !== 0) {
+                    console.warn(`Odd number of valid numeric values received (${numValidValues}). Expected an even number for index/value pairs. Line: "${line}"`);
+                    drawHeatmap(); // Draw the cleared heatmap (already cleared by imgv.fill(-1))
+                    return;
+                }
+
+                // Use validParts from now on
+                const currentM = numValidValues / 2;
+                const indices = validParts.slice(0, currentM);
+                const vals = validParts.slice(currentM, numValidValues);
+
+                for (let i = 0; i < currentM; i++) {
+                    const matlabIndex = indices[i];
+                    const jsIndex = matlabIndex - 1; // Convert to 0-based for JS array
+                    const value = vals[i];
+
+                    // isNaN check for individual index/value should not be strictly necessary here
+                    // if validParts correctly filters them, but can be a safeguard.
+                    if (isNaN(matlabIndex) || isNaN(value)) {
+                        // console.warn(`Skipping NaN index/value pair: ${matlabIndex}, ${value}`);
+                        continue;
+                    }
+
+                    if (jsIndex >= 0 && jsIndex < N_TOTAL_ELEMENTS) {
+                        imgv[jsIndex] = value + 500; // Apply offset
+                    } else {
+                        // console.warn(`Index ${matlabIndex} (JS: ${jsIndex}) out of bounds (0-${N_TOTAL_ELEMENTS-1}) for imgv.`);
+                    }
+                }
+                drawHeatmap(); // Redraw after processing new data
+            } catch (error) {
+                console.error('Error processing data:', error, "Problematic Line:", line);
+                statusDiv.textContent = 'Error processing data. Check console.';
+                // Ensure heatmap is cleared on unexpected error during processing
+                imgv.fill(-1);
+                drawHeatmap();
+            }
+        }
+
+        connectButton.addEventListener('click', () => {
+            if (port) disconnectSerial();
+            else connectSerial();
+        });
+
+        drawHeatmap(); // Initial draw
+
+        if (!("serial" in navigator)) {
+            statusDiv.textContent = "Web Serial API not supported in this browser. Try Chrome or Edge (Desktop). Enable relevant flags if needed.";
+            connectButton.disabled = true;
+            baudRateInput.disabled = true;
+            alert("Web Serial API not supported in this browser. Please use a compatible version of Chrome or Edge. On Android, you may need to enable experimental flags in chrome://flags (e.g., 'Web Serial API' and 'Experimental Web Platform features').");
+        }
+    </script>
+</body>
+</html>
