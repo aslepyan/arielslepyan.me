@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino 32x32 Plotter</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; margin-top: 20px; }
+        #controls { margin-bottom: 20px; }
+        #plotContainer { display: flex; align-items: flex-start; } /* This can remain, flexbox will just handle one item */
+        canvas { border: 1px solid black; image-rendering: pixelated; /* For sharp pixels */ }
+        #heatmapCanvas { width: 480px; height: 480px; /* Display size, can be different from internal resolution */}
+        /* #colorbarCanvas styling removed */
+        #status { margin-top: 10px; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <button id="connectButton">Connect to Arduino</button>
+        Baud Rate: <input type="number" id="baudRateInput" value="115200" style="width: 100px;">
+    </div>
+
+    <div id="plotContainer">
+        <canvas id="heatmapCanvas"></canvas>
+        <!-- colorbarCanvas element removed -->
+    </div>
+    <div id="status">Status: Disconnected</div>
+
+    <script>
+        const connectButton = document.getElementById('connectButton');
+        const baudRateInput = document.getElementById('baudRateInput');
+        const statusDiv = document.getElementById('status');
+        const heatmapCanvas = document.getElementById('heatmapCanvas');
+        const heatmapCtx = heatmapCanvas.getContext('2d');
+        // colorbarCanvas and colorbarCtx constants removed
+
+        const M = 255; // Number of indices and values
+        const N_TOTAL_ELEMENTS = 1024; // Total elements in the 1D vector (32*32)
+        const IMG_DIM = 32;     // Dimension of the square image (32x32)
+
+        const CLIM_MIN = 0;
+        const CLIM_MAX = 1023;
+
+        let port;
+        let reader;
+        let keepReading = false;
+        let lineBuffer = '';
+
+        // Set canvas internal resolution
+        heatmapCanvas.width = IMG_DIM;
+        heatmapCanvas.height = IMG_DIM;
+        // colorbarCanvas sizing removed
+
+        let imgv = new Array(N_TOTAL_ELEMENTS).fill(-1);
+
+        // --- Color Mapping Function (Jet-like colormap) ---
+        function getColor(value, min, max) {
+            if (value < min) value = min;
+            if (value > max) value = max;
+            if (value === -1) return 'rgb(50,50,50)';
+
+            const dv = max - min;
+            let v = (value - min) / (dv || 1);
+
+            let r = 0, g = 0, b = 0;
+            if (v < 0.125) { b = 0.5 + (v / 0.125) * 0.5; }
+            else if (v < 0.375) { b = 1; g = (v - 0.125) / 0.25; }
+            else if (v < 0.625) { g = 1; b = 1 - (v - 0.375) / 0.25; r = (v - 0.375) / 0.25; }
+            else if (v < 0.875) { r = 1; g = 1 - (v - 0.625) / 0.25; }
+            else { r = 1 - (v - 0.875) / 0.125 * 0.5; }
+            return `rgb(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(b * 255)})`;
+        }
+
+        // --- Drawing Functions ---
+        function drawHeatmap() {
+            heatmapCtx.clearRect(0, 0, heatmapCanvas.width, heatmapCanvas.height);
+            for (let r = 0; r < IMG_DIM; r++) {
+                for (let c = 0; c < IMG_DIM; c++) {
+                    const index1D = r * IMG_DIM + c;
+                    const value = imgv[index1D];
+                    heatmapCtx.fillStyle = getColor(value, CLIM_MIN, CLIM_MAX);
+                    heatmapCtx.fillRect(c, r, 1, 1);
+                }
+            }
+        }
+
+        // drawColorbar function completely removed
+
+        // --- Serial Communication ---
+        async function connectSerial() {
+            try {
+                const currentBaudRate = parseInt(baudRateInput.value);
+                if (isNaN(currentBaudRate) || currentBaudRate <= 0) {
+                    statusDiv.textContent = "Error: Invalid baud rate.";
+                    return;
+                }
+
+                port = await navigator.serial.requestPort();
+                await port.open({ baudRate: currentBaudRate });
+                statusDiv.textContent = `Connected. Baud: ${currentBaudRate}. Waiting for data...`;
+                connectButton.textContent = 'Disconnect';
+                keepReading = true;
+                baudRateInput.disabled = true;
+
+                imgv.fill(-1);
+                drawHeatmap();
+                // call to drawColorbar() removed
+
+                readLoop();
+            } catch (error) {
+                statusDiv.textContent = 'Error: ' + error.message;
+                console.error('Serial connection error:', error);
+                if (port && port.readable) {
+                    try {
+                        if (reader) {
+                             reader.cancel().catch(e => console.warn("Reader cancel error on connect fail:", e));
+                        }
+                        await port.close().catch(e => console.warn("Port close error on connect fail:", e));
+                    } catch (closeError) {
+                        console.error("Error cleaning up port after connection failure:", closeError);
+                    }
+                }
+                port = null;
+                reader = null;
+                connectButton.textContent = 'Connect to Arduino';
+                baudRateInput.disabled = false;
+            }
+        }
+
+        async function disconnectSerial() {
+            keepReading = false;
+            if (reader) {
+                try { await reader.cancel(); }
+                catch (cancelError) { console.warn("Error cancelling reader on disconnect:", cancelError); }
+            }
+            if (port) {
+                try { await port.close(); }
+                catch (e) { console.error("Error closing port on disconnect:", e); }
+            }
+            port = null;
+            reader = null;
+            statusDiv.textContent = 'Status: Disconnected';
+            connectButton.textContent = 'Connect to Arduino';
+            baudRateInput.disabled = false;
+            lineBuffer = '';
+        }
+
+        async function readLoop() {
+            const textDecoder = new TextDecoderStream();
+            const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+            reader = textDecoder.readable.getReader();
+
+            try {
+                while (port && port.readable && keepReading) {
+                    const { value, done } = await reader.read();
+                    if (done) break;
+                    if (value) {
+                        lineBuffer += value;
+                        let newlineIndex;
+                        while ((newlineIndex = lineBuffer.indexOf('\n')) >= 0) {
+                            const line = lineBuffer.substring(0, newlineIndex).trim();
+                            lineBuffer = lineBuffer.substring(newlineIndex + 1);
+                            if (line) {
+                                statusDiv.textContent = "Status: Receiving data...";
+                                processData(line);
+                            }
+                        }
+                    }
+                }
+            } catch (error) {
+                if (keepReading) {
+                    console.error('Read loop error:', error);
+                    statusDiv.textContent = 'Error reading: ' + error.message;
+                    await disconnectSerial();
+                }
+            } finally {
+                if(reader) reader.releaseLock();
+                if (keepReading && port && !port.readable) {
+                     console.log("Port became unreadable. Disconnecting.");
+                     await disconnectSerial();
+                } else if (!keepReading && connectButton.textContent === 'Disconnect') {
+                    disconnectSerial();
+                }
+            }
+        }
+
+        function processData(line) {
+            try {
+                imgv.fill(-1);
+                const parts = line.split(',').map(s => parseFloat(s.trim()));
+
+                if (parts.some(isNaN)) {
+                    console.warn(`Data line contains NaN after parsing: "${line}" ->`, parts);
+                    return;
+                }
+                if (parts.length < 2 * M) {
+                    console.warn(`Incomplete data line: received ${parts.length}, expected ${2 * M}. Line: "${line}"`);
+                    return;
+                }
+                 if (parts.length > 2 * M) {
+                    console.warn(`Excessive data in line: received ${parts.length}, expected ${2 * M}. Line: "${line}"`);
+                }
+
+                const indices = parts.slice(0, M);
+                const vals = parts.slice(M, 2 * M);
+
+                for (let i = 0; i < M; i++) {
+                    const matlabIndex = indices[i];
+                    const jsIndex = matlabIndex - 1;
+                    const value = vals[i];
+                    if (jsIndex >= 0 && jsIndex < N_TOTAL_ELEMENTS) {
+                        imgv[jsIndex] = value + 500;
+                    }
+                }
+                drawHeatmap();
+            } catch (error) {
+                console.error('Error processing data:', error, "Problematic Line:", line);
+                statusDiv.textContent = 'Error processing data. Check console.';
+            }
+        }
+
+        // --- Event Listeners ---
+        connectButton.addEventListener('click', () => {
+            if (port) disconnectSerial();
+            else connectSerial();
+        });
+
+        // --- Initial Draw ---
+        drawHeatmap();
+        // call to drawColorbar() removed
+
+        // --- Check for Web Serial API support ---
+        if (!("serial" in navigator)) {
+            statusDiv.textContent = "Web Serial API not supported in this browser. Try Chrome or Edge (Desktop).";
+            connectButton.disabled = true;
+            baudRateInput.disabled = true;
+            alert("Web Serial API not supported in this browser. Please use a compatible version of Chrome or Edge.");
+        }
+    </script>
+</body>
+</html>
