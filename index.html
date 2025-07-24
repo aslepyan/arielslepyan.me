@@ -30,6 +30,10 @@
         newsARCS: 'images/ARCS_2024.jpg',
         newsProsthesisInstrumentation: 'images/prosthesis_instrumentation_2023.PNG',
         newsCurveAssure: 'images/CurveAssure_PVF.png',
+        newsSpace: 'images/nebula.jpg',
+        newsTEDCO: 'images/MII.png',
+        newsATIP: 'images/ATIP.png',
+        newsAITC: 'images/AITC.png',
 
         researchAdaptive: 'images/tactile_subsampling.PNG',
         researchSPTS: 'images/SPTS.PNG',
@@ -79,12 +83,16 @@
           title: "Recent News",
           items: [
             { imageKey: "newsISCAS", text: '<strong>May 2025:</strong> Thrilled to win the Best Live Demo Award at <a href="https://2025.ieee-iscas.org/conference-awards">ISCAS 2025</a> for our work on compressive tactile sensing!', highlighted: true },
+            { imageKey: "newsAITC", text: '<strong>May 2025:</strong> We are selected for a $200k AITC award to use my HD plantar pressure sensors for wearable motion tracking of aging individuals!', highlighted: true },
+            { imageKey: "newsATIP", text: '<strong>May 2025:</strong> We are awarded a $50k ATIP award for using my HD plantar pressure sensors for gait analysis in rehabilitation!', highlighted: true },
             { imageKey: "newsPointeSense", text: '<strong>May 2025:</strong> My mentored team PointeSense (using my HD sensors for ballet) was featured by <a href="https://hub.jhu.edu/2025/06/17/ballet-pointe-shoes-safety-engineering/">JHU Hub</a>!', highlighted: true },
             { imageKey: "newsReKinesis", text: '<strong>May 2025:</strong> ReKinesis (HD plantar pressure sensing --> human kinematics) is an NIA Startup Challenge Finalist and is featured by <a href="https://hub.jhu.edu/2025/05/09/national-institute-on-aging-2025-start-up-challenge/">JHU HUB!</a>', highlighted: true },
             { imageKey: "newsARCS", text: '<strong>Aug 2024:</strong> Proud to be announced as a <a href="https://engineering.jhu.edu/ece/news/arik-slepyan-receives-arcs-mwc-chapter-scholar-award//">2024 ARCS Scholar</a>!!', highlighted: true },
             { imageKey: "newsTeachingAward", text: '<strong>May 2024:</strong> Proud to have been awarded a <a href="https://engineering.jhu.edu/faculty-staff/excellence-in-teaching-advising-mentoring-awards/">2024 WSE Excellence in Teaching and Mentoring Award!</a>!', highlighted: true },
+            { imageKey: "newsTEDCO", text: '<strong>Mar 2024:</strong> We are awarded a $115k TEDCO MII grant to explore the commercialization potential of my scalable tactile sensors as pressure sensing insoles!', highlighted: true },
             { imageKey: "newsCurveAssure", text: '<strong>June 2023:</strong> CurveAssure receives $100,000 <a href="https://engineering.jhu.edu/news/curveassure-receives-presidents-venture-fellowship/">President’s Venture Fellowship</a>!', highlighted: true },
             { imageKey: "newsProsthesisInstrumentation", text: '<strong>Feb 2023:</strong> <a href="https://hub.jhu.edu/2023/02/06/intersession-prosthesis-instrumentation/">JHU made a video</a> about me and Sriramana Sankar’s intersession course on Prosthesis Instrumentation!', highlighted: true },
+            { imageKey: "newsSpace", text: '<strong>Sep 2022:</strong> We are awarded a $25k Space@Hopkins Seed Grant to explpre the development of scalable tactile sensors for use in outer space', highlighted: true },
           ]
         },
         research: {
@@ -391,7 +399,9 @@
             newsList.innerHTML += `
                 <tr ${item.highlighted ? 'bgcolor="#ffffd0"' : ''}>
                     <td style="padding:16px; width:20%; text-align:center; vertical-align:middle;">
-                        <img alt="${item.text.substring(0, 30)}" height="80" data-img-key="${item.imageKey}">
+                        <img alt="${item.text.substring(0, 30)}" 
+                            style="max-height: 90px; max-width: 100%; width: auto; height: auto;" 
+                            data-img-key="${item.imageKey}">
                     </td>
                     <td style="padding:8px; width:80%; vertical-align:middle;">
                         <p>${item.text}</p>
