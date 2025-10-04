@@ -181,13 +181,13 @@
       }
       if (!(D instanceof Float32Array) || D.length !== 64 * 256) {
         const zero = new Float32Array(IMG_DIM * IMG_DIM);
-        self.postMessage({ error: 'Dictionary not loaded', recon: zero.buffer }, [zero.buffer]);
+        self.postMessage({ error: 'Dictionary not loaded', recon: zero.buffer });
         return;
       }
-      const { imgvRaw, shift } = ev.data;
+      const { imgvRaw, shift, seq } = ev.data;
       const imgv32 = new Float32Array(imgvRaw);
       const out = reconstructFrame(imgv32, shift);
-      self.postMessage({ recon: out.buffer }, [out.buffer]);
+      self.postMessage({ recon: out.buffer, seq }, [out.buffer]);
     };
   })();
   </script>
@@ -219,20 +219,24 @@
 
     const RECON_THRESH = 100; // values below this go to 0
 
-    let port, writer, reader, keepReading = false, lineBuffer = '';
+    let port = null;
+    let writer = null;
+    let reader = null;
+    let keepReading = false;
+    let lineBuffer = '';
 
     rawCanvas.width = IMG_DIM; rawCanvas.height = IMG_DIM;
     reconCanvas.width = IMG_DIM; reconCanvas.height = IMG_DIM;
 
     // Separate buffers: raw for recon (with -1 for missing), vis for raw pane (+500 tint for sampled)
-    let imgv_raw = new Float32Array(N_TOTAL_ELEMENTS); // -1 for missing
-    let imgv_vis = new Float32Array(N_TOTAL_ELEMENTS);
+    const imgv_raw = new Float32Array(N_TOTAL_ELEMENTS);
+    const imgv_vis = new Float32Array(N_TOTAL_ELEMENTS);
     imgv_raw.fill(-1);
     imgv_vis.fill(-1);
 
     // Recon buffers
-    let reconPrev = new Float32Array(N_TOTAL_ELEMENTS).fill(0);
-    let reconLPF = new Float32Array(N_TOTAL_ELEMENTS).fill(0);
+    const reconPrev = new Float32Array(N_TOTAL_ELEMENTS).fill(0);
+    const reconLPF = new Float32Array(N_TOTAL_ELEMENTS).fill(0);
 
     // Worker backpressure control
     let workerBusy = false;
@@ -253,7 +257,6 @@
         const buf = await resp.arrayBuffer();
         const f32 = new Float32Array(buf);
         if (f32.length !== 64 * 256) throw new Error('Bad dict size (expected 16384 floats)');
-        // Send to worker (transfer buffer)
         worker.postMessage({ dictBuffer: f32.buffer }, [f32.buffer]);
         dictLoaded = true;
         statusDiv.textContent = 'Dictionary loaded';
@@ -262,13 +265,14 @@
         statusDiv.textContent = 'Error loading dictionary: ' + e.message;
       }
     }
-    loadDictionaryAndSend(); // Note: requires serving over http(s), not file://
+    loadDictionaryAndSend(); // Requires serving over http(s), not file://
 
     worker.onmessage = (ev) => {
       if (ev.data && ev.data.error) {
-        return; // dictionary not loaded yet
+        // dictionary not ready yet; ignore recon
+        return;
       }
-      const { recon, seq } = ev.data;
+      const { recon } = ev.data;
       const reconRaw = new Float32Array(recon);
 
       // Threshold BEFORE LPF
@@ -287,8 +291,7 @@
       // Drain newest pending frame immediately; otherwise mark not busy
       if (pendingFrame) {
         const { buf, shift, seq } = pendingFrame;
-        pendingFrame = null; // clear before posting
-        // keep busy=true and chain next job
+        pendingFrame = null;
         worker.postMessage({ imgvRaw: buf, shift, seq }, [buf]);
       } else {
         workerBusy = false;
@@ -298,7 +301,6 @@
     alphaSlider.addEventListener('input', () => {
       alphaVal.textContent = parseFloat(alphaSlider.value).toFixed(2);
     });
-    // initialize label on load
     alphaVal.textContent = parseFloat(alphaSlider.value).toFixed(2);
 
     function getColor(value, min, max) {
@@ -328,22 +330,10 @@
       }
     }
 
-    // Submit a frame to the worker with drop-older semantics
-    function submitFrameToWorker(buf, shift) {
-      const seq = ++seqCounter;
-      if (workerBusy) {
-        pendingFrame = { buf, shift, seq }; // keep only newest
-        return;
-      }
-      workerBusy = true;
-      worker.postMessage({ imgvRaw: buf, shift, seq }, [buf]);
-    }
-    }
-
     async function sendDataToArduino(dataString) {
       if (!port || !port.writable) {
-        statusDiv.textContent = "Error: Port not writable or not connected.";
-        console.error("Port not writable or not connected for sending data.");
+        statusDiv.textContent = 'Error: Port not writable or not connected.';
+        console.error('Port not writable or not connected for sending data.');
         return;
       }
       if (!writer) {
@@ -354,8 +344,8 @@
       try {
         await writer.write(dataString + '\n');
       } catch (error) {
-        console.error("Error sending data to Arduino:", error);
-        statusDiv.textContent = "Error sending data: " + error.message;
+        console.error('Error sending data to Arduino:', error);
+        statusDiv.textContent = 'Error sending data: ' + error.message;
       }
     }
 
@@ -363,7 +353,7 @@
       try {
         const currentBaudRate = parseInt(baudRateInput.value);
         if (isNaN(currentBaudRate) || currentBaudRate <= 0) {
-          statusDiv.textContent = "Error: Invalid baud rate.";
+          statusDiv.textContent = 'Error: Invalid baud rate.';
           return;
         }
         port = await navigator.serial.requestPort();
@@ -388,7 +378,7 @@
       } catch (error) {
         statusDiv.textContent = 'Error: ' + error.message;
         console.error('Serial connection error:', error);
-        if (writer) { try { await writer.close(); } catch {} writer.releaseLock(); writer = null; }
+        if (writer) { try { await writer.close(); } catch (e) {} writer = null; }
         if (port && port.readable) {
           if (reader) { try { await reader.cancel(); } catch (e) {} reader = null; }
           try { await port.close(); } catch (e) {}
@@ -417,7 +407,7 @@
 
     async function readLoop() {
       if (!port || !port.readable) {
-        console.warn("Read loop started without a readable port.");
+        console.warn('Read loop started without a readable port.');
         return;
       }
       const textDecoder = new TextDecoderStream();
@@ -432,15 +422,13 @@
             lineBuffer += value;
             let newlineIndex;
             let lastLine = null;
-            while ((newlineIndex = lineBuffer.indexOf('
-')) >= 0) {
+            while ((newlineIndex = lineBuffer.indexOf('\n')) >= 0) {
               lastLine = lineBuffer.substring(0, newlineIndex).trim();
               lineBuffer = lineBuffer.substring(newlineIndex + 1);
             }
             if (lastLine) {
-              statusDiv.textContent = dictLoaded ? "Status: Receiving data..." : "Waiting for dictionary...";
-              if (dictLoaded) processData(lastLine);
-            }
+              statusDiv.textContent = 'Status: Receiving data...';
+              processData(lastLine);
             }
           }
         }
@@ -461,12 +449,19 @@
         const parts = line.split(',').map(s => parseFloat(s.trim()));
         const validParts = parts.filter(p => !isNaN(p));
         const numValidValues = validParts.length;
-        if (numValidValues === 0) { drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX); return; }
-        if (numValidValues % 2 !== 0) { console.warn(`Odd number of numeric values (${numValidValues}). Line: "${line}"`); drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX); return; }
+        if (numValidValues === 0) {
+          drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX);
+          return;
+        }
+        if (numValidValues % 2 !== 0) {
+          console.warn(`Odd number of numeric values (${numValidValues}). Line: "${line}"`);
+          drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX);
+          return;
+        }
 
         const currentM = numValidValues / 2;
         const indices = validParts.slice(0, currentM);
-        const vals = validParts.slice(currentM, numValidValues);
+        const vals = validParts.slice(currentM);
         for (let i = 0; i < currentM; i++) {
           const matlabIndex = indices[i];
           const jsIndex = matlabIndex - 1; // 1-based → 0-based
@@ -480,20 +475,38 @@
         drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX);
 
         const shift = parseInt(shiftSelect.value) || 4;
-        submitFrameToWorker(imgv_raw.buffer.slice(0), shift);
+        if (dictLoaded) {
+          submitFrameToWorker(imgv_raw.buffer.slice(0), shift);
+        }
       } catch (error) {
-        console.error('Error processing data:', error, "Line:", line);
+        console.error('Error processing data:', error, 'Line:', line);
         statusDiv.textContent = 'Error processing data.';
-        imgv_raw.fill(-1); imgv_vis.fill(-1);
+        imgv_raw.fill(-1);
+        imgv_vis.fill(-1);
         drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX);
       }
     }
 
-    connectButton.addEventListener('click', () => { if (port) disconnectSerial(); else connectSerial(); });
+    function submitFrameToWorker(buf, shift) {
+      const seq = ++seqCounter;
+      if (workerBusy) {
+        pendingFrame = { buf, shift, seq }; // keep only newest
+        return;
+      }
+      workerBusy = true;
+      worker.postMessage({ imgvRaw: buf, shift, seq }, [buf]);
+    }
+
+    connectButton.addEventListener('click', () => {
+      if (port) disconnectSerial(); else connectSerial();
+    });
 
     sendMButton.addEventListener('click', async () => {
       const mVal = parseInt(mValueInput.value);
-      if (isNaN(mVal) || mVal <= 0) { statusDiv.textContent = "Invalid M value. Must be a positive integer."; return; }
+      if (isNaN(mVal) || mVal <= 0) {
+        statusDiv.textContent = 'Invalid M value. Must be a positive integer.';
+        return;
+      }
       if (mVal > N_TOTAL_ELEMENTS) {
         statusDiv.textContent = `M value capped at ${N_TOTAL_ELEMENTS}.`;
         mValueInput.value = N_TOTAL_ELEMENTS;
@@ -508,9 +521,12 @@
     drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX);
     drawHeatmap(reconCtx, reconPrev, CLIM_MIN, CLIM_MAX);
 
-    if (!("serial" in navigator)) {
-      statusDiv.textContent = "Web Serial API not supported. Enable flags if on Android Chrome.";
-      connectButton.disabled = true; baudRateInput.disabled = true; mValueInput.disabled = true; sendMButton.disabled = true;
+    if (!('serial' in navigator)) {
+      statusDiv.textContent = 'Web Serial API not supported. Enable flags if on Android Chrome.';
+      connectButton.disabled = true;
+      baudRateInput.disabled = true;
+      mValueInput.disabled = true;
+      sendMButton.disabled = true;
       alert("Web Serial API not supported. On Android Chrome, enable experimental flags: 'Web Serial API' and 'Experimental Web Platform features' in chrome://flags.");
     } else {
       mValueInput.disabled = true; // disabled until connected
