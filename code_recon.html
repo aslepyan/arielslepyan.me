@@ -216,6 +216,8 @@
     const CLIM_MIN = 0;
     const CLIM_MAX = 1023;
 
+    const RECON_THRESH = 100; // values below this go to 0
+
     let port, writer, reader, keepReading = false, lineBuffer = '';
 
     // Canvases are logical 32x32; CSS scales to 480 to keep pixels crisp.
@@ -240,6 +242,10 @@
     worker.onmessage = (ev) => {
       const { recon } = ev.data;
       const reconRaw = new Float32Array(recon);
+      // --- Threshold BEFORE LPF ---
+      for (let i = 0; i < reconRaw.length; i++) {
+        if (reconRaw[i] < RECON_THRESH) reconRaw[i] = 0;
+      }
       // Apply LPF per element: y[i] = a*x[i] + (1-a)*y[i-1]
       const a = parseFloat(alphaSlider.value);
       for (let i = 0; i < N_TOTAL_ELEMENTS; i++) {
