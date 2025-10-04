@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>32×32 Live Plotter + Real‑Time Reconstruction (External Dictionary)</title>
+  <style>
+    body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; margin-top: 20px; }
+    #controls { margin-bottom: 10px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; }
+    .control-group { margin-bottom: 10px; }
+    #plotContainer { display: flex; align-items: flex-start; gap: 10px; }
+    canvas { border: 1px solid black; image-rendering: pixelated; }
+    #rawCanvas, #reconCanvas { width: 480px; height: 480px; }
+    #status { margin-top: 10px; font-style: italic; }
+    input[type="number"] { width: 70px; }
+    input[type="range"] { width: 180px; }
+    label { user-select: none; }
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <div class="control-group">
+      <button id="connectButton">Connect to Arduino</button>
+    </div>
+    <div class="control-group">
+      Baud Rate: <input type="number" id="baudRateInput" value="115200">
+    </div>
+    <div class="control-group">
+      Target M: <input type="number" id="mValueInput" value="255" min="1" max="1024">
+      <button id="sendMButton" disabled>Send M</button>
+    </div>
+    <div class="control-group">
+      Shift:
+      <select id="shiftSelect">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="4" selected>4</option>
+      </select>
+    </div>
+    <div class="control-group">
+      LPF α: <input id="alphaSlider" type="range" min="0" max="1" step="0.01" value="0.10">
+      <span id="alphaVal">0.10</span>
+    </div>
+  </div>
+
+  <div id="plotContainer">
+    <canvas id="rawCanvas"></canvas>
+    <canvas id="reconCanvas"></canvas>
+  </div>
+  <div id="status">Status: Disconnected</div>
+
+  <!-- Inline worker; dictionary will be injected from main via postMessage({dictBuffer: ...}) -->
+  <script type="text/plain" id="recon-worker-src">
+  (() => {
+    const IMG_DIM = 32;
+    const PATCH = 8; // 8x8 patches
+    const PIXELS_PER_PATCH = PATCH * PATCH; // 64
+    const ATOM_COUNT = 256; // columns in D
+
+    let D = null; // Float32Array length 64*256, row-major; set by main thread
+
+    function buildPhi(measIdx, D) {
+      const M = measIdx.length;
+      const K = ATOM_COUNT;
+      const Phi = new Float32Array(M * K);
+      for (let m = 0; m < M; m++) {
+        const row = measIdx[m]; // 0..63 within patch
+        const DrowOff = row * K;
+        const PhiOff = m * K;
+        for (let k = 0; k < K; k++) Phi[PhiOff + k] = D[DrowOff + k];
+      }
+      return Phi;
+    }
+
+    function mulD_vec(D, x, rows, cols, out) {
+      for (let r = 0; r < rows; r++) {
+        let s = 0.0; const off = r * cols;
+        for (let c = 0; c < cols; c++) s += D[off + c] * x[c];
+        out[r] = s;
+      }
+    }
+
+    function mulPhiT_vec(Phi, r, M, K, out) {
+      for (let k = 0; k < K; k++) out[k] = 0.0;
+      for (let m = 0; m < M; m++) {
+        const rv = r[m]; const off = m * K;
+        for (let k = 0; k < K; k++) out[k] += Phi[off + k] * rv;
+      }
+    }
+
+    function fastOMP(Phi, y, S, eps = 1e-4) {
+      const M = y.length, K = ATOM_COUNT;
+      const x = new Float32Array(K);
+      const r = new Float32Array(M);
+      for (let i = 0; i < M; i++) r[i] = y[i] + eps;
+
+      const s = new Int32Array(S);
+      const Q = new Float32Array(M * S);
+      const R = new Float32Array(S * S);
+      const corr = new Float32Array(K);
+
+      for (let i = 0; i < S; i++) {
+        // argmax |Phi^T r|
+        mulPhiT_vec(Phi, r, M, K, corr);
+        let idx = 0, best = -1;
+        for (let k = 0; k < K; k++) { const v = Math.abs(corr[k]); if (v > best) { best = v; idx = k; } }
+        s[i] = idx;
+
+        // w = Phi[:, idx]
+        const w = new Float32Array(M);
+        for (let m = 0; m < M; m++) w[m] = Phi[m * K + idx];
+
+        // Modified Gram–Schmidt
+        for (let j = 0; j < i; j++) {
+          let dot = 0.0; for (let m = 0; m < M; m++) dot += Q[m * S + j] * w[m];
+          R[j * S + i] = dot;
+          const rji = dot / (R[j * S + j] || 1);
+          for (let m = 0; m < M; m++) w[m] -= rji * Q[m * S + j];
+        }
+        let n2 = 0.0; for (let m = 0; m < M; m++) n2 += w[m] * w[m];
+        R[i * S + i] = n2 + eps;
+        for (let m = 0; m < M; m++) Q[m * S + i] = w[m];
+        let qtr = 0.0; for (let m = 0; m < M; m++) qtr += Q[m * S + i] * r[m];
+        const fac = (qtr) / (R[i * S + i] || 1);
+        for (let m = 0; m < M; m++) r[m] -= fac * Q[m * S + i];
+      }
+
+      const v = new Float32Array(S);
+      for (let i = 0; i < S; i++) { let dot = 0.0; for (let m = 0; m < M; m++) dot += Q[m * S + i] * y[m]; v[i] = dot; }
+      for (let ii = 0; ii < S; ii++) {
+        const i = S - 1 - ii;
+        let sum = 0.0; for (let j = i + 1; j < S; j++) sum += R[i * S + j] * x[s[j]];
+        x[s[i]] = (v[i] - sum) / (R[i * S + i] || 1);
+      }
+      return x;
+    }
+
+    function reconstructFrame(imgv32, shift) {
+      const recon = new Float32Array(IMG_DIM * IMG_DIM);
+      const weights = new Float32Array(IMG_DIM * IMG_DIM);
+
+      for (let i = 0; i <= IMG_DIM - PATCH; i += shift) {
+        for (let j = 0; j <= IMG_DIM - PATCH; j += shift) {
+          let M = 0; const measIdx = []; const y = [];
+          for (let pr = 0; pr < PATCH; pr++) {
+            const row = i + pr; const rowOff = row * IMG_DIM;
+            for (let pc = 0; pc < PATCH; pc++) {
+              const col = j + pc; const v = imgv32[rowOff + col];
+              if (v > -1) { measIdx.push(pr * PATCH + pc); y.push(v); M++; }
+            }
+          }
+          if (M < 2) {
+            for (let pr = 0; pr < PATCH; pr++) {
+              const rOff = (i + pr) * IMG_DIM + j;
+              for (let pc = 0; pc < PATCH; pc++) { recon[rOff + pc] += 0.0; weights[rOff + pc] += 1.0; }
+            }
+            continue;
+          }
+          const Phi = buildPhi(measIdx, D); // M x 256
+          const yv = new Float32Array(y);
+          let S = Math.ceil(M / 2); if (S > M) S = M; if (S > ATOM_COUNT) S = ATOM_COUNT; if (S < 1) S = 1;
+          const x = fastOMP(Phi, yv, S, 1e-4);
+
+          const recV = new Float32Array(PIXELS_PER_PATCH);
+          mulD_vec(D, x, PIXELS_PER_PATCH, ATOM_COUNT, recV);
+
+          for (let pr = 0; pr < PATCH; pr++) {
+            const rOff = (i + pr) * IMG_DIM + j; const pOff = pr * PATCH;
+            for (let pc = 0; pc < PATCH; pc++) { recon[rOff + pc] += recV[pOff + pc]; weights[rOff + pc] += 1.0; }
+          }
+        }
+      }
+      for (let idx = 0; idx < recon.length; idx++) { const w = weights[idx]; recon[idx] = (w > 0.0) ? recon[idx] / w : 0.0; }
+      return recon;
+    }
+
+    self.onmessage = (ev) => {
+      if (ev.data && ev.data.dictBuffer) {
+        D = new Float32Array(ev.data.dictBuffer); // expect 16384
+        return;
+      }
+      if (!(D instanceof Float32Array) || D.length !== 64 * 256) {
+        const zero = new Float32Array(IMG_DIM * IMG_DIM);
+        self.postMessage({ error: 'Dictionary not loaded', recon: zero.buffer }, [zero.buffer]);
+        return;
+      }
+      const { imgvRaw, shift } = ev.data;
+      const imgv32 = new Float32Array(imgvRaw);
+      const out = reconstructFrame(imgv32, shift);
+      self.postMessage({ recon: out.buffer }, [out.buffer]);
+    };
+  })();
+  </script>
+
+  <script>
+    // --- Main thread (UI + Serial + Rendering) ---
+    const connectButton = document.getElementById('connectButton');
+    const baudRateInput = document.getElementById('baudRateInput');
+    const statusDiv = document.getElementById('status');
+
+    const rawCanvas = document.getElementById('rawCanvas');
+    const reconCanvas = document.getElementById('reconCanvas');
+    const rawCtx = rawCanvas.getContext('2d');
+    const reconCtx = reconCanvas.getContext('2d');
+
+    const mValueInput = document.getElementById('mValueInput');
+    const sendMButton = document.getElementById('sendMButton');
+
+    const shiftSelect = document.getElementById('shiftSelect');
+    const alphaSlider = document.getElementById('alphaSlider');
+    const alphaVal = document.getElementById('alphaVal');
+
+    const N_TOTAL_ELEMENTS = 1024;
+    const IMG_DIM = 32;
+
+    // Colormap limits (display only)
+    const CLIM_MIN = 0;
+    const CLIM_MAX = 1023;
+
+    const RECON_THRESH = 100; // values below this go to 0
+
+    let port, writer, reader, keepReading = false, lineBuffer = '';
+
+    rawCanvas.width = IMG_DIM; rawCanvas.height = IMG_DIM;
+    reconCanvas.width = IMG_DIM; reconCanvas.height = IMG_DIM;
+
+    // Separate buffers: raw for recon (with -1 for missing), vis for raw pane (+500 tint for sampled)
+    let imgv_raw = new Float32Array(N_TOTAL_ELEMENTS); // -1 for missing
+    let imgv_vis = new Float32Array(N_TOTAL_ELEMENTS);
+    imgv_raw.fill(-1);
+    imgv_vis.fill(-1);
+
+    // Recon buffers
+    let reconPrev = new Float32Array(N_TOTAL_ELEMENTS).fill(0);
+    let reconLPF = new Float32Array(N_TOTAL_ELEMENTS).fill(0);
+
+    // Worker setup from inline script
+    const workerSrc = document.getElementById('recon-worker-src').textContent;
+    const workerBlob = new Blob([workerSrc], { type: 'application/javascript' });
+    const worker = new Worker(URL.createObjectURL(workerBlob));
+
+    // Load external dictionary (row-major float32) and send to worker
+    let dictLoaded = false;
+    async function loadDictionaryAndSend() {
+      try {
+        const resp = await fetch('D_rowmajor_f32.bin'); // same-folder file
+        if (!resp.ok) throw new Error('Failed to fetch dictionary');
+        const buf = await resp.arrayBuffer();
+        const f32 = new Float32Array(buf);
+        if (f32.length !== 64 * 256) throw new Error('Bad dict size (expected 16384 floats)');
+        // Send to worker (transfer buffer)
+        worker.postMessage({ dictBuffer: f32.buffer }, [f32.buffer]);
+        dictLoaded = true;
+        statusDiv.textContent = 'Dictionary loaded';
+      } catch (e) {
+        console.error(e);
+        statusDiv.textContent = 'Error loading dictionary: ' + e.message;
+      }
+    }
+    loadDictionaryAndSend(); // Note: requires serving over http(s), not file://
+
+    worker.onmessage = (ev) => {
+      if (ev.data && ev.data.error) {
+        // If dict isn't loaded yet and frames arrive, ignore until loaded
+        return;
+      }
+      const { recon } = ev.data;
+      const reconRaw = new Float32Array(recon);
+
+      // Threshold BEFORE LPF
+      for (let i = 0; i < reconRaw.length; i++) {
+        if (reconRaw[i] < RECON_THRESH) reconRaw[i] = 0;
+      }
+
+      // LPF per element: y[i] = a*x[i] + (1-a)*y[i-1]
+      const a = parseFloat(alphaSlider.value);
+      for (let i = 0; i < N_TOTAL_ELEMENTS; i++) {
+        reconLPF[i] = a * reconRaw[i] + (1 - a) * reconPrev[i];
+      }
+      reconPrev.set(reconLPF);
+      drawHeatmap(reconCtx, reconLPF, CLIM_MIN, CLIM_MAX);
+    };
+
+    alphaSlider.addEventListener('input', () => {
+      alphaVal.textContent = parseFloat(alphaSlider.value).toFixed(2);
+    });
+    // initialize label on load
+    alphaVal.textContent = parseFloat(alphaSlider.value).toFixed(2);
+
+    function getColor(value, min, max) {
+      if (value < min) value = min;
+      if (value > max) value = max;
+      if (value === -1) return 'rgb(50,50,50)';
+      const dv = max - min;
+      let v = (value - min) / (dv || 1);
+      let r = 0, g = 0, b = 0;
+      if (v < 0.125) { b = 0.5 + (v / 0.125) * 0.5; }
+      else if (v < 0.375) { b = 1; g = (v - 0.125) / 0.25; }
+      else if (v < 0.625) { g = 1; b = 1 - (v - 0.375) / 0.25; r = (v - 0.375) / 0.25; }
+      else if (v < 0.875) { r = 1; g = 1 - (v - 0.625) / 0.25; }
+      else { r = 1 - (v - 0.875) / 0.125 * 0.5; }
+      return `rgb(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(b * 255)})`;
+    }
+
+    function drawHeatmap(ctx, data, climMin, climMax) {
+      ctx.clearRect(0, 0, IMG_DIM, IMG_DIM);
+      for (let r = 0; r < IMG_DIM; r++) {
+        const rOff = r * IMG_DIM;
+        for (let c = 0; c < IMG_DIM; c++) {
+          const v = data[rOff + c];
+          ctx.fillStyle = getColor(v, climMin, climMax);
+          ctx.fillRect(c, r, 1, 1);
+        }
+      }
+    }
+
+    async function sendDataToArduino(dataString) {
+      if (!port || !port.writable) {
+        statusDiv.textContent = "Error: Port not writable or not connected.";
+        console.error("Port not writable or not connected for sending data.");
+        return;
+      }
+      if (!writer) {
+        const textEncoder = new TextEncoderStream();
+        textEncoder.readable.pipeTo(port.writable);
+        writer = textEncoder.writable.getWriter();
+      }
+      try {
+        await writer.write(dataString + '\n');
+      } catch (error) {
+        console.error("Error sending data to Arduino:", error);
+        statusDiv.textContent = "Error sending data: " + error.message;
+      }
+    }
+
+    async function connectSerial() {
+      try {
+        const currentBaudRate = parseInt(baudRateInput.value);
+        if (isNaN(currentBaudRate) || currentBaudRate <= 0) {
+          statusDiv.textContent = "Error: Invalid baud rate.";
+          return;
+        }
+        port = await navigator.serial.requestPort();
+        await port.open({ baudRate: currentBaudRate });
+
+        const textEncoder = new TextEncoderStream();
+        textEncoder.readable.pipeTo(port.writable);
+        writer = textEncoder.writable.getWriter();
+
+        statusDiv.textContent = `Connected. Baud: ${currentBaudRate}. Waiting for data...`;
+        connectButton.textContent = 'Disconnect';
+        sendMButton.disabled = false;
+        baudRateInput.disabled = true;
+        mValueInput.disabled = false;
+
+        keepReading = true;
+        imgv_raw.fill(-1);
+        imgv_vis.fill(-1);
+        drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX);
+        drawHeatmap(reconCtx, reconPrev, CLIM_MIN, CLIM_MAX);
+        readLoop();
+      } catch (error) {
+        statusDiv.textContent = 'Error: ' + error.message;
+        console.error('Serial connection error:', error);
+        if (writer) { try { await writer.close(); } catch {} writer.releaseLock(); writer = null; }
+        if (port && port.readable) {
+          if (reader) { try { await reader.cancel(); } catch (e) {} reader = null; }
+          try { await port.close(); } catch (e) {}
+        }
+        port = null;
+        connectButton.textContent = 'Connect to Arduino';
+        sendMButton.disabled = true;
+        baudRateInput.disabled = false;
+        mValueInput.disabled = true;
+      }
+    }
+
+    async function disconnectSerial() {
+      keepReading = false;
+      if (reader) { try { await reader.cancel(); } catch (e) {} reader = null; }
+      if (writer) { try { await writer.close(); } catch (e) {} writer = null; }
+      if (port) { try { await port.close(); } catch (e) {} }
+      port = null;
+      statusDiv.textContent = 'Status: Disconnected';
+      connectButton.textContent = 'Connect to Arduino';
+      sendMButton.disabled = true;
+      baudRateInput.disabled = false;
+      mValueInput.disabled = true;
+      lineBuffer = '';
+    }
+
+    async function readLoop() {
+      if (!port || !port.readable) {
+        console.warn("Read loop started without a readable port.");
+        return;
+      }
+      const textDecoder = new TextDecoderStream();
+      port.readable.pipeTo(textDecoder.writable);
+      reader = textDecoder.readable.getReader();
+
+      try {
+        while (port && port.readable && keepReading) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          if (value) {
+            lineBuffer += value;
+            let newlineIndex;
+            while ((newlineIndex = lineBuffer.indexOf('\n')) >= 0) {
+              const line = lineBuffer.substring(0, newlineIndex).trim();
+              lineBuffer = lineBuffer.substring(newlineIndex + 1);
+              if (line) {
+                statusDiv.textContent = dictLoaded ? "Status: Receiving data..." : "Waiting for dictionary...";
+                if (dictLoaded) processData(line);
+              }
+            }
+          }
+        }
+      } catch (error) {
+        if (keepReading) {
+          console.error('Read loop error:', error);
+          statusDiv.textContent = 'Error reading: ' + error.message;
+        }
+      } finally {
+        if (keepReading) await disconnectSerial();
+      }
+    }
+
+    function processData(line) {
+      try {
+        imgv_raw.fill(-1);
+        imgv_vis.fill(-1);
+        const parts = line.split(',').map(s => parseFloat(s.trim()));
+        const validParts = parts.filter(p => !isNaN(p));
+        const numValidValues = validParts.length;
+        if (numValidValues === 0) { drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX); return; }
+        if (numValidValues % 2 !== 0) { console.warn(`Odd number of numeric values (${numValidValues}). Line: "${line}"`); drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX); return; }
+
+        const currentM = numValidValues / 2;
+        const indices = validParts.slice(0, currentM);
+        const vals = validParts.slice(currentM, numValidValues);
+        for (let i = 0; i < currentM; i++) {
+          const matlabIndex = indices[i];
+          const jsIndex = matlabIndex - 1; // 1-based → 0-based
+          const value = vals[i];
+          if (isNaN(matlabIndex) || isNaN(value)) continue;
+          if (jsIndex >= 0 && jsIndex < N_TOTAL_ELEMENTS) {
+            imgv_raw[jsIndex] = value;      // raw for recon
+            imgv_vis[jsIndex] = value + 500; // visual tint only
+          }
+        }
+        drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX);
+
+        const shift = parseInt(shiftSelect.value) || 4;
+        worker.postMessage({ imgvRaw: imgv_raw.buffer.slice(0), shift });
+      } catch (error) {
+        console.error('Error processing data:', error, "Line:", line);
+        statusDiv.textContent = 'Error processing data.';
+        imgv_raw.fill(-1); imgv_vis.fill(-1);
+        drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX);
+      }
+    }
+
+    connectButton.addEventListener('click', () => { if (port) disconnectSerial(); else connectSerial(); });
+
+    sendMButton.addEventListener('click', async () => {
+      const mVal = parseInt(mValueInput.value);
+      if (isNaN(mVal) || mVal <= 0) { statusDiv.textContent = "Invalid M value. Must be a positive integer."; return; }
+      if (mVal > N_TOTAL_ELEMENTS) {
+        statusDiv.textContent = `M value capped at ${N_TOTAL_ELEMENTS}.`;
+        mValueInput.value = N_TOTAL_ELEMENTS;
+        await sendDataToArduino(N_TOTAL_ELEMENTS.toString());
+        return;
+      }
+      statusDiv.textContent = `Sending M = ${mVal}...`;
+      await sendDataToArduino(mVal.toString());
+    });
+
+    // Initial draw
+    drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX);
+    drawHeatmap(reconCtx, reconPrev, CLIM_MIN, CLIM_MAX);
+
+    if (!("serial" in navigator)) {
+      statusDiv.textContent = "Web Serial API not supported. Enable flags if on Android Chrome.";
+      connectButton.disabled = true; baudRateInput.disabled = true; mValueInput.disabled = true; sendMButton.disabled = true;
+      alert("Web Serial API not supported. On Android Chrome, enable experimental flags: 'Web Serial API' and 'Experimental Web Platform features' in chrome://flags.");
+    } else {
+      mValueInput.disabled = true; // disabled until connected
+    }
+  </script>
+</body>
+</html>
