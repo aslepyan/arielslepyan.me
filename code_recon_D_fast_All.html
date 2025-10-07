@@ -345,7 +345,9 @@
         for (let c = 0; c < IMG_DIM; c++) {
           const v = data[rOff + c];
           ctx.fillStyle = getColor(v, climMin, climMax);
-          ctx.fillRect(c, r, 1, 1);
+          //ctx.fillRect(c, r, 1, 1);
+          ctx.fillRect(c, IMG_DIM - 1 - r, 1, 1);
+
         }
       }
     }
