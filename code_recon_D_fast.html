@@ -252,7 +252,8 @@
     let dictLoaded = false;
     async function loadDictionaryAndSend() {
       try {
-        const resp = await fetch('D_rowmajor_f32.bin'); // same-folder file
+        //const resp = await fetch('D_rowmajor_f32.bin'); // same-folder file
+        const resp = await fetch('D.bin'); // same-folder file
         if (!resp.ok) throw new Error('Failed to fetch dictionary');
         const buf = await resp.arrayBuffer();
         const f32 = new Float32Array(buf);
