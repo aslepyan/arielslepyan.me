@@ -173,7 +173,7 @@
           const Phi = buildPhi(measIdx, D); // M x 256
           const yv = new Float32Array(y);
           let S = Math.ceil(M / 2); if (S > M) S = M; if (S > ATOM_COUNT) S = ATOM_COUNT; if (S < 1) S = 1;
-          const x = fastOMP(Phi, yv, 1e-4 ? S : S); // keep S
+          const x = fastOMP(Phi, yv, 1e-4 ? S : S); // keep S; placeholder branch for clarity
 
           const recV = new Float32Array(PIXELS_PER_PATCH);
           mulD_vec(D, x, PIXELS_PER_PATCH, ATOM_COUNT, recV);
@@ -220,7 +220,7 @@
     const mValueInput = document.getElementById('mValueInput');
     const sendMButton = document.getElementById('sendMButton');
 
-    // mode buttons
+    // NEW: mode buttons
     const modeAButton = document.getElementById('modeAButton');
     const modeUButton = document.getElementById('modeUButton');
     const modeRButton = document.getElementById('modeRButton');
@@ -287,71 +287,6 @@
     }
     loadDictionaryAndSend(); // Requires serving over http(s), not file://
 
-    // ====== (1) ImageData + LUT renderer ======
-    const LUT_SIZE = 1024;
-    const MISSING_IDX = LUT_SIZE; // slot for -1
-    const lut = new Uint8ClampedArray((LUT_SIZE + 1) * 4); // RGBA
-
-    function toRGBNorm(t) {
-      // t in [0,1]
-      let r=0,g=0,b=0;
-      if (t < 0.125) { b = 0.5 + (t / 0.125) * 0.5; }
-      else if (t < 0.375) { b = 1; g = (t - 0.125) / 0.25; }
-      else if (t < 0.625) { g = 1; b = 1 - (t - 0.375) / 0.25; r = (t - 0.375) / 0.25; }
-      else if (t < 0.875) { r = 1; g = 1 - (t - 0.625) / 0.25; }
-      else { r = 1 - (t - 0.875) / 0.125 * 0.5; }
-      return [Math.round(r*255), Math.round(g*255), Math.round(b*255)];
-    }
-
-    (function buildLUT() {
-      for (let v = 0; v < LUT_SIZE; v++) {
-        const t = LUT_SIZE > 1 ? v / (LUT_SIZE - 1) : 0;
-        const [r,g,b] = toRGBNorm(t);
-        const o = v * 4;
-        lut[o] = r; lut[o+1] = g; lut[o+2] = b; lut[o+3] = 255;
-      }
-      const mo = MISSING_IDX * 4;
-      lut[mo] = 50; lut[mo+1] = 50; lut[mo+2] = 50; lut[mo+3] = 255;
-    })();
-
-    const rawImgData   = rawCtx.createImageData(IMG_DIM, IMG_DIM);
-    const reconImgData = reconCtx.createImageData(IMG_DIM, IMG_DIM);
-
-    function drawHeatmap(ctx, data, imgData, climMin, climMax /*, flipY = false */) {
-      const buf = imgData.data; // Uint8ClampedArray
-      let p = 0;
-
-      // If you later want vertical flip, change 'row' to (IMG_DIM-1-row)
-      for (let row = 0; row < IMG_DIM; row++) {
-        const rOff = row * IMG_DIM;
-        for (let c = 0; c < IMG_DIM; c++) {
-          const v = data[rOff + c];
-          const idx = (v === -1)
-            ? MISSING_IDX
-            : Math.max(0, Math.min(LUT_SIZE - 1, Math.floor(v))); // clamp to 0..1023
-          const o = idx * 4;
-          buf[p++] = lut[o];
-          buf[p++] = lut[o+1];
-          buf[p++] = lut[o+2];
-          buf[p++] = 255;
-        }
-      }
-      ctx.putImageData(imgData, 0, 0);
-    }
-
-    // ====== (2) Single RAF render loop ======
-    let needsDraw = true; // draw once at start
-    function requestRedraw() { needsDraw = true; }
-    function rafLoop() {
-      if (needsDraw) {
-        drawHeatmap(rawCtx,   imgv_vis,  rawImgData,   CLIM_MIN, CLIM_MAX);
-        drawHeatmap(reconCtx, reconLPF,  reconImgData, CLIM_MIN, CLIM_MAX);
-        needsDraw = false;
-      }
-      requestAnimationFrame(rafLoop);
-    }
-    requestAnimationFrame(rafLoop);
-
     worker.onmessage = (ev) => {
       if (ev.data && ev.data.error) {
         // dictionary not ready yet; ignore recon
@@ -371,9 +306,7 @@
         reconLPF[i] = a * reconRaw[i] + (1 - a) * reconPrev[i];
       }
       reconPrev.set(reconLPF);
-
-      // Instead of drawing now, request a redraw
-      requestRedraw();
+      drawHeatmap(reconCtx, reconLPF, CLIM_MIN, CLIM_MAX);
 
       // Drain newest pending frame immediately; otherwise mark not busy
       if (pendingFrame) {
@@ -387,10 +320,37 @@
 
     alphaSlider.addEventListener('input', () => {
       alphaVal.textContent = parseFloat(alphaSlider.value).toFixed(2);
-      // Optional: request redraw (LPF takes effect on next worker frame anyway)
-      requestRedraw();
     });
     alphaVal.textContent = parseFloat(alphaSlider.value).toFixed(2);
+
+    function getColor(value, min, max) {
+      if (value < min) value = min;
+      if (value > max) value = max;
+      if (value === -1) return 'rgb(50,50,50)';
+      const dv = max - min;
+      let v = (value - min) / (dv || 1);
+      let r = 0, g = 0, b = 0;
+      if (v < 0.125) { b = 0.5 + (v / 0.125) * 0.5; }
+      else if (v < 0.375) { b = 1; g = (v - 0.125) / 0.25; }
+      else if (v < 0.625) { g = 1; b = 1 - (v - 0.375) / 0.25; r = (v - 0.375) / 0.25; }
+      else if (v < 0.875) { r = 1; g = 1 - (v - 0.625) / 0.25; }
+      else { r = 1 - (v - 0.875) / 0.125 * 0.5; }
+      return `rgb(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(b * 255)})`;
+    }
+
+    function drawHeatmap(ctx, data, climMin, climMax) {
+      ctx.clearRect(0, 0, IMG_DIM, IMG_DIM);
+      for (let r = 0; r < IMG_DIM; r++) {
+        const rOff = r * IMG_DIM;
+        for (let c = 0; c < IMG_DIM; c++) {
+          const v = data[rOff + c];
+          ctx.fillStyle = getColor(v, climMin, climMax);
+          //ctx.fillRect(c, r, 1, 1);
+          ctx.fillRect(c, IMG_DIM - 1 - r, 1, 1);
+
+        }
+      }
+    }
 
     async function sendDataToArduino(dataString) {
       if (!port || !port.writable) {
@@ -437,9 +397,8 @@
         keepReading = true;
         imgv_raw.fill(-1);
         imgv_vis.fill(-1);
-        reconPrev.fill(0);
-        reconLPF.fill(0);
-        requestRedraw();
+        drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX);
+        drawHeatmap(reconCtx, reconPrev, CLIM_MIN, CLIM_MAX);
         readLoop();
       } catch (error) {
         statusDiv.textContent = 'Error: ' + error.message;
@@ -529,12 +488,12 @@
         const validParts = parts.filter(p => !isNaN(p));
         const numValidValues = validParts.length;
         if (numValidValues === 0) {
-          requestRedraw();
+          drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX);
           return;
         }
         if (numValidValues % 2 !== 0) {
           console.warn(`Odd number of numeric values (${numValidValues}). Line: "${line}"`);
-          requestRedraw();
+          drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX);
           return;
         }
 
@@ -551,9 +510,7 @@
             imgv_vis[jsIndex] = value + 500; // visual tint only
           }
         }
-
-        // Ask RAF loop to repaint raw canvas this frame
-        requestRedraw();
+        drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX);
 
         const shift = parseInt(shiftSelect.value) || 4;
         if (dictLoaded) {
@@ -564,7 +521,7 @@
         statusDiv.textContent = 'Error processing data.';
         imgv_raw.fill(-1);
         imgv_vis.fill(-1);
-        requestRedraw();
+        drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX);
       }
     }
 
@@ -598,7 +555,7 @@
       await sendDataToArduino(mVal.toString());
     });
 
-    // mode button handlers
+    // NEW: mode button handlers
     modeAButton.addEventListener('click', async () => {
       statusDiv.textContent = 'Sending mode A (AMCS)...';
       await sendDataToArduino('A');
@@ -616,8 +573,9 @@
       await sendDataToArduino('B');
     });
 
-    // Initial draw via RAF
-    requestRedraw();
+    // Initial draw
+    drawHeatmap(rawCtx, imgv_vis, CLIM_MIN, CLIM_MAX);
+    drawHeatmap(reconCtx, reconPrev, CLIM_MIN, CLIM_MAX);
 
     if (!('serial' in navigator)) {
       statusDiv.textContent = 'Web Serial API not supported. Enable flags if on Android Chrome.';
