@@ -1,300 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arduino 32x32 Shear Visualizer</title>
-  <style>
-    body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; margin: 20px; background: #fff; color: #000; }
-    #controls { margin-bottom: 10px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; }
-    .control-group { margin-bottom: 10px; }
-    #plotContainer { position: relative; display: inline-block; }
-    canvas { border: 1px solid black; image-rendering: pixelated; background: #fff; }
-    #heatmapCanvas { width: 480px; height: 480px; }
-    #quiverCanvas { width: 480px; height: 480px; position: absolute; left: 0; top: 0; pointer-events: none; }
-    #status { margin-top: 10px; font-style: italic; }
-    input[type="number"] { width: 90px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shear Force Visualization (Adjustable Arrows)</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; margin-top: 20px; }
+        #controls { margin-bottom: 10px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 15px; }
+        .control-group { display: flex; align-items: center; gap: 5px; }
+        canvas { border: 1px solid black; image-rendering: pixelated; width: 480px; height: 480px; }
+        #status { margin-top: 10px; font-style: italic; }
+        input[type="number"] { width: 70px; }
+        input[type="range"] { width: 120px; }
+    </style>
 </head>
 <body>
-  <div id="controls">
-    <div class="control-group">
-      <button id="connectButton">Connect to Arduino</button>
+    <div id="controls">
+        <div class="control-group">
+            <button id="connectButton">Connect</button>
+        </div>
+        <div class="control-group">
+            <label for="baudRateInput">Baud Rate:</label>
+            <input type="number" id="baudRateInput" value="12000000">
+        </div>
+        <div class="control-group">
+            <label for="thresholdSlider">Threshold:</label>
+            <input type="range" id="thresholdSlider" min="0" max="200" value="60">
+            <span id="thresholdValue">60</span>
+        </div>
+         <div class="control-group">
+            <label for="scaleSlider">Arrow Scale:</label>
+            <input type="range" id="scaleSlider" min="0.1" max="2.0" step="0.1" value="0.8">
+            <span id="scaleValue">0.8</span>
+        </div>
+         <div class="control-group">
+            <label for="thicknessSlider">Arrow Thickness:</label>
+            <input type="range" id="thicknessSlider" min="1" max="10" step="1" value="3">
+            <span id="thicknessValue">3</span>
+        </div>
     </div>
-    <div class="control-group">
-      Baud Rate: <input type="number" id="baudRateInput" value="12000000">
-    </div>
-    <div class="control-group">
-      Threshold: <input type="number" id="thresholdInput" value="60">
-    </div>
-  </div>
 
-  <div id="plotContainer">
-    <canvas id="heatmapCanvas" width="32" height="32"></canvas>
-    <canvas id="quiverCanvas" width="32" height="32"></canvas>
-  </div>
-  <div id="status">Status: Disconnected</div>
+    <canvas id="visualizationCanvas"></canvas>
+    <div id="status">Status: Disconnected</div>
 
-  <script>
-    // --- DOM / constants ---
-    const connectButton = document.getElementById('connectButton');
-    const baudRateInput = document.getElementById('baudRateInput');
-    const thresholdInput = document.getElementById('thresholdInput');
-    const statusDiv = document.getElementById('status');
+    <script>
+        const connectButton = document.getElementById('connectButton');
+        const baudRateInput = document.getElementById('baudRateInput');
+        const statusDiv = document.getElementById('status');
+        const canvas = document.getElementById('visualizationCanvas');
+        const ctx = canvas.getContext('2d');
 
-    const heatmapCanvas = document.getElementById('heatmapCanvas');
-    const heatmapCtx = heatmapCanvas.getContext('2d');
-    const quiverCanvas = document.getElementById('quiverCanvas');
-    const quiverCtx = quiverCanvas.getContext('2d');
+        const thresholdSlider = document.getElementById('thresholdSlider');
+        const thresholdValueSpan = document.getElementById('thresholdValue');
+        const scaleSlider = document.getElementById('scaleSlider');
+        const scaleValueSpan = document.getElementById('scaleValue');
+        const thicknessSlider = document.getElementById('thicknessSlider');
+        const thicknessValueSpan = document.getElementById('thicknessValue');
 
-    const IMG_DIM = 32;
-    const N_TOTAL = IMG_DIM * IMG_DIM; // 1024
+        const N = 1024;
+        const IMG_DIM = 32;
+        const SUPER_PIXEL_DIM = 16;
+        const PIXEL_SCALE = 15; // Scale for display (480/32)
 
-    // display clamp: clim([0 max([300, max(img_disp)])])
-    const CLIM_FLOOR = 0;
-    const CLIM_BASE_MAX = 300;
+        canvas.width = IMG_DIM * PIXEL_SCALE;
+        canvas.height = IMG_DIM * PIXEL_SCALE;
 
-    // --- serial state ---
-    let port = null;
-    let reader = null;
-    let keepReading = false;
-    let lineBuffer = '';
+        let port;
+        let reader;
+        let keepReading = false;
+        let lineBuffer = '';
 
-    // --- data buffers ---
-    const img = new Float32Array(N_TOTAL);      // incoming (pre-rotation)
-    const imgDisp = new Float32Array(N_TOTAL);  // rotated + thresholded for display
+        // Control variables
+        let threshold = parseInt(thresholdSlider.value);
+        let arrowScaleFactor = parseFloat(scaleSlider.value);
+        let arrowThickness = parseInt(thicknessSlider.value);
 
-    // --- helpers ---
-    function getColor(value, min, max) {
-      // same palette style as your example
-      if (value < min) value = min;
-      if (value > max) value = max;
-      if (value <= 0) return 'rgb(50,50,50)';
-      const dv = max - min;
-      let v = (value - min) / (dv || 1);
-      let r = 0, g = 0, b = 0;
-      if (v < 0.125) { b = 0.5 + (v / 0.125) * 0.5; }
-      else if (v < 0.375) { b = 1; g = (v - 0.125) / 0.25; }
-      else if (v < 0.625) { g = 1; b = 1 - (v - 0.375) / 0.25; r = (v - 0.375) / 0.25; }
-      else if (v < 0.875) { r = 1; g = 1 - (v - 0.625) / 0.25; }
-      else { r = 1 - (v - 0.875) / 0.125 * 0.5; }
-      return `rgb(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(b * 255)})`;
-    }
+        // Event Listeners for new sliders
+        thresholdSlider.addEventListener('input', (event) => {
+            threshold = parseInt(event.target.value);
+            thresholdValueSpan.textContent = threshold;
+        });
 
-    function neighborAwareThreshold(src, th) {
-      const out = new Float32Array(src);
-      for (let r = 0; r < IMG_DIM; r++) {
-        for (let c = 0; c < IMG_DIM; c++) {
-          const idx = r * IMG_DIM + c;
-          const val = out[idx];
-          if (val < th) {
-            const up    = r > 0      ? out[(r-1)*IMG_DIM + c] : -Infinity;
-            const down  = r < IMG_DIM-1 ? out[(r+1)*IMG_DIM + c] : -Infinity;
-            const left  = c > 0      ? out[r*IMG_DIM + (c-1)] : -Infinity;
-            const right = c < IMG_DIM-1 ? out[r*IMG_DIM + (c+1)] : -Infinity;
-            if (!(up >= th || down >= th || left >= th || right >= th)) {
-              out[idx] = 0;
+        scaleSlider.addEventListener('input', (event) => {
+            arrowScaleFactor = parseFloat(event.target.value);
+            scaleValueSpan.textContent = arrowScaleFactor.toFixed(1);
+        });
+
+        thicknessSlider.addEventListener('input', (event) => {
+            arrowThickness = parseInt(event.target.value);
+            thicknessValueSpan.textContent = arrowThickness;
+        });
+
+
+        function getColor(value, min = 0, max = 300) {
+            if (value < min) value = min;
+            if (value > max) max = value; // Auto-scale max
+            const normalized = (value - min) / (max - min || 1);
+            const hue = (1 - normalized) * 240; // blue to red
+            return `hsl(${hue}, 100%, 50%)`;
+        }
+
+        function draw(imgDisp, Fx, Fy) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 1. Draw Heatmap
+            let maxVal = 300;
+            for (let r = 0; r < IMG_DIM; r++) {
+                for (let c = 0; c < IMG_DIM; c++) {
+                    const value = imgDisp[r][c];
+                    if (value > maxVal) maxVal = value;
+                    ctx.fillStyle = getColor(value, 0, maxVal);
+                    ctx.fillRect(c * PIXEL_SCALE, r * PIXEL_SCALE, PIXEL_SCALE, PIXEL_SCALE);
+                }
             }
-          }
-        }
-      }
-      return out;
-    }
 
-    function rotate90CCW(src, dst) {
-      // MATLAB rot90(img,1): dst(r',c') = src(r,c) with r' = c, c' = n-1-r
-      for (let r = 0; r < IMG_DIM; r++) {
-        for (let c = 0; c < IMG_DIM; c++) {
-          const rp = c;
-          const cp = IMG_DIM - 1 - r;
-          dst[rp * IMG_DIM + cp] = src[r * IMG_DIM + c];
-        }
-      }
-    }
-
-    function drawHeatmapAndQuiver() {
-      const th = Number(thresholdInput.value) || 0;
-
-      // 1) neighbor-aware threshold on original img
-      const thr = neighborAwareThreshold(img, th);
-
-      // 2) rotate for display
-      rotate90CCW(thr, imgDisp);
-
-      // 3) dynamic CLIM
-      let vmax = CLIM_BASE_MAX;
-      for (let i = 0; i < N_TOTAL; i++) if (imgDisp[i] > vmax) vmax = imgDisp[i];
-
-      // 4) draw heatmap pixels at native 32x32 (CSS scales up)
-      const im = heatmapCtx.getImageData(0, 0, IMG_DIM, IMG_DIM);
-      const data = im.data;
-      for (let r = 0; r < IMG_DIM; r++) {
-        for (let c = 0; c < IMG_DIM; c++) {
-          const v = imgDisp[r*IMG_DIM + c];
-          const col = getColor(v, CLIM_FLOOR, vmax);
-          const nums = col.match(/\d+/g).map(Number);
-          const R = nums[0], G = nums[1], B = nums[2];
-          const idx = (r*IMG_DIM + c) * 4;
-          data[idx] = R; data[idx+1] = G; data[idx+2] = B; data[idx+3] = 255;
-        }
-      }
-      heatmapCtx.putImageData(im, 0, 0);
-
-      // 5) compute 2x2 block vectors on displayed image
-      const FX = new Float32Array(16*16);
-      const FY = new Float32Array(16*16);
-      let mmax = 0;
-      for (let i = 0; i < 16; i++) {
-        const r0 = 2*i;
-        for (let j = 0; j < 16; j++) {
-          const c0 = 2*j;
-          const p00 = imgDisp[r0*IMG_DIM + c0];
-          const p01 = imgDisp[r0*IMG_DIM + c0+1];
-          const p10 = imgDisp[(r0+1)*IMG_DIM + c0];
-          const p11 = imgDisp[(r0+1)*IMG_DIM + c0+1];
-          const left = p00 + p10;
-          const right = p01 + p11;
-          const top = p00 + p01;
-          const bottom = p10 + p11;
-          const fx = right - left;
-          const fy = -top + bottom; // +y means stronger on top
-          const k = i*16 + j;
-          FX[k] = fx; FY[k] = fy;
-          const mag = Math.hypot(fx, fy);
-          if (mag > mmax) mmax = mag;
-        }
-      }
-
-      // 6) draw quiver on overlay canvas in pixel coords (1.5:2:32)
-      quiverCtx.clearRect(0, 0, quiverCanvas.width, quiverCanvas.height);
-      quiverCtx.strokeStyle = 'white';
-      quiverCtx.fillStyle = 'white';
-      quiverCtx.lineWidth = 1.0; // native px; CSS scales proportionally
-
-      function drawArrow(x0, y0, x1, y1) {
-        quiverCtx.beginPath();
-        quiverCtx.moveTo(x0, y0);
-        quiverCtx.lineTo(x1, y1);
-        quiverCtx.stroke();
-        const dx = x1-x0, dy = y1-y0;
-        const len = Math.hypot(dx,dy) || 1e-6;
-        const ux = dx/len, uy = dy/len;
-        const ah = 0.9, aw = 0.6; // arrow head size in px
-        const hx = x1 - ux*ah, hy = y1 - uy*ah;
-        quiverCtx.beginPath();
-        quiverCtx.moveTo(x1, y1);
-        quiverCtx.lineTo(hx + (-uy)*aw, hy + (ux)*aw);
-        quiverCtx.lineTo(hx - (-uy)*aw, hy - (ux)*aw);
-        quiverCtx.closePath();
-        quiverCtx.fill();
-      }
-
-      const centers = Array.from({length:16}, (_,t)=>1.5 + 2*t);
-      for (let i = 0; i < 16; i++) {
-        for (let j = 0; j < 16; j++) {
-          const k = i*16 + j;
-          let fx = FX[k], fy = FY[k];
-          if (mmax > 0) { fx /= mmax; fy /= mmax; } // normalize
-          const x0 = centers[j];
-          const y0 = centers[i];
-          const scale = 1.6; // close to MATLAB quiver scale=0.8 on 2px grid
-          const x1 = x0 + fx * scale;
-          const y1 = y0 + fy * scale;
-          drawArrow(x0, y0, x1, y1);
-        }
-      }
-    }
-
-    // --- Serial ---
-    async function connectSerial() {
-      try {
-        const baud = parseInt(baudRateInput.value) || 12000000;
-        port = await navigator.serial.requestPort();
-        await port.open({ baudRate: baud });
-        keepReading = true;
-        statusDiv.textContent = `Connected. Baud: ${baud}. Waiting for data...`;
-        connectButton.textContent = 'Disconnect';
-        baudRateInput.disabled = true;
-        readLoop();
-      } catch (error) {
-        statusDiv.textContent = 'Error: ' + error.message;
-        console.error('Serial connection error:', error);
-        await disconnectSerial();
-      }
-    }
-
-    async function disconnectSerial() {
-      keepReading = false;
-      if (reader) {
-        try { await reader.cancel(); } catch (e) {}
-        reader = null;
-      }
-      if (port) {
-        try { await port.close(); } catch (e) {}
-        port = null;
-      }
-      statusDiv.textContent = 'Status: Disconnected';
-      connectButton.textContent = 'Connect to Arduino';
-      baudRateInput.disabled = false;
-      lineBuffer = '';
-    }
-
-    async function readLoop() {
-      if (!port || !port.readable) return;
-      const td = new TextDecoderStream();
-      const pipe = port.readable.pipeTo(td.writable);
-      reader = td.readable.getReader();
-      lineBuffer = '';
-      try {
-        while (keepReading) {
-          const { value, done } = await reader.read();
-          if (done) break;
-          if (value) {
-            lineBuffer += value;
-            let nl;
-            while ((nl = lineBuffer.indexOf('\n')) >= 0) {
-              const line = lineBuffer.slice(0, nl).trim();
-              lineBuffer = lineBuffer.slice(nl + 1);
-              if (line) processLine(line);
+            // 2. Calculate vector magnitudes and normalize
+            const mag = new Array(SUPER_PIXEL_DIM).fill(0).map(() => new Array(SUPER_PIXEL_DIM).fill(0));
+            let mmax = 0;
+            for (let i = 0; i < SUPER_PIXEL_DIM; i++) {
+                for (let j = 0; j < SUPER_PIXEL_DIM; j++) {
+                    mag[i][j] = Math.sqrt(Fx[i][j]**2 + Fy[i][j]**2);
+                    if (mag[i][j] > mmax) {
+                        mmax = mag[i][j];
+                    }
+                }
             }
-          }
+
+            const scaleFx = new Array(SUPER_PIXEL_DIM).fill(0).map(() => new Array(SUPER_PIXEL_DIM).fill(0));
+            const scaleFy = new Array(SUPER_PIXEL_DIM).fill(0).map(() => new Array(SUPER_PIXEL_DIM).fill(0));
+            if (mmax > 0) {
+                for (let i = 0; i < SUPER_PIXEL_DIM; i++) {
+                    for (let j = 0; j < SUPER_PIXEL_DIM; j++) {
+                        scaleFx[i][j] = Fx[i][j] / mmax;
+                        scaleFy[i][j] = Fy[i][j] / mmax;
+                    }
+                }
+            }
+
+            // 3. Draw Arrows (Quiver) using dynamic values
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = arrowThickness; // Use variable for thickness
+            const arrowScale = arrowScaleFactor * (2 * PIXEL_SCALE); // Use variable for scale
+
+            for (let i = 0; i < SUPER_PIXEL_DIM; i++) {
+                for (let j = 0; j < SUPER_PIXEL_DIM; j++) {
+                    const startX = (2 * j + 1) * PIXEL_SCALE;
+                    const startY = (2 * i + 1) * PIXEL_SCALE;
+
+                    const dx = scaleFx[i][j] * arrowScale;
+                    const dy = scaleFy[i][j] * arrowScale;
+                    
+                    if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1) continue;
+
+                    const endX = startX + dx;
+                    const endY = startY + dy;
+
+                    // Draw line
+                    ctx.beginPath();
+                    ctx.moveTo(startX, startY);
+                    ctx.lineTo(endX, endY);
+                    ctx.stroke();
+
+                    // Draw arrowhead
+                    const angle = Math.atan2(dy, dx);
+                    const headlen = 2.5 * arrowThickness; // Make arrowhead size proportional to thickness
+                    ctx.beginPath();
+                    ctx.moveTo(endX, endY);
+                    ctx.lineTo(endX - headlen * Math.cos(angle - Math.PI / 6), endY - headlen * Math.sin(angle - Math.PI / 6));
+                    ctx.lineTo(endX - headlen * Math.cos(angle + Math.PI / 6), endY - headlen * Math.sin(angle + Math.PI / 6));
+                    ctx.closePath();
+                    ctx.fillStyle = 'white';
+                    ctx.fill();
+                }
+            }
         }
-      } catch (err) {
-        console.warn('Read loop error:', err);
-        statusDiv.textContent = 'Error reading: ' + err.message;
-      } finally {
-        await disconnectSerial();
-      }
-    }
 
-    function processLine(line) {
-      // Expect full frame: 1024 comma-separated numbers
-      const parts = line.split(',');
-      if (parts.length < N_TOTAL) return; // ignore partial
-      for (let i = 0; i < N_TOTAL; i++) {
-        const v = parseFloat(parts[i]);
-        img[i] = Number.isFinite(v) ? v : 0;
-      }
-      statusDiv.textContent = 'Status: Receiving data...';
-      drawHeatmapAndQuiver();
-    }
+        async function connectSerial() {
+            try {
+                port = await navigator.serial.requestPort();
+                await port.open({ baudRate: parseInt(baudRateInput.value) });
+                statusDiv.textContent = 'Connected. Waiting for data...';
+                connectButton.textContent = 'Disconnect';
+                baudRateInput.disabled = true;
+                keepReading = true;
+                readLoop();
+            } catch (error) {
+                statusDiv.textContent = 'Error: ' + error.message;
+            }
+        }
 
-    // --- events ---
-    connectButton.addEventListener('click', () => {
-      if (port) disconnectSerial(); else connectSerial();
-    });
-    thresholdInput.addEventListener('change', drawHeatmapAndQuiver);
+        async function disconnectSerial() {
+            keepReading = false;
+            if (reader) {
+                await reader.cancel();
+            }
+            if (port) {
+                await port.close();
+            }
+            port = null;
+            reader = null;
+            statusDiv.textContent = 'Status: Disconnected';
+            connectButton.textContent = 'Connect';
+            baudRateInput.disabled = false;
+        }
 
-    // init
-    img.fill(0);
-    drawHeatmapAndQuiver();
+        async function readLoop() {
+            if (!port || !port.readable) return;
+            const textDecoder = new TextDecoderStream();
+            const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+            reader = textDecoder.readable.getReader();
 
-    if (!('serial' in navigator)) {
-      statusDiv.textContent = 'Web Serial API not supported. Use Chrome/Edge with Web Serial enabled.';
-      connectButton.disabled = true;
-      baudRateInput.disabled = true;
-      alert('Web Serial API not supported. Try Chrome/Edge (desktop).');
-    }
-  </script>
+            try {
+                while (keepReading) {
+                    const { value, done } = await reader.read();
+                    if (done) break;
+                    lineBuffer += value;
+                    let newlineIndex;
+                    while ((newlineIndex = lineBuffer.indexOf('\n')) >= 0) {
+                        const line = lineBuffer.substring(0, newlineIndex).trim();
+                        lineBuffer = lineBuffer.substring(newlineIndex + 1);
+                        if (line) {
+                           statusDiv.textContent = 'Status: Receiving data...';
+                           processData(line);
+                        }
+                    }
+                }
+            } catch (error) {
+                if (keepReading) {
+                    statusDiv.textContent = 'Error reading: ' + error.message;
+                }
+            } finally {
+                reader.releaseLock();
+                if (keepReading) {
+                    await disconnectSerial();
+                }
+            }
+        }
+
+        function processData(line) {
+            const input = line.split(',');
+            if (input.length < N) return;
+
+            const vals = input.slice(0, N).map(s => parseFloat(s.trim()));
+            if (vals.some(isNaN)) return;
+
+            let img = [];
+            for (let i = 0; i < IMG_DIM; i++) {
+                img.push(vals.slice(i * IMG_DIM, (i + 1) * IMG_DIM));
+            }
+
+            for (let r = 0; r < IMG_DIM; r++) {
+                for (let c = 0; c < IMG_DIM; c++) {
+                    if (img[r][c] < threshold) {
+                        const hasNeighbor = (r > 0 && img[r - 1][c] >= threshold) ||
+                                          (r < IMG_DIM - 1 && img[r + 1][c] >= threshold) ||
+                                          (c > 0 && img[r][c - 1] >= threshold) ||
+                                          (c < IMG_DIM - 1 && img[r][c + 1] >= threshold);
+                        if (!hasNeighbor) {
+                            img[r][c] = 0;
+                        }
+                    }
+                }
+            }
+            
+            const imgDisp = img;
+            imgDisp.reverse();
+
+            const Fx = new Array(SUPER_PIXEL_DIM).fill(0).map(() => new Array(SUPER_PIXEL_DIM).fill(0));
+            const Fy = new Array(SUPER_PIXEL_DIM).fill(0).map(() => new Array(SUPER_PIXEL_DIM).fill(0));
+
+            for (let i = 0; i < SUPER_PIXEL_DIM; i++) {
+                const rStart = 2 * i;
+                for (let j = 0; j < SUPER_PIXEL_DIM; j++) {
+                    const cStart = 2 * j;
+                    const p = [
+                        [imgDisp[rStart][cStart], imgDisp[rStart][cStart + 1]],
+                        [imgDisp[rStart + 1][cStart], imgDisp[rStart + 1][cStart + 1]]
+                    ];
+
+                    const left = p[0][0] + p[1][0];
+                    const right = p[0][1] + p[1][1];
+                    const top = p[0][0] + p[0][1];
+                    const bottom = p[1][0] + p[1][1];
+                    
+                    Fx[i][j] = right - left;
+                    Fy[i][j] = -top + bottom;
+                }
+            }
+            
+            draw(imgDisp, Fx, Fy);
+        }
+
+        connectButton.addEventListener('click', () => {
+            if (port) {
+                disconnectSerial();
+            } else {
+                connectSerial();
+            }
+        });
+
+        // Initial empty canvas draw
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.font = "20px Arial";
+        ctx.fillStyle = "white";
+        ctx.textAlign = "center";
+        ctx.fillText("Connect to device to start visualization", canvas.width/2, canvas.height/2);
+
+        if (!("serial" in navigator)) {
+            statusDiv.innerHTML = "<b>Web Serial API not supported.</b> Please use a compatible browser like Chrome or Edge.";
+            connectButton.disabled = true;
+            baudRateInput.disabled = true;
+            thresholdSlider.disabled = true;
+            scaleSlider.disabled = true;
+            thicknessSlider.disabled = true;
+        }
+    </script>
 </body>
 </html>
