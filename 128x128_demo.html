@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multi-Board 128x128 Tactile Visualizer (Fast)</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+    #controls {
+      margin-bottom: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .control-group {
+      margin-bottom: 5px;
+    }
+    #plotContainer {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    canvas {
+      border: 1px solid black;
+      image-rendering: pixelated; /* crisp scaling */
+    }
+    #heatmapCanvas {
+      /* width: 512px;   /* visual size */
+      /* height: 512px; */
+      width: 90vmin;   /* 90% of the smaller screen dimension */
+      height: 90vmin;
+    }
+    input[type="number"] {
+      width: 70px;
+    }
+    select {
+      width: 80px;
+    }
+    #status {
+      margin-top: 10px;
+      font-style: italic;
+    }
+    #boardStatus {
+      font-size: 0.9em;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <div class="control-group">
+      <button id="connectButton">Connect Board</button>
+      <button id="disconnectButton" disabled>Disconnect All</button>
+    </div>
+    <div class="control-group">
+      Baud: <input type="number" id="baudRateInput" value="12000000">
+    </div>
+    <div class="control-group">
+      M: <input type="number" id="mInput" value="1364" min="1" max="4096">
+    </div>
+    <div class="control-group">
+      Thr: <input type="number" id="thrInput" value="500" min="0" max="65535">
+    </div>
+    <div class="control-group">
+      Digipot: <input type="number" id="digipotInput" value="100" min="0" max="255">
+    </div>
+    <div class="control-group">
+      Viz Thr: <input type="number" id="visThrInput" value="1000" min="0" max="4096">
+    </div>
+    <div class="control-group">
+      <button id="sendConfigButton" disabled>Send Config</button>
+    </div>
+  </div>
+
+  <div id="controls">
+    <div class="control-group">
+      Board 1 rot:
+      <select id="rotBoard1">
+        <option value="none">0°</option>
+        <option value="rot90" selected>90°</option>
+        <option value="rot180">180°</option>
+        <option value="rot270">270°</option>
+      </select>
+    </div>
+    <div class="control-group">
+      Board 2 rot:
+      <select id="rotBoard2">
+        <option value="none" selected>0°</option>
+        <option value="rot90">90°</option>
+        <option value="rot180">180°</option>
+        <option value="rot270">270°</option>
+      </select>
+    </div>
+    <div class="control-group">
+      Board 3 rot:
+      <select id="rotBoard3">
+        <option value="none">0°</option>
+        <option value="rot90">90°</option>
+        <option value="rot180" selected>180°</option>
+        <option value="rot270">270°</option>
+      </select>
+    </div>
+    <div class="control-group">
+      Board 4 rot:
+      <select id="rotBoard4">
+        <option value="none">0°</option>
+        <option value="rot90">90°</option>
+        <option value="rot180">180°</option>
+        <option value="rot270" selected>270°</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="plotContainer">
+    <canvas id="heatmapCanvas"></canvas>
+  </div>
+
+  <div id="status">Status: Disconnected</div>
+  <div id="boardStatus"></div>
+
+  <script>
+    // --- Constants ---
+    const NUM_BOARDS = 4;
+    const ROWS = 64;
+    const COLS = 64;
+    const TOTAL_ROWS = 128;
+    const TOTAL_COLS = 128;
+    const UNMEASURED_VALUE = -500;
+
+    const CLIM_MIN = -500;
+    const CLIM_MAX = 4096;
+
+    // Visualization threshold (UI-controlled)
+    let visThreshold = 1000;
+
+    // Board layout in 128x128:
+    // [Board 1] [Board 2]
+    // [Board 3] [Board 4]
+    const boardPositions = {
+      1: { baseRow: 0,  baseCol: 0  },  // top-left
+      2: { baseRow: 0,  baseCol: 64 },  // top-right
+      3: { baseRow: 64, baseCol: 0  },  // bottom-left
+      4: { baseRow: 64, baseCol: 64 }   // bottom-right
+    };
+
+    // --- DOM ---
+    const connectButton = document.getElementById('connectButton');
+    const disconnectButton = document.getElementById('disconnectButton');
+    const baudRateInput = document.getElementById('baudRateInput');
+    const statusDiv = document.getElementById('status');
+    const boardStatusDiv = document.getElementById('boardStatus');
+
+    const mInput = document.getElementById('mInput');
+    const thrInput = document.getElementById('thrInput');
+    const digipotInput = document.getElementById('digipotInput');
+    const sendConfigButton = document.getElementById('sendConfigButton');
+    const visThrInput = document.getElementById('visThrInput');
+
+    const heatmapCanvas = document.getElementById('heatmapCanvas');
+    const heatmapCtx = heatmapCanvas.getContext('2d');
+
+    const rotSelectors = {
+      1: document.getElementById('rotBoard1'),
+      2: document.getElementById('rotBoard2'),
+      3: document.getElementById('rotBoard3'),
+      4: document.getElementById('rotBoard4')
+    };
+
+    // Canvas logical size
+    heatmapCanvas.width = TOTAL_COLS;
+    heatmapCanvas.height = TOTAL_ROWS;
+
+    // --- Serial state ---
+    const ports = [];
+    const readers = [];
+    const writers = [];
+    const readBuffers = [];
+    const readingFlags = [];
+
+    // per-board 64x64 images (flattened)
+    const boardImages = [];
+    for (let i = 0; i < NUM_BOARDS; i++) {
+      boardImages[i] = new Array(ROWS * COLS).fill(UNMEASURED_VALUE);
+    }
+
+    // combined 128x128 image
+    const combinedImage = new Array(TOTAL_ROWS * TOTAL_COLS).fill(UNMEASURED_VALUE);
+
+    let needsRedraw = false; // set true when any new frame arrives
+
+    // --- Helpers ---
+    function getBoardTransform(boardID) {
+      const sel = rotSelectors[boardID];
+      return sel ? sel.value : 'none';
+    }
+
+    function transformCoords(row, col, transformType) {
+      const n = ROWS;
+      switch (transformType) {
+        case 'rot90':  // 90° CCW
+          return { row: n - 1 - col, col: row };
+        case 'rot180':
+          return { row: n - 1 - row, col: n - 1 - col };
+        case 'rot270': // 270° CCW (90° CW)
+          return { row: col, col: n - 1 - row };
+        case 'none':
+        default:
+          return { row, col };
+      }
+    }
+
+    function getColor(value) {
+    // Unmeasured pixels stay dark
+    /*if (value <= UNMEASURED_VALUE) {
+        return 'rgb(40,40,40)';
+    } */
+
+    // Clamp and normalize to [0,1]
+    let v = value;
+    if (v < CLIM_MIN) v = CLIM_MIN;
+    if (v > CLIM_MAX) v = CLIM_MAX;
+    const dv = CLIM_MAX - CLIM_MIN || 1;
+    let t = (v - CLIM_MIN) / dv; // 0..1
+
+    // Classic jet-like mapping
+    const fourT = 4 * t;
+
+    let r = Math.min(Math.max(Math.min(fourT - 1.5, -fourT + 4.5), 0), 1);
+    let g = Math.min(Math.max(Math.min(fourT - 0.5, -fourT + 3.5), 0), 1);
+    let b = Math.min(Math.max(Math.min(fourT + 0.5, -fourT + 2.5), 0), 1);
+
+    return `rgb(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(b * 255)})`;
+    }
+
+    function drawCombinedHeatmap() {
+      const ctx = heatmapCtx;
+      ctx.clearRect(0, 0, heatmapCanvas.width, heatmapCanvas.height);
+      let idx = 0;
+      for (let r = 0; r < TOTAL_ROWS; r++) {
+        for (let c = 0; c < TOTAL_COLS; c++) {
+          const value = combinedImage[idx++];
+          ctx.fillStyle = getColor(value);
+          ctx.fillRect(c, r, 1, 1);
+        }
+      }
+    }
+
+    function updateCombinedImage() {
+      combinedImage.fill(UNMEASURED_VALUE);
+      for (let b = 1; b <= NUM_BOARDS; b++) {
+        const boardIndex = b - 1;
+        const img = boardImages[boardIndex];
+        if (!img) continue;
+        const pos = boardPositions[b];
+        if (!pos) continue;
+        const transformType = getBoardTransform(b);
+
+        for (let r = 0; r < ROWS; r++) {
+          for (let c = 0; c < COLS; c++) {
+            const val = img[r * COLS + c];
+            if (val <= UNMEASURED_VALUE) continue;
+
+            const rc = transformCoords(r, c, transformType);
+            const gr = pos.baseRow + rc.row;
+            const gc = pos.baseCol + rc.col;
+            if (gr >= 0 && gr < TOTAL_ROWS && gc >= 0 && gc < TOTAL_COLS) {
+              combinedImage[gr * TOTAL_COLS + gc] = val;
+            }
+          }
+        }
+      }
+    }
+
+    function appendBuffer(buffer, newData) {
+      if (!buffer || buffer.length === 0) return new Uint8Array(newData);
+      const tmp = new Uint8Array(buffer.length + newData.length);
+      tmp.set(buffer, 0);
+      tmp.set(newData, buffer.length);
+      return tmp;
+    }
+
+    function updateBoardStatus() {
+      const connected = ports.length;
+      let text = `Connected boards: ${connected}`;
+      if (connected > 0) {
+        text += ' | Layout: [1 2; 3 4] (board IDs)';
+      }
+      boardStatusDiv.textContent = text;
+    }
+
+    // --- Send config ---
+    async function sendConfigToAll() {
+      const M = parseInt(mInput.value, 10);
+      const thr = parseInt(thrInput.value, 10);
+      const digipot = parseInt(digipotInput.value, 10);
+
+      if (isNaN(M) || M < 1 || M > 4096) {
+        statusDiv.textContent = 'Invalid M (1–4096).';
+        return;
+      }
+      if (isNaN(thr) || thr < 0) {
+        statusDiv.textContent = 'Invalid threshold.';
+        return;
+      }
+      if (isNaN(digipot) || digipot < 0 || digipot > 255) {
+        statusDiv.textContent = 'Invalid digipot (0–255).';
+        return;
+      }
+
+      const msg = `${M} ${thr} ${digipot}\n`;
+
+      if (writers.length === 0) {
+        statusDiv.textContent = 'No boards connected to send config.';
+        return;
+      }
+
+      statusDiv.textContent = `Sending config (M=${M}, thr=${thr}, digipot=${digipot})...`;
+
+      for (const writer of writers) {
+        try {
+          await writer.write(msg);
+        } catch (e) {
+          console.error('Error sending config:', e);
+        }
+      }
+    }
+
+    // --- Frame parsing (one latest frame only) ---
+    function parseFrameFromBuffer(buf, offset, count, boardId) {
+      const boardIndex = boardId - 1;
+      if (boardIndex < 0 || boardIndex >= NUM_BOARDS) return;
+
+      const img = boardImages[boardIndex];
+      img.fill(UNMEASURED_VALUE);
+
+      const dv = new DataView(buf.buffer, buf.byteOffset + offset, count * 4);
+      for (let i = 0; i < count; i++) {
+        const base = i * 4;
+        const pixIndex = dv.getUint16(base, true);
+        const pixVal   = dv.getUint16(base + 2, true);
+
+        if (pixIndex === 0xFFFF) break;      // frame end
+        if (pixIndex === 0xFFFE) continue;   // config OK marker
+
+        let row, col;
+        if (pixIndex < 2048) {
+          row = Math.floor(pixIndex / 32);
+          col = pixIndex % 32;
+        } else {
+          const idx2 = pixIndex - 2048;
+          row = Math.floor(idx2 / 32);
+          col = (idx2 % 32) + 32;
+        }
+
+        if (row >= 0 && row < ROWS && col >= 0 && col < COLS) {
+          let val = pixVal;
+
+          // Visualization threshold: measured values below visThreshold → 0
+          if (val < visThreshold) {
+            val = 0;
+          }
+
+          img[row * COLS + col] = val;
+        }
+      }
+
+      needsRedraw = true; // mark for rendering on next animation frame
+    }
+
+    function processIncomingData(portIndex, chunk) {
+      // Append new data
+      let buf = appendBuffer(readBuffers[portIndex], chunk);
+
+      // Find the *last* complete frame in buffer and discard older ones
+      let latestOffset = -1;
+      let latestCount = 0;
+      let latestBoardId = 0;
+      let latestFrameLen = 0;
+
+      // Need at least 10 bytes for header: EF BE AD DE + ID + count + frameCounter
+      for (let i = buf.length - 10; i >= 0; i--) {
+        if (
+          buf[i]     === 0xEF &&
+          buf[i + 1] === 0xBE &&
+          buf[i + 2] === 0xAD &&
+          buf[i + 3] === 0xDE
+        ) {
+          if (i + 10 > buf.length) continue;
+          const dv = new DataView(buf.buffer, buf.byteOffset + i);
+          const boardId = dv.getUint16(4, true);
+          const count   = dv.getUint16(6, true);
+          const totalLen = 10 + count * 4;
+          if (i + totalLen <= buf.length) {
+            latestOffset = i;
+            latestCount = count;
+            latestBoardId = boardId;
+            latestFrameLen = totalLen;
+            break; // last complete frame found
+          }
+        }
+      }
+
+      if (latestOffset === -1) {
+        // No complete frame yet; keep only a limited tail to avoid unbounded growth
+        const MAX_BUF = 20000;
+        if (buf.length > MAX_BUF) {
+          buf = buf.slice(buf.length - MAX_BUF);
+        }
+        readBuffers[portIndex] = buf;
+        return;
+      }
+
+      // Parse only the most recent complete frame
+      parseFrameFromBuffer(buf, latestOffset + 10, latestCount, latestBoardId);
+
+      // Keep only data after that frame (possible start of next frame)
+      const newStart = latestOffset + latestFrameLen;
+      if (newStart < buf.length) {
+        readBuffers[portIndex] = buf.slice(newStart);
+      } else {
+        readBuffers[portIndex] = new Uint8Array(0);
+      }
+    }
+
+    // --- Read loop per port ---
+    async function startReadLoop(portIndex) {
+      const port = ports[portIndex];
+      if (!port || !port.readable) return;
+
+      const reader = port.readable.getReader();
+      readers[portIndex] = reader;
+      readingFlags[portIndex] = true;
+      readBuffers[portIndex] = new Uint8Array(0);
+
+      try {
+        while (readingFlags[portIndex]) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          if (value) {
+            statusDiv.textContent = 'Receiving data...';
+            processIncomingData(portIndex, value);
+          }
+        }
+      } catch (e) {
+        console.error('Read loop error:', e);
+        statusDiv.textContent = 'Error in read loop: ' + e.message;
+      } finally {
+        try {
+          reader.releaseLock();
+        } catch (e) {
+          console.warn('Error releasing reader lock:', e);
+        }
+      }
+    }
+
+    // --- Connect / disconnect ---
+    async function connectBoard() {
+      try {
+        const baud = parseInt(baudRateInput.value, 10);
+        if (isNaN(baud) || baud <= 0) {
+          statusDiv.textContent = 'Invalid baud rate.';
+          return;
+        }
+
+        const port = await navigator.serial.requestPort();
+        await port.open({ baudRate: baud });
+
+        const portIndex = ports.length;
+        ports.push(port);
+
+        const textEncoder = new TextEncoderStream();
+        textEncoder.readable.pipeTo(port.writable);
+        const writer = textEncoder.writable.getWriter();
+        writers.push(writer);
+
+        startReadLoop(portIndex);
+
+        statusDiv.textContent =
+          `Connected to board on port #${portIndex + 1} at ${baud} baud.`;
+        sendConfigButton.disabled = false;
+        if (ports.length > 0) disconnectButton.disabled = false;
+
+        updateBoardStatus();
+
+      } catch (e) {
+        console.error('Error connecting:', e);
+        statusDiv.textContent = 'Error connecting: ' + e.message;
+      }
+    }
+
+    async function disconnectAll() {
+      statusDiv.textContent = 'Disconnecting...';
+
+      for (let i = 0; i < readingFlags.length; i++) {
+        readingFlags[i] = false;
+      }
+
+      for (let i = 0; i < readers.length; i++) {
+        const r = readers[i];
+        if (!r) continue;
+        try {
+          await r.cancel();
+        } catch (e) {
+          console.warn('Error cancelling reader:', e);
+        }
+      }
+
+      for (let i = 0; i < writers.length; i++) {
+        const w = writers[i];
+        if (!w) continue;
+        try {
+          await w.close();
+        } catch (e) {
+          console.warn('Error closing writer:', e);
+        }
+      }
+
+      for (let i = 0; i < ports.length; i++) {
+        const p = ports[i];
+        if (!p) continue;
+        try {
+          await p.close();
+        } catch (e) {
+          console.warn('Error closing port:', e);
+        }
+      }
+
+      ports.length = 0;
+      readers.length = 0;
+      writers.length = 0;
+      readingFlags.length = 0;
+      readBuffers.length = 0;
+
+      for (let i = 0; i < NUM_BOARDS; i++) {
+        boardImages[i].fill(UNMEASURED_VALUE);
+      }
+      combinedImage.fill(UNMEASURED_VALUE);
+      needsRedraw = true;
+
+      disconnectButton.disabled = true;
+      sendConfigButton.disabled = true;
+      statusDiv.textContent = 'Status: Disconnected';
+      updateBoardStatus();
+    }
+
+    // --- Render loop (decouples drawing from data rate) ---
+    function animationLoop() {
+      if (needsRedraw) {
+        updateCombinedImage();
+        drawCombinedHeatmap();
+        needsRedraw = false;
+      }
+      requestAnimationFrame(animationLoop);
+    }
+
+    // --- Events ---
+    connectButton.addEventListener('click', () => {
+      connectBoard();
+    });
+
+    disconnectButton.addEventListener('click', () => {
+      disconnectAll();
+    });
+
+    sendConfigButton.addEventListener('click', () => {
+      sendConfigToAll();
+    });
+
+    Object.values(rotSelectors).forEach(sel => {
+      sel.addEventListener('change', () => {
+        needsRedraw = true;
+      });
+    });
+
+    visThrInput.addEventListener('change', () => {
+      const v = parseInt(visThrInput.value, 10);
+      if (!isNaN(v)) {
+        visThreshold = v;
+        needsRedraw = true; // apply new threshold to upcoming frames
+      }
+    });
+
+    // init
+    drawCombinedHeatmap();
+    updateBoardStatus();
+    requestAnimationFrame(animationLoop);
+
+    if (!('serial' in navigator)) {
+      statusDiv.textContent = 'Web Serial API not supported in this browser.';
+      connectButton.disabled = true;
+      disconnectButton.disabled = true;
+      sendConfigButton.disabled = true;
+      alert('Web Serial API not supported. Use recent Chrome/Edge and enable experimental web platform features if needed.');
+    }
+  </script>
+</body>
+</html>
