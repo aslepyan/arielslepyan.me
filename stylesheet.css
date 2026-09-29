@@ -140,3 +140,27 @@ span.highlight {
     display: inline-block;
     border-radius: 10px;
 }
+.toggle-button {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #1772d0;
+  background: none;
+  border: 1px solid #1772d0;
+  border-radius: 15px;
+  padding: 5px 16px;
+  cursor: pointer;
+}
+
+.toggle-button:hover,
+.toggle-button:focus {
+  color: #f09228;
+  border-color: #f09228;
+}
+
+h3.subsection {
+  margin: 0;
+  font-weight: normal;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 17px;
+  color: #555;
+}

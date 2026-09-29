@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Ariel Slepyan</title>
     <meta name="author" content="Ariel Slepyan">
+    <meta name="description" content="Ariel (Arik) Slepyan, MIT ICoN Postdoctoral Fellow. Research in scalable tactile sensing, dexterous manipulation, and sensorimotor intelligence.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
@@ -35,7 +36,22 @@
         newsTEDCO: 'images/MII.png',
         newsATIP: 'images/ATIP.png',
         newsAITC: 'images/AITC.png',
+        newsCoRL: 'images/corl2026_agilex.jpg',
+        newsMeta: 'images/meta_rlr_2026.jpg',
+        newsNavonic: 'images/navonic_product.jpg',
+        newsADI: 'images/logo_adi.png',
+        newsMIT: 'images/logo_mit.png',
+        newsPhD: 'images/phd_defense_2026.jpg',
+        newsOpenTactileCAD: 'images/open_tactile_cad.jpg',
 
+        researchCoRL: 'images/corl2026_umi.gif',
+        researchLC3Axis: 'images/lc3axis_handguiding.gif',
+        researchFingertips: 'images/biomimetic_fingertip.jpg',
+        researchSNNCompression: 'images/snn_compression.png',
+        researchOpenTactileCAD: 'images/open_tactile_cad.jpg',
+        researchReLACS: 'images/relacs.png',
+        researchPlantarMocap: 'images/plantar_mocap.jpg',
+        researchRodentArena: 'images/rodent_arena.jpg',
         researchAdaptive: 'images/tactile_subsampling.PNG',
         researchSPTS: 'images/SPTS.PNG',
         researchDTMF: 'images/aDTMF.PNG',
@@ -69,107 +85,223 @@
       const siteContent = {
         name: "Ariel (Arik) Slepyan",
         bio: [
-          `I am a PhD Candidate in <a href="https://www.ece.jhu.edu/">Electrical and Computer Engineering</a> (ECE) at <a href="https://www.jhu.edu/">Johns Hopkins University</a>, where I also earned my Master's in Biomedical Engineering (BME '21) and Bachelor's in BME ('20). I work in the <a href="https://neuroengineering.bme.jhu.edu/">Neuroengineering & Biomedical Instrumentation Lab</a>, advised by <a href="https://www.bme.jhu.edu/people/faculty/nitish-v-thakor/">Professor Nitish Thakor</a>.`,
-          `In my research I have developed scalable 'data-driven' tactile skins that scale to 1000+ sensors while maintaining 1000Hz readout speeds and high-density (like human skin), without incorporating per-sensor electronics, by co-designing flexible sensors with custom electronics and compressive sampling firmware. This work on high-speed, high-resolution tactile sensing has achieved significant improvements in sensor scalability, enabling human-level robotic touch and wearable gait analysis. My research has spun out into 2 hardware companies, 5 patent applications, and has won $390K in research funding.`,
-          `Outside of research, I enjoy playing tennis, basketball, skiing, photography, and playing guitar.`
+          `I am an ICoN Postdoctoral Fellow at <a href="https://www.mit.edu/">MIT</a>, working with <a href="https://people.csail.mit.edu/pulkitag/">Prof. Pulkit Agrawal</a> in <a href="https://www.csail.mit.edu/">CSAIL</a> / EECS and <a href="https://www.seethapathilab.org/">Prof. Nidhi Seethapathi</a> in <a href="https://bcs.mit.edu/">Brain and Cognitive Sciences</a>. My research spans <strong>scalable tactile sensing, sensorimotor control, and robot learning</strong>, with the goal of enabling robots to interact with the physical world with fast, rich feedback.`,
+          `I completed my PhD in <a href="https://www.ece.jhu.edu/">Electrical and Computer Engineering</a> at <a href="https://www.jhu.edu/">Johns Hopkins University</a> in 2026, advised by <a href="https://www.bme.jhu.edu/people/faculty/nitish-v-thakor/">Prof. Nitish Thakor</a>. My dissertation, <em>“Scalable Large-Area, High-Density Tactile Sensing through Compressive Sampling,”</em> developed new sensor and readout architectures for dense tactile arrays that avoid the usual tradeoff between spatial resolution, sensing speed, wiring, and data bandwidth. By co-designing flexible sensors, custom electronics, and compressive sampling firmware, these tactile skins support 1000+ sensing elements at 1000 Hz with skin-like density and no per-sensor electronics.`,
+          `At MIT, I am extending this work from sensing to sensorimotor intelligence: studying how tactile and proprioceptive feedback can support fast, fluid, reusable manipulation behaviors, and how robots can learn from high-bandwidth human sensorimotor data.`,
+          `I also earned my B.S. (2020) and M.S.E. (2021) in Biomedical Engineering at Johns Hopkins. In Spring 2026, I was a Research Scientist Intern at <a href="https://tech.facebook.com/reality-labs/">Meta Reality Labs Research</a>, working on tactile sensing for dexterous robotic hands, and continued part-time remotely through September. Outside research, I enjoy tennis, basketball, skiing, photography, and playing guitar.`
         ],
         socialLinks: [
-          { text: "Email", url: "mailto:aslepya1@jhu.edu" },
+          { text: "Email", url: "mailto:aslepyan@mit.edu" },
           { text: "CV", url: "data/cv.pdf" },
           { text: "Google Scholar", url: "https://scholar.google.com/citations?hl=en&user=8uVwi4UAAAAJ&view_op=list_works&sortby=pubdate" },
-          { text: "LinkedIn", url: "https://www.linkedin.com/in/ariel-slepyan-9b930812b/" },
-          { text: "Github", url: "https://github.com/aslepyan/" }
+          { text: "GitHub", url: "https://github.com/aslepyan/" },
+          { text: "LinkedIn", url: "https://www.linkedin.com/in/ariel-slepyan-9b930812b/" }
         ],
         news: {
           title: "Recent News",
+          visibleCount: 8,
           items: [
-            { imageKey: "newsNER", text: '<strong>Nov 2025:</strong> Thrilled to win the Best Demo Award at <a href="https://neuro.embs.org/2025/">NER 2025</a>! I showed how scalable tactile sensing can be used to sensorize an entire animal cage (16,000 sensors!) to track free-behaving gait of small animals in research studies.', highlighted: true },
-            { imageKey: "newsISCAS", text: '<strong>May 2025:</strong> Thrilled to win the Best Live Demo Award at <a href="https://2025.ieee-iscas.org/conference-awards">ISCAS 2025</a> for my work on compressive tactile sensing! In the demo I setup a tactile-sensing "dart board" and people could fire a NERF gun at the board. The sensor was fast and precise enough to localize their impact point and judge the quality of their shot!', highlighted: true },
-            { imageKey: "newsAITC", text: '<strong>May 2025:</strong> We are selected for a <a href="https://aitc.jhu.edu/news/hopkins-aitc-announces-awardees-of-fifth-funding-round/">$200k AITC award</a> to use my HD plantar pressure sensors for wearable motion tracking of aging individuals!', highlighted: true },
-            { imageKey: "newsATIP", text: '<strong>May 2025:</strong> We are awarded a <a href="https://ictr.johnshopkins.edu/funding/atip/recipients/">$50k ATIP award</a> for using my HD plantar pressure sensors for gait analysis in rehabilitation!', highlighted: true },
-            { imageKey: "newsPointeSense", text: '<strong>May 2025:</strong> My mentored team PointeSense (using my HD sensors for ballet) was featured by <a href="https://hub.jhu.edu/2025/06/17/ballet-pointe-shoes-safety-engineering/">JHU Hub</a>!', highlighted: true },
-            { imageKey: "newsReKinesis", text: '<strong>May 2025:</strong> ReKinesis (HD plantar pressure sensing --> human kinematics) is an NIA Startup Challenge Finalist and is featured by <a href="https://hub.jhu.edu/2025/05/09/national-institute-on-aging-2025-start-up-challenge/">JHU HUB!</a>', highlighted: true },
-            { imageKey: "newsARCS", text: '<strong>Aug 2024:</strong> Proud to be announced as a <a href="https://engineering.jhu.edu/ece/news/arik-slepyan-receives-arcs-mwc-chapter-scholar-award//">2024 ARCS Scholar</a>!!', highlighted: true },
-            { imageKey: "newsTeachingAward", text: '<strong>May 2024:</strong> Proud to have been awarded a <a href="https://engineering.jhu.edu/faculty-staff/excellence-in-teaching-advising-mentoring-awards/">2024 WSE Excellence in Teaching and Mentoring Award!</a>!', highlighted: true },
-            { imageKey: "newsTEDCO", text: '<strong>Mar 2024:</strong> We are awarded a $115k TEDCO MII grant to explore the commercialization potential of my scalable tactile sensors as pressure sensing insoles!', highlighted: true },
-            { imageKey: "newsCurveAssure", text: '<strong>June 2023:</strong> CurveAssure receives $100,000 <a href="https://engineering.jhu.edu/news/curveassure-receives-presidents-venture-fellowship/">President’s Venture Fellowship</a>!', highlighted: true },
-            { imageKey: "newsProsthesisInstrumentation", text: '<strong>Feb 2023:</strong> <a href="https://hub.jhu.edu/2023/02/06/intersession-prosthesis-instrumentation/">JHU made a video</a> about me and Sriramana Sankar’s intersession course on Prosthesis Instrumentation!', highlighted: true },
-            { imageKey: "newsSpace", text: '<strong>Sep 2022:</strong> We are awarded a $25k Space@Hopkins Seed Grant to explpre the development of scalable tactile sensors for use in outer space', highlighted: true },
+            { imageKey: "newsOpenTactileCAD", text: '<strong>Sep 2026:</strong> A great IROS 2026! I co-organized the workshop <a href="https://tactile-dexterity-iros.github.io/"><em>"Scalable Tactile Sensing for Dexterous Manipulation"</em></a>, and <a href="https://www.linkedin.com/in/lucas-feng/">Lucas Feng</a> presented our <a href="https://lucasfeng7.github.io/lc-3-axis/">LC 3-Axis</a> force sensor at the <em>"Sensors and Actuators for Dexterous Manipulation"</em> workshop. Earlier this year, I also presented <em>Open-Tactile CAD</em>, which automatically designs high-density tactile skins for any geometry, at IEEE Haptics Symposium 2026.', highlighted: true },
+            { imageKey: "newsCoRL", text: '<strong>Sep 2026:</strong> Excited that our demo <em>"Scalable 3D Force-Sensing Tactile Skins for Robot Learning"</em> was accepted at <a href="https://www.corl.org/">CoRL 2026</a>! Visitors can press, slide, and twist our skins on UMI and AgileX grippers and watch the normal and shear forces in real time.', highlighted: true },
+            { imageKey: "newsMIT", isLogo: true, text: '<strong>Jul 2026:</strong> Excited to start as an <strong>ICoN Postdoctoral Fellow at MIT</strong> (CSAIL and BCS), working with <a href="https://people.csail.mit.edu/pulkitag/">Pulkit Agrawal</a> and <a href="https://www.seethapathilab.org/">Nidhi Seethapathi</a>!', highlighted: true },
+            { imageKey: "newsADI", isLogo: true, text: '<strong>Jul 2026:</strong> Thrilled that we received <strong>$300k from Analog Devices</strong> for <em>"Learning kHz Muscle-Memory Control Loops for Dexterous Robotic Hands"</em>! I wrote this grant to fund my postdoctoral research (PI: <a href="https://people.csail.mit.edu/pulkitag/">Pulkit Agrawal</a>).', highlighted: true },
+            { imageKey: "newsPhD", text: '<strong>Jun 2026:</strong> I officially defended my PhD, <em>"Scalable Large-Area, High-Density Tactile Sensing through Compressive Sampling"</em>! Huge thanks to my advisor <a href="https://www.bme.jhu.edu/people/faculty/nitish-v-thakor/">Nitish Thakor</a> (pictured) and everyone in the lab.', highlighted: true },
+            { imageKey: "newsMeta", text: '<strong>Jun 2026:</strong> Wrapped up a great Research Scientist internship at <a href="https://tech.facebook.com/reality-labs/"><strong>Meta Reality Labs Research</strong></a> (Robotics) in Redmond, working on scalable tactile sensing for dexterous robotic hands! I continued part-time remotely through September. Thank you to the team!', highlighted: true },
+            { imageKey: "researchSPTS", text: '<strong>2026:</strong> Two papers out! <a href="https://www.nature.com/articles/s44172-026-00697-2">Single-Pixel Tactile Skin</a> is published in <em>Communications Engineering</em> (Nature Portfolio), and our review <a href="https://ieeexplore.ieee.org/document/11393898">Scalable Tactile Sensing Skins</a> is published in <em>Proceedings of the IEEE</em>.', highlighted: true },
+            { imageKey: "newsNavonic", text: '<strong>2025:</strong> <a href="https://www.navonic.co/">Navonic</a> won the Pava Center Innovation & Entrepreneurship Award ($15k)!', highlighted: true },
+            { imageKey: "newsNER", text: '<strong>Nov 2025:</strong> Thrilled to win the Best Demo Award at <a href="https://neuro.embs.org/2025/">NER 2025</a>! We covered an entire animal cage floor with 16,000 tactile sensors to track the gait of freely moving small animals.', highlighted: true },
+            { imageKey: "newsISCAS", text: '<strong>May 2025:</strong> Thrilled to win the Best Live Demo Award at <a href="https://2025.ieee-iscas.org/conference-awards">ISCAS 2025</a> (1st of 34 demos) for our work on compressive tactile sensing! Visitors fired NERF darts at our tactile "dart board," which located each hit and scored the shot.', highlighted: true },
+            { imageKey: "newsAITC", isLogo: true, text: '<strong>May 2025:</strong> We were selected for a <a href="https://aitc.jhu.edu/news/hopkins-aitc-announces-awardees-of-fifth-funding-round/">$200k AITC award</a> to use my high-density plantar pressure sensors for wearable motion tracking in older adults!', highlighted: true },
+            { imageKey: "newsATIP", isLogo: true, text: '<strong>May 2025:</strong> We were awarded a <a href="https://ictr.johnshopkins.edu/funding/atip/recipients/">$50k ATIP award</a> to use my high-density plantar pressure sensors for gait analysis in rehabilitation!', highlighted: true },
+            { imageKey: "newsPointeSense", text: '<strong>May 2025:</strong> PointeSense, a team I mentored that uses my high-density pressure sensors in ballet shoes, was featured by <a href="https://hub.jhu.edu/2025/06/17/ballet-pointe-shoes-safety-engineering/">JHU Hub</a>!', highlighted: true },
+            { imageKey: "newsReKinesis", text: '<strong>May 2025:</strong> ReKinesis, which uses high-density plantar pressure sensing to estimate human kinematics, is an NIA Startup Challenge finalist and was featured by <a href="https://hub.jhu.edu/2025/05/09/national-institute-on-aging-2025-start-up-challenge/">JHU Hub</a>!', highlighted: true },
+            { imageKey: "newsARCS", text: '<strong>Aug 2024:</strong> Proud to be named a <a href="https://engineering.jhu.edu/ece/news/arik-slepyan-receives-arcs-mwc-chapter-scholar-award/">2024 ARCS Scholar</a>!', highlighted: true },
+            { imageKey: "newsTeachingAward", text: '<strong>May 2024:</strong> Honored to receive a <a href="https://engineering.jhu.edu/faculty-staff/excellence-in-teaching-advising-mentoring-awards/">2024 WSE Excellence in Teaching, Advising, and Mentoring Award</a>!', highlighted: true },
+            { imageKey: "newsTEDCO", isLogo: true, text: '<strong>Mar 2024:</strong> We were awarded a $115k TEDCO MII grant to explore commercializing my scalable tactile sensors as pressure-sensing insoles!', highlighted: true },
+            { imageKey: "newsCurveAssure", text: '<strong>June 2023:</strong> CurveAssure received a $100,000 <a href="https://engineering.jhu.edu/news/curveassure-receives-presidents-venture-fellowship/">President’s Venture Fellowship</a>!', highlighted: true },
+            { imageKey: "newsProsthesisInstrumentation", text: '<strong>Feb 2023:</strong> <a href="https://hub.jhu.edu/2023/02/06/intersession-prosthesis-instrumentation/">JHU made a video</a> about the Prosthesis Instrumentation intersession course I co-taught with Sriramana Sankar!', highlighted: true },
+            { imageKey: "newsSpace", text: '<strong>Sep 2022:</strong> We were awarded a $25k Space@Hopkins Seed Grant to explore scalable tactile sensors for use in space!', highlighted: true },
           ]
         },
         research: {
           title: "Research",
-          intro: "My research focuses on developing scalable tactile sensing systems to acquire high-resolution data over large areas with high-speed. I work on novel sensors and the accompanying bio-inspired electronics and algorithms to process high-dimensional tactile data for applications in robotics, prosthetics, and wearable devices. My work also involves wavelet analysis for data compression and developing novel methods for sensory feedback. Representative papers are <span class=\"highlight\">highlighted</span> below.",
+          publicationsTitle: "Publications",
+          workshopsTitle: "Demos, Workshop Papers & Abstracts",
+          visibleCount: 5,
+          intro: "<p style='margin-bottom: 6px;'>I develop scalable tactile sensing systems and study how rich tactile and proprioceptive feedback can support fast, fluid sensorimotor control. My work spans three connected directions:</p><ul style='margin-top: 0; padding-left: 20px;'><li><strong>Scalable tactile sensing:</strong> sensor architectures, electronics, and sampling methods for dense, high-speed touch over large and complex surfaces.</li><li><strong>Deployable tactile systems:</strong> customizable tactile skins that measure normal and shear forces and can be integrated with robot hands, grippers, wearables, and other surfaces.</li><li><strong>Sensorimotor intelligence:</strong> learning fast, fluid, reusable manipulation behaviors from tactile and proprioceptive feedback, including high-bandwidth human sensorimotor data.</li></ul>",
           items: [
             {
+              imageKey: "researchRodentArena",
+              type: "workshop",
+              title: "A High-Density Tactile Arena for Neuroengineering Research: Continuous Gait Tracking in Freely Behaving Rodents",
+              url: null,
+              authors: "<strong>A. Slepyan</strong>, A. Orsini, K. Quinn, and N. Thakor",
+              venue: "<em>IEEE EMBS Conference on Neural Engineering (NER)</em>, 2025   <font color=\"red\"><strong>(Winner of Best Demo Award)</strong></font>",
+              links: [],
+              description: "Large-area compressive tactile floors (up to 128&times;128 = 16,000+ sensors) for cages and runways that continuously track the footprints and gait of freely behaving rodents.",
+              highlighted: true
+            },
+            {
+              imageKey: "researchISCAS",
+              type: "workshop",
+              title: "Live Demonstration: Compressive Subsampling for High-Speed Large-Area Tactile Sensing",
+              url: "https://ieeexplore.ieee.org/abstract/document/11043348",
+              authors: "<strong>A. Slepyan</strong>*, D. Li*, T. Tran, and N. Thakor",
+              venue: "<em>IEEE International Symposium on Circuits and Systems (ISCAS)</em>, 2025   <font color=\"red\"><strong>(Winner of Best Live Demo Award)</strong></font>",
+              links: [{ text: "paper", url: "https://ieeexplore.ieee.org/abstract/document/11043348" }],
+              description: "A live demo of compressive tactile sensing at 1000 Hz, tracking where NERF darts hit a tactile sensing board.",
+              highlighted: true
+            },
+            {
+              imageKey: "researchCoRL",
+              type: "workshop",
+              selected: true,
+              title: "Scalable 3D Force-Sensing Tactile Skins for Robot Learning",
+              url: null,
+              authors: "<strong>A. Slepyan</strong>, G. C. R. Bethala, J. Gu, A. Dangle, Y. Zhou, H. Fu, J. Sim, T. Basu, X. Yin, F. Karim, G. Hager, A. Bhattad, H. Bharadhwaj, K. M. Jatavallabhula, and N. Thakor",
+              venue: "<em>Conference on Robot Learning (CoRL), Demo Track</em>, 2026",
+              links: [],
+              description: "",
+              highlighted: true
+            },
+            {
+              imageKey: "researchLC3Axis",
+              type: "workshop",
+              title: "LC 3-Axis: An Accurate Three-Axis Force Sensor Assembled with Readily Available Off-the-Shelf Components with No Designed Compliant Element",
+              url: "https://lucasfeng7.github.io/lc-3-axis/",
+              authors: "L. Feng, <strong>A. Slepyan</strong>, K. Murthy, and N. Thakor",
+              venue: "<em>IROS Workshop on Sensors and Actuators for Dexterous Manipulation</em>, 2026",
+              links: [{ text: "project page", url: "https://lucasfeng7.github.io/lc-3-axis/" }, { text: "paper", url: "https://lucasfeng7.github.io/lc-3-axis/paper/lc-3-axis-iros2026.pdf" }, { text: "code/CAD", url: "https://github.com/lucasfeng7/lc-3-axis" }],
+              description: "A 3-axis force sensor made from four commercial load cells and two 3D-printed plates for under $120. It has a 2.6–3.5 mN noise floor, less than 1% off-axis leakage, and agreement with a commercial reference within 1.0–2.5% of full scale. Here, it lets a user guide a UR5e robot by hand through admittance control.",
+              highlighted: false
+            },
+            {
+              imageKey: "researchOpenTactileCAD",
+              type: "workshop",
+              title: "Open-Tactile CAD: Automatic Design of High-Density Tactile Skins from Arbitrary Geometry for Scalable Deployment and Transferable Learning",
+              url: null,
+              authors: "<strong>A. Slepyan</strong> and N. Thakor",
+              venue: "<em>IEEE Haptics Symposium Workshop</em>, 2026",
+              links: [],
+              description: "Automatic geometry generation and flexible PCB routing turn surface geometry into high-density tactile layouts. Ongoing work connects custom skins with sensor manifests, scalable acquisition, simulation, and calibration transfer.",
+              highlighted: true
+            },
+            {
+              imageKey: "researchReLACS",
+              title: "ReLACS: Responsive Learned Adaptive Compressive Subsampling for Efficient Readout of Large-Area Tactile Skins",
+              url: "https://ieeexplore.ieee.org/abstract/document/11510445",
+              authors: "D. Poppert*, <strong>A. Slepyan</strong>*, N. Thakor, and T. Tran",
+              venue: "<em>Data Compression Conference (DCC)</em>, 2026",
+              links: [{ text: "paper", url: "https://ieeexplore.ieee.org/abstract/document/11510445" }],
+              description: "Within our adaptive tactile acquisition program, ReLACS learns to select subsequent measurements from the tactile information acquired so far.",
+              highlighted: true
+            },
+            {
+              imageKey: "researchPlantarMocap",
+              title: "Towards the Estimation of Lower Limb Flexion Angles using High-Density Plantar Pressure Sensing",
+              url: null,
+              authors: "S. Bellow, <strong>A. Slepyan</strong>, J. Chen, et al.",
+              venue: "<em>IEEE Engineering in Medicine and Biology Society (EMBC)</em>, 2026 (Accepted)",
+              links: [],
+              description: "We estimate lower-limb joint flexion angles from high-density pressure-sensing insoles and validate them against motion capture on a split-belt treadmill. The goal is wearable gait analysis outside the lab.",
+              highlighted: false
+            },
+            {
               imageKey: "researchAdaptive",
+              selected: true,
               title: "Adaptive Compressive Tactile Subsampling: Enabling High Spatiotemporal Resolution in Scalable Robotic Skin",
               url: "https://arxiv.org/abs/2410.13847",
               authors: "<strong>A. Slepyan</strong>*, D. Li*, A. Aug, S. Sankar, T. Tran, and N. Thakor",
-              venue: "<em>Under Review at Science Robotics</em>, 2025",
+              venue: "<em>Under Review</em>",
               links: [{ text: "arXiv", url: "https://arxiv.org/abs/2410.13847" }],
-              description: "We present a method for adaptive subsampling of tactile data, which Introduces a learned compressed sensing framework for robotic skin that adaptively selects the most informative tactile pixels in real time, enabling over 18× improvement in readout efficiency and scaling to 1000+ tactile sensors at 1000 Hz.",
+              description: "A hardware, adaptive sampling, and reconstruction architecture reads a 32 × 32 tactile array at approximately 1000 Hz, compared with approximately 55 Hz for conventional raster scanning. Selective measurement supports high-speed first-contact perception and wearable sensing.",
               highlighted: true
             },
             {
               imageKey: "researchSPTS",
+              selected: true,
               title: "Single-Pixel Tactile Skin via Compressive Sampling",
-              url: null,
-              authors: "<strong>A. Slepyan</strong>, R. Zhang, L. Xing, and N. Thakor",
-              venue: "<em>Under Review at Nature Sensors</em>, 2025",
-              links: [{ text: "arXiv", url: "https://arxiv.org/abs/2511.16898" }],
-              description: "Introduces a new compressed sensing architecture that reconstructs full tactile frames using a single analog measurement per frame, replacing pixel-wise readout entirely and enabling ultra-responsive tactile skins with very simple wiring.",
+              url: "https://www.nature.com/articles/s44172-026-00697-2",
+              authors: "<strong>A. Slepyan</strong>*, R. Zhang*, L. Xing*, and N. Thakor",
+              venue: "<em>Communications Engineering</em> (Nature Portfolio), 2026",
+              links: [{ text: "paper", url: "https://www.nature.com/articles/s44172-026-00697-2" }, { text: "arXiv", url: "https://arxiv.org/abs/2511.16898" }],
+              description: "Weighted analog projections compress the tactile field before digitization. A single-output architecture reconstructs contact information from compressed measurements, demonstrated with approximately 100 sensing elements at several-kHz acquisition rates.",
               highlighted: true
             },
             {
               imageKey: "researchDTMF",
+              selected: true,
               title: "Analog Dual-Tone Multi-Frequency Signaling for Scalable Tactile Skin with Automatic Data Compression and a Single-Wire Output",
-              url: null,
+              url: "https://ieeexplore.ieee.org/abstract/document/11516513",
               authors: "<strong>A. Slepyan</strong>, Y. Luo, E. Levenshus, et al.",
-              venue: "<em>Under Review at IEEE Trans. Biomedical Circuits and Systems</em>, 2025",
-              links: [],
-              description: "A analog frequency-multiplexed signaling scheme that enables large tactile arrays to transmit compressed information over a single wire, using dual-tone-frequency encoding and minimal electronics.",
+              venue: "<em>IEEE Sensors Journal</em>, 2026",
+              links: [{ text: "paper", url: "https://ieeexplore.ieee.org/abstract/document/11516513" }],
+              description: "A 16 × 16 array encodes tactile information in analog frequency channels, compressing it before digitization. Frequency-domain decoding supports high-rate readout with a single-wire output.",
               highlighted: false
             },
             {
               imageKey: "researchReview",
-              title: "Scalable Tactile Sensing Skins: Sensors, Wiring and Data Management",
-              url: null,
+              selected: true,
+              title: "Scalable Tactile Sensing Skins: Wiring and Data Management",
+              url: "https://ieeexplore.ieee.org/document/11393898",
               authors: "<strong>A. Slepyan</strong>, J. Chen, and N. Thakor",
-              venue: "<em>Under Review at Proceedings of the IEEE</em>, 2025",
-              links: [],
-              description: "A comprehensive review of the challenges and solutions in developing large-area, high-density tactile sensing systems, covering sensor design, data management, and wiring strategies.",
+              venue: "<em>Proceedings of the IEEE</em>, 2026",
+              links: [{ text: "paper", url: "https://ieeexplore.ieee.org/document/11393898" }],
+              description: "We examine the wiring and data management constraints that shape scalable tactile sensing, bringing together sensor architectures, readout strategies, and compression methods for large-area, high-density skins.",
               highlighted: false
             },
             {
               imageKey: "researchHybridHand",
+              selected: true,
               title: "A natural biomimetic prosthetic hand with neuromorphic tactile sensing for precise and compliant grasping",
               url: "https://www.science.org/doi/10.1126/sciadv.adr9300",
               authors: "S. Sankar, W. Cheng, J. Zhang, <strong>A. Slepyan</strong>, et al.",
               venue: "<em>Science Advances</em>, 2025",
               links: [{ text: "paper", url: "https://www.science.org/doi/10.1126/sciadv.adr9300" }, { text: "JHU Hub Feature", url: "https://hub.jhu.edu/2025/03/05/prosthetic-robotic-hand/" }],
-              description: "This work presents a prosthetic hand that mimics natural touch through neuromorphic sensors, allowing for more precise and gentle grasping of objects.",
+              description: "A prosthetic hand uses neuromorphic tactile sensors to mimic natural touch and grasp objects precisely and gently.",
               highlighted: true
             },            
             {
               imageKey: "researchPAS",
+              type: "workshop",
               title: "PAS: Probabilistic Adaptive Subsampling for Scalable Tactile Skins",
               url: "https://shanluo.github.io/ViTacWorkshops/content/ViTac2025_Paper_10.pdf",
               authors: "<strong>A. Slepyan</strong> and N. Thakor",
               venue: "<em>ICRA ViTac Workshop</em>, 2025",
               links: [{ text: "paper", url: "https://shanluo.github.io/ViTacWorkshops/content/ViTac2025_Paper_10.pdf" }],
-              description: "A probabilistic tactile sampling strategy that leverages prior distributions of contact sparsity to reduce data acquisition while preserving key features.",
+              description: "A probabilistic sampling method uses prior distributions of contact sparsity to reduce the number of tactile measurements while preserving key features.",
               highlighted: true
             },
             {
               imageKey: "researchHDKinematics",
+              type: "workshop",
               title: "Predicting Kinematics from High-Density Plantar Pressure Sensing",
               url: "https://shanluo.github.io/ViTacWorkshops/content/ViTac2025_Paper_09.pdf",
               authors: "S. Bello, <strong>A. Slepyan</strong>, J. Chen, and N. Thakor",
               venue: "<em>ICRA ViTac Workshop</em>, 2025",
               links: [{ text: "paper", url: "https://shanluo.github.io/ViTacWorkshops/content/ViTac2025_Paper_09.pdf" }],
-              description: "Uses high-resolution plantar pressure sensing and a gaussian mixture model to infer 3D lower-limb joint angles in real-time, enabling wearable, unobtrusive gait analysis.",
+              description: "High-resolution plantar pressure measurements and a Gaussian mixture model estimate 3D lower-limb joint angles in real time for wearable gait analysis.",
               highlighted: true
+            },
+            {
+              imageKey: "researchFingertips",
+              title: "Biomimetic Fingertips: Friction Modulation Through Surface-Responsive Texture Triggered by Micro-Vibration Sensing",
+              url: "https://ieeexplore.ieee.org/document/11178177",
+              authors: "K. Cheng, M. Wang, <strong>A. Slepyan</strong>, and N. Thakor",
+              venue: "<em>IEEE Sensors Letters</em>, 2025",
+              links: [{ text: "paper", url: "https://ieeexplore.ieee.org/document/11178177" }],
+              description: "Inspired by how human fingertips wrinkle when wet, this robotic fingertip uses a piezoelectric vibration sensor to classify the surface it touches (&gt;94% accuracy) and nitinol actuators to wrinkle its silicone skin on demand, increasing friction by up to 66%.",
+              highlighted: false
+            },
+            {
+              imageKey: "researchSNNCompression",
+              title: "Neuromorphic Compression of Tactile Data with Spiking Neural Networks",
+              url: "https://ieeexplore.ieee.org/document/11588951",
+              authors: "V. Chari, M. Iskarous, D. Li, <strong>A. Slepyan</strong>, N. Thakor, and J. Downey",
+              venue: "<em>IEEE EMBS Conference on Neural Engineering (NER)</em>, 2025",
+              links: [{ text: "paper", url: "https://ieeexplore.ieee.org/document/11588951" }],
+              description: "Spiking neural networks compress spiking tactile data (handwritten digits and traced shapes) into low-dimensional latent representations, achieving over 99% compression while keeping over 80% classification accuracy.",
+              highlighted: false
             },
             {
               imageKey: "researchVibrations",
@@ -178,37 +310,28 @@
               authors: "A. Pimpalkar, <strong>A. Slepyan</strong>, and N. Thakor",
               venue: "<em>IEEE Sensors Letters</em>, 2025",
               links: [{ text: "paper", url: "https://ieeexplore.ieee.org/document/11060835" }],
-              description: "We show that the initial vibrations upon contact can be used to rapidly determine an object's stiffness, enabling faster and more adaptive robotic grasping.",
-              highlighted: true
-            },
-            {
-              imageKey: "researchISCAS",
-              title: "Live Demonstration: Compressive Subsampling for High-Speed Large-Area Tactile Sensing",
-              url: "https://ieeexplore.ieee.org/abstract/document/11043348",
-              authors: "<strong>A. Slepyan</strong>*, D. Li*, T. Tran, and N. Thakor",
-              venue: "<em>IEEE International Symposium on Circuits and Systems (ISCAS)</em>, 2025   <font color=\"red\"><strong>(Winner of Best Live Demo Award)</strong></font>",
-              links: [{ text: "paper", url: "https://ieeexplore.ieee.org/abstract/document/11043348" }],
-              description: "Demonstrated real-time tactile rendering at 1000 Hz using compressive tactile sensing, showcasing live tactile “bullet” tracking with a NERF gun.",
+              description: "We estimate an object’s stiffness from vibrations at first contact, before the robot completes its grasp.",
               highlighted: true
             },
             {
               imageKey: "researchDCC",
+              type: "workshop",
               title: "Compressive Subsampling for Scalable Tactile Skin",
               url: "https://ieeexplore.ieee.org/document/10992472",
               authors: "<strong>A. Slepyan</strong>*, D. Li*, T. Tran, and N. Thakor",
               venue: "<em>Data Compression Conference (DCC)</em>, 2025",
               links: [{ text: "paper", url: "https://ieeexplore.ieee.org/document/10992472" }],
-              description: "Early results on applying compressive sensing techniques to tactile skin for efficient, scalable data acquisition.",
+              description: "Early results using compressive sensing to reduce the readout demands of tactile skins.",
               highlighted: false
             },
             {
               imageKey: "researchInvariance",
               title: "Invariant neuromorphic representations of tactile stimuli improve robustness of a real-time texture classification system",
-              url: "https://advanced.onlinelibrary.wiley.com/doi/10.1002/aisy.202401078e",
+              url: "https://advanced.onlinelibrary.wiley.com/doi/10.1002/aisy.202401078",
               authors: "M. Iskarous, Z. Chaudhry, F. Li, S. Bello, S. Sankar, <strong>A. Slepyan</strong>, et al.",
               venue: "<em>Advanced Intelligent Systems</em>, 2025",
-              links: [{ text: "paper", url: "https://advanced.onlinelibrary.wiley.com/doi/10.1002/aisy.202401078e" }],
-              description: "Demonstrates that incorporating foce/speed invariance in neuromorphic tactile data improves the robustness of classifying textures in real-time.",
+              links: [{ text: "paper", url: "https://advanced.onlinelibrary.wiley.com/doi/10.1002/aisy.202401078" }],
+              description: "Neuromorphic tactile representations that account for changes in contact force and speed improve the robustness of real-time texture classification.",
               highlighted: false
             },
             {
@@ -218,7 +341,7 @@
               authors: "Y. Angkanapiwat, <strong>A. Slepyan</strong>, and N. Thakor",
               venue: "<em>IEEE Biomedical Circuits and Systems Conference (BioCAS)</em>, 2024",
               links: [{ text: "paper", url: "https://ieeexplore.ieee.org/document/10798282" }],
-              description: "A closed-loop system combining a high-density tactile glove with a reconfigurable haptic feedback patch for sensory feedback.",
+              description: "A high-density tactile glove and a reconfigurable haptic patch form a closed-loop sensory feedback system.",
               highlighted: true
             },
             {
@@ -228,7 +351,7 @@
               authors: "<strong>A. Slepyan</strong>, M. Zakariaie, T. Tran, and N. Thakor",
               venue: "<em>Sensors</em>, 2024",
               links: [{ text: "paper", url: "https://www.mdpi.com/1424-8220/24/13/4243" }],
-              description: "Quantifies how wavelet transforms expose spatial and temporal sparsity in tactile signals, reducing data dimensionality and enabling efficient reconstruction from minimal samples. A key step for efficient data handling in large sensor arrays.",
+              description: "We quantify spatial and temporal sparsity in tactile signals using wavelet transforms, and use it to compress the data and reconstruct tactile interactions from fewer samples.",
               highlighted: true
             },
             {
@@ -248,7 +371,7 @@
               authors: "<strong>A. Slepyan</strong>*, S. Krishnan*, T. Li and N. Thakor",
               venue: "<em>IEEE Biomedical Circuits and Systems Conference (BioCAS)</em>, 2023",
               links: [{ text: "paper", url: "https://ieeexplore.ieee.org/document/10388769" }],
-              description: "We designed a custom, high-frequency electrical stimulator for providing sensory feedback in prosthetic and robotic systems.",
+              description: "A programmable high-frequency electrical stimulator provides sensory feedback in prosthetic and robotic systems.",
               highlighted: true
             },
             {
@@ -258,7 +381,7 @@
               authors: "Z. Ou, Y. Guo, P. Gharibani, <strong>A. Slepyan</strong>, et al.",
               venue: "<em>Brain Sciences</em>, 2022",
               links: [{ text: "paper", url: "https://www.mdpi.com/2076-3425/13/1/2" }],
-              description: "Investigating high-frequency brain oscillations using wavelets as a biomarker for recovery after brain injury.",
+              description: "We use wavelet analysis to study high-frequency brain oscillations as a possible marker of recovery after brain injury.",
               highlighted: false
             },
             {
@@ -278,7 +401,7 @@
               authors: "S. Sankar, <strong>A. Slepyan</strong>, et al.",
               venue: "<em>IEEE Sensors</em>, 2022",
               links: [{ text: "paper", url: "https://ieeexplore.ieee.org/document/9967059" }],
-              description: "Development of a multi-layered flexible tactile sensor capable of detecting different types of forces and vibrations, mimicking human skin.",
+              description: "A flexible multilayer sensor detects forces and vibrations on a soft robotic fingertip, mimicking aspects of human skin.",
               highlighted: true
             },
             {
@@ -288,7 +411,7 @@
               authors: "A. Aug, <strong>A. Slepyan</strong>, E. Levenshus, N. Thakor",
               venue: "<em>IEEE International Conference on Biomedical Robotics and Biomechatronics (BioRob)</em>, 2022",
               links: [{ text: "paper", url: "https://ieeexplore.ieee.org/document/9925475" }],
-              description: "A complete, retrofittable system including a sensing glove and feedback armband for adding touch to prosthetic hands.",
+              description: "A tactile sensing glove and haptic feedback armband add touch feedback to existing prosthetic hands.",
               highlighted: true
             },
             {
@@ -298,7 +421,7 @@
               authors: "<strong>A. Slepyan</strong>, S. Sankar, and N. Thakor",
               venue: "<em>10th International IEEE/EMBS Conference on Neural Engineering (NER)</em>, 2021",
               links: [{ text: "paper", url: "https://ieeexplore.ieee.org/document/9441136" }],
-              description: "An early demonstration of using a flexible, frequency-multiplexed sensor to discriminate different textures.",
+              description: "A flexible sensor uses frequency multiplexing to distinguish textures.",
               highlighted: false
             },
             {
@@ -308,7 +431,7 @@
               authors: "<strong>A. Slepyan</strong> and N. Thakor",
               venue: "<em>8th IEEE International Conference on Biomedical Robotics and Biomechatronics (BioRob)</em>, 2020",
               links: [{ text: "paper", url: "https://ieeexplore.ieee.org/document/9224353" }],
-              description: "A wireless approach for creating a scalable electronic skin based on RFID tags.",
+              description: "An electronic skin uses RFID tags as wireless sensing elements.",
               highlighted: false
             },
           ]
@@ -323,11 +446,24 @@
         },
         patents: {
             title: "Patents and Invention Disclosures",
+            visibleCount: 4,
             items: [
                 {
-                    title: "Wearable Plantar Sensor-Based System for Lower Limb Biomechanics Reconstruction",
+                    title: "Systems and Methods for Learned Adaptive Measurement Selection Using Greedy-Oracle Supervision",
                     status: "Invention Disclosure",
                     number: null,
+                    details: "JHU Tech ID #C19459"
+                },
+                {
+                    title: "Systems and Methods for Multi-Axis Force Extraction from High-Resolution Tactile Arrays",
+                    status: "Invention Disclosure",
+                    number: null,
+                    details: "JHU Tech ID #C19151"
+                },
+                {
+                    title: "Wearable Plantar Sensor-Based System for Lower Limb Biomechanics Reconstruction",
+                    status: "Provisional Patent Application",
+                    number: "No. 63/992,527",
                     details: "JHU Tech ID #C18700"
                 },
                 {
@@ -357,27 +493,36 @@
             ]
         },
 
+        service: {
+            title: "Service",
+            workshops: [
+                'Co-organizer, <a href="https://tactile-dexterity-iros.github.io/"><strong>"Scalable Tactile Sensing for Dexterous Manipulation"</strong></a> workshop at IROS 2026 (September 27, Pittsburgh), with Homanga Bharadhwaj, Irmak Guzey, Haozhi Qi, Wenzhen Yuan, and Gregory Hager'
+            ],
+            reviewing: "IEEE RA-L, IEEE T-MECH, IEEE TVLSI, IROS (2025, 2026), ISCAS 2026, World Haptics 2025, ICECS (2022, 2024, 2025), BioRob (2022, 2024)",
+            leadership: "Co-President, JHU ECE Graduate Student Association (2023 – 2025)"
+        },
+
         teaching: {
             title: "Teaching",
             imageKey: "teachingPCBWatch",
-            imageCaption: "2023 Students Wearing Their Finished Watches",
+            imageCaption: "Students wearing their finished watches (2023)",
             content: `
                 <p style="text-align: justify; margin-top:5px; padding-right:10px;">
-                    As an instructor, I enjoy developing new, hands-on courses to bridge the gap between theory and practical application. To date, I have designed and taught two successful intersession courses at Johns Hopkins to over 100 students.
+                    I design hands-on courses that give students the skills to take a hardware idea from design through fabrication and testing. I have developed and taught two intersession courses at Johns Hopkins to over 100 students.
                 </p>
                 <hr style="border: 0; height: 1px; background: #ddd; margin: 15px 0;">
                 <strong>EN.520.299 - PCB Design and Microcontroller Programming</strong> (Winter 2023, 2024, 2025)
-                <p style="text-align: justify; margin-top:5px; padding-right:10px;">
+                <div style="text-align: left; margin-top:5px; padding-right:10px;">
                     <div style="float: right; width: 150px; margin: 0 0 10px 15px;">
                         <img alt="Operation of PCB Watch" style="width: 100%; border-radius:10px;" data-img-key="teachingPCBgif">
                         <p style="text-align: center; font-size: smaller; font-style: italic; margin-top: 5px; margin-bottom: 0;">
                             Operation of PCB watch
                         </p>
                     </div>
-                    I created this course to address a gap in the ECE curriculum, providing students with the essential hardware skills to translate bulky prototypes into integrated, mass-producible solutions. Using professional tools like KiCAD, students learn the full development cycle from schematic layout to surface-mount assembly and programming tiny microcontrollers like the ATtiny. The course is project-based, culminating in each student building their own custom PCB wristwatch.
-                </p>
+                    I created this course to teach hardware skills that were missing from the ECE curriculum: turning a prototype into a compact circuit board that can be manufactured. Each student designs and builds a custom PCB wristwatch, working through schematic design and board layout in KiCad, manufacturing, surface-mount assembly, and low-power ATtiny microcontroller programming.
+                </div>
                 <p style="font-size: smaller; text-align: justify; margin-top:5px; padding-right:10px; font-style: italic;">
-                    The final watch is highly accurate, using a standard 32.768kHz crystal, and is programmed with power-saving sleep modes to achieve an estimated 3-year battery life from a single coin cell.
+                    The watch keeps time with a standard 32.768 kHz crystal and uses sleep modes for an estimated three-year battery life on a single coin cell.
                 </p>
                 <blockquote style="font-size: smaller; margin-left: 20px; border-left: 3px solid #ccc; padding-left: 15px;">
                     <em>“Arik is extremely helpful, and willing to put in the extra time for both students who are struggling and those who want to go above and beyond. 10/10 instructor!”</em><br>– 2023 Student Evaluation
@@ -386,7 +531,7 @@
                 <strong>EN.580.113 - Prosthesis Instrumentation</strong> (Winter 2023) - <a href="https://hub.jhu.edu/2023/02/06/intersession-prosthesis-instrumentation/">Featured in JHU Hub</a>
                 <p style="text-align: justify; margin-top:5px; padding-right:10px;">
                     <img alt="Prosthesis Instrumentation Class" style="width:150px; float:right; margin: 0 0 10px 15px; border-radius:10px;" data-img-key="teachingProsthesis">
-                    Co-taught with Sriramana Sankar, this project-based course challenged students to design and build novel game controllers, enabling transradial amputees to play Minecraft. The course emphasized a hands-on approach to learning the fundamentals of myoelectric signals and prosthetic instrumentation.
+                    I co-taught this course with Sriramana Sankar. Students learned about myoelectric signals and prosthetic instrumentation by designing and building game controllers for people with transradial amputations to play Minecraft.
                 </p>
                 <blockquote style="font-size: smaller; margin-left: 20px; border-left: 3px solid #ccc; padding-left: 15px;">
                     <em>“Being able to explore the latest prosthetic designs and learning how to build them.”</em><br>– 2023 Student Evaluation
@@ -395,6 +540,21 @@
         },
         footer: `Background is a tactile dictionary.<br>Website modified from <a href="https://jonbarron.info/">Jon Barron</a>. The <a href="https://github.com/jonbarron/jonbarron_website">source code</a>.`
       };
+
+      // Show/hide the rows of a long list that are past its visible count
+      function setupToggle(buttonId, rowClass, hiddenCount, label) {
+        const button = document.getElementById(buttonId);
+        if (!button || hiddenCount <= 0) return;
+        const collapsedText = `Show all ${label} (${hiddenCount} more) ▾`;
+        button.style.display = '';
+        button.textContent = collapsedText;
+        button.addEventListener('click', () => {
+          const expanding = button.dataset.expanded !== 'true';
+          document.querySelectorAll('.' + rowClass).forEach(row => row.style.display = expanding ? '' : 'none');
+          button.dataset.expanded = expanding;
+          button.textContent = expanding ? 'Show less ▴' : collapsedText;
+        });
+      }
 
       document.addEventListener('DOMContentLoaded', () => {
         // Set text content
@@ -405,13 +565,14 @@
         // Build News
         document.getElementById('news-title').innerHTML = siteContent.news.title;
         const newsList = document.getElementById('news-list');
-        siteContent.news.items.forEach(item => {
+        siteContent.news.items.forEach((item, index) => {
+            const hidden = index >= siteContent.news.visibleCount;
             newsList.innerHTML += `
-                <tr ${item.highlighted ? 'bgcolor="#ffffd0"' : ''}>
+                <tr ${item.highlighted ? 'bgcolor="#ffffd0"' : ''} ${hidden ? 'class="news-extra" style="display:none;"' : ''}>
                     <td style="padding:16px; width:20%; text-align:center; vertical-align:middle;">
-                        <img alt="${item.text.substring(0, 30)}" 
-                            style="max-height: 90px; max-width: 100%; width: auto; height: auto;" 
-                            data-img-key="${item.imageKey}">
+                        ${imagePaths[item.imageKey] ? `<img alt="${item.text.substring(0, 30)}"
+                            style="max-height: ${item.isLogo ? '45px' : '90px'}; max-width: ${item.isLogo ? '75%' : '100%'}; width: auto; height: auto;"
+                            data-img-key="${item.imageKey}">` : ''}
                     </td>
                     <td style="padding:8px; width:80%; vertical-align:middle;">
                         <p>${item.text}</p>
@@ -419,37 +580,71 @@
                 </tr>`;
         });
         
+        setupToggle('news-toggle', 'news-extra', siteContent.news.items.length - siteContent.news.visibleCount, 'news');
+
         // Build Research
-        const researchList = document.getElementById('research-list');
-        researchList.innerHTML = ''; // Clear existing content
-        // Add the title and intro as the first row
-        researchList.innerHTML += `
+        const paperLinksHTML = item => item.links.map(link => `<a href="${link.url}">${link.text}</a>`).join(' / ');
+        const paperTitleHTML = item => item.url
+            ? `<a href="${item.url}"><span class="papertitle">${item.title}</span></a>`
+            : `<span class="papertitle">${item.title}</span>`;
+        const paperImageHTML = (item, width) => imagePaths[item.imageKey]
+            ? `<img alt="${item.title}" width="${width}" data-img-key="${item.imageKey}">` : '';
+        const sectionHeaderRow = (title, intro) => `
             <tr><td colspan="2" style="padding: 16px 16px 0 16px;">
-                <h2 style="margin-bottom: 0;">${siteContent.research.title}</h2>
-                <p style="margin-bottom: 0;">${siteContent.research.intro}</p>
-            </td></tr>
-        `;
-        // Now, loop through and add the research items
-        siteContent.research.items.forEach(item => {
-            const paperLinks = item.links.map(link => `<a href="${link.url}">${link.text}</a>`).join(' / ');
-            const titleHTML = item.url
-                ? `<a href="${item.url}"><span class="papertitle">${item.title}</span></a>`
-                : `<span class="papertitle">${item.title}</span>`;
-            researchList.innerHTML += `
-                <tr ${item.highlighted ? 'bgcolor="#ffffd0"' : ''}>
-                    <td style="padding:16px; width:20%; text-align:center; vertical-align:middle;">
-                        <img alt="${item.title}" width="200" data-img-key="${item.imageKey}">
-                    </td>
-                    <td style="padding:8px; width:80%; vertical-align:middle;">
-                        ${titleHTML}
-                        <br>${item.authors}
-                        <br>${item.venue}
-                        <br>${paperLinks}
-                        <p></p>
-                        <p>${item.description}</p>
-                    </td>
-                </tr>`;
-        });
+                <h2 style="margin-bottom: 0;">${title}</h2>
+                ${intro ? `<div>${intro}</div>` : ''}
+            </td></tr>`;
+        const fullPaperRow = item => `
+            <tr bgcolor="#ffffd0">
+                <td style="padding:16px; width:20%; text-align:center; vertical-align:middle;">${paperImageHTML(item, 200)}</td>
+                <td style="padding:8px; width:80%; vertical-align:middle;">
+                    ${paperTitleHTML(item)}
+                    <br>${item.authors}
+                    <br>${item.venue}
+                    <br>${paperLinksHTML(item)}
+                    <p></p>
+                    <p>${item.description}</p>
+                </td>
+            </tr>`;
+        const compactPaperRow = (item, hidden, rowClass) => `
+            <tr ${hidden ? `class="${rowClass}" style="display:none;"` : ''}>
+                <td style="padding:8px 16px; width:20%; text-align:center; vertical-align:middle;">${paperImageHTML(item, 120)}</td>
+                <td style="padding:8px; width:80%; vertical-align:middle;">
+                    ${paperTitleHTML(item)}
+                    <br>${item.authors}
+                    <br>${item.venue}
+                    ${item.links.length ? `<br>${paperLinksHTML(item)}` : ''}
+                </td>
+            </tr>`;
+
+        const research = siteContent.research;
+        const selectedItems = research.items.filter(item => item.selected);
+        const publicationItems = research.items.filter(item => item.type !== 'workshop');
+        const workshopItems = research.items.filter(item => item.type === 'workshop');
+
+        document.getElementById('research-list').innerHTML =
+            sectionHeaderRow(research.title, research.intro) +
+            `<tr><td colspan="2" style="padding: 16px 16px 0 16px;"><h3 class="subsection">Selected Work</h3></td></tr>` +
+            selectedItems.map(fullPaperRow).join('');
+
+        // Collapsed lists skip Selected Work (already shown above); expanding shows everything in order
+        const compactListHTML = (items, rowClass) => {
+            let shown = 0;
+            return items.map(item => {
+                const hidden = item.selected || shown >= research.visibleCount;
+                if (!hidden) shown++;
+                return compactPaperRow(item, hidden, rowClass);
+            }).join('');
+        };
+        const hiddenCount = items => items.length - Math.min(research.visibleCount, items.filter(item => !item.selected).length);
+
+        document.getElementById('pubs-list').innerHTML =
+            sectionHeaderRow(research.publicationsTitle) + compactListHTML(publicationItems, 'pubs-extra');
+        setupToggle('pubs-toggle', 'pubs-extra', hiddenCount(publicationItems), 'publications');
+
+        document.getElementById('workshops-list').innerHTML =
+            sectionHeaderRow(research.workshopsTitle) + compactListHTML(workshopItems, 'workshops-extra');
+        setupToggle('workshops-toggle', 'workshops-extra', hiddenCount(workshopItems), 'demos and workshop papers');
 
         // Build Tactile Visualizers
         const vizList = document.getElementById('visualizers-list');
@@ -476,8 +671,9 @@
           patentsTitle.innerHTML = siteContent.patents.title;
           siteContent.patents.items.forEach((item, index) => {
               const numberHTML = item.number ? `${item.number}` : '';
+              const hidden = index >= siteContent.patents.visibleCount;
               patentsList.innerHTML += `
-                  <tr>
+                  <tr ${hidden ? 'class="patents-extra" style="display:none;"' : ''}>
                       <td style="vertical-align: top; padding-right: 10px;">${siteContent.patents.items.length - index}.</td>
                       <td>
                           <strong>${item.title}</strong>
@@ -490,6 +686,26 @@
           });
         }
         
+        setupToggle('patents-toggle', 'patents-extra', siteContent.patents.items.length - siteContent.patents.visibleCount, 'patents');
+
+        // Build Service Section
+        const serviceList = document.getElementById('service-list');
+        const service = siteContent.service;
+        if (serviceList && service) {
+          serviceList.innerHTML = `
+            <tr>
+              <td style="padding:16px;">
+                <h2 style="margin-bottom: 10px;">${service.title}</h2>
+                <ul style="margin-top:0; padding-left: 20px;">
+                  ${service.workshops.map(w => `<li>${w}</li>`).join('')}
+                  <li>Reviewer: ${service.reviewing}</li>
+                  <li>${service.leadership}</li>
+                </ul>
+              </td>
+            </tr>
+          `;
+        }
+
         // Build Teaching Section
         const tslList = document.getElementById('tsl-list');
         const teaching = siteContent.teaching;
@@ -552,9 +768,14 @@
             <tr><td style="padding: 0px 16px 16px 16px; width:100%; vertical-align:middle;"><h2 id="news-title" style="margin-top: 0;"></h2></td></tr>
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody id="news-list"></tbody></table>
+          <p style="text-align:center; margin: 0 0 10px 0;"><button id="news-toggle" class="toggle-button" style="display:none;"></button></p>
 
           <!-- Research Section -->
           <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody id="research-list"></tbody></table>
+          <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody id="pubs-list"></tbody></table>
+          <p style="text-align:center; margin: 0 0 10px 0;"><button id="pubs-toggle" class="toggle-button" style="display:none;"></button></p>
+          <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody id="workshops-list"></tbody></table>
+          <p style="text-align:center; margin: 0 0 10px 0;"><button id="workshops-toggle" class="toggle-button" style="display:none;"></button></p>
 
           <!-- Tactile Visualizers Section -->
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
@@ -565,8 +786,12 @@
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr><td style="padding: 16px 16px 0 16px; width:100%; vertical-align:middle;"><h2 id="patents-title" style="margin-bottom: 0;"></h2></td></tr>
             <tr><td style="padding: 2px 20px;"><table style="width:100%; border-spacing: 0 5px;"><tbody id="patents-list"></tbody></table></td></tr>
+            <tr><td style="text-align:center; padding-top: 6px;"><button id="patents-toggle" class="toggle-button" style="display:none;"></button></td></tr>
           </tbody></table>
           
+          <!-- Service Section -->
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody id="service-list"></tbody></table>
+
           <!-- Teaching Section -->
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody id="tsl-list"></tbody></table>
 
