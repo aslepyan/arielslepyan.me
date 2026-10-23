@@ -43,7 +43,9 @@
         newsMIT: 'images/logo_mit.png',
         newsPhD: 'images/phd_defense_2026.jpg',
         newsOpenTactileCAD: 'images/open_tactile_cad.jpg',
+        newsOpenTac: 'images/opentac_concept.mp4',
 
+        researchOpenTac: 'images/opentac_concept.mp4',
         researchCoRL: 'images/corl2026_umi.gif',
         researchLC3Axis: 'images/lc3axis_handguiding.gif',
         researchFingertips: 'images/biomimetic_fingertip.jpg',
@@ -101,6 +103,7 @@
           title: "Recent News",
           visibleCount: 8,
           items: [
+            { imageKey: "newsOpenTac", text: '<strong>Oct 2026:</strong> Excited to release <a href="https://opentac.github.io/"><strong>OpenTac</strong></a>, an open ecosystem for customizable, scalable, and transferable 3D tactile sensing! OpenTac-CAD automatically designs skins that measure normal and shear forces from a 2D outline, a developable 3D surface, or a text description, and we have built more than 30 of them for different robots. The paper is on <a href="https://arxiv.org/abs/2610.31661">arXiv</a>, and all hardware, software, and design tools are <a href="https://github.com/opentac/opentac">open source</a>.', highlighted: true },
             { imageKey: "newsOpenTactileCAD", text: '<strong>Sep 2026:</strong> A great IROS 2026! I co-organized the workshop <a href="https://tactile-dexterity-iros.github.io/"><em>"Scalable Tactile Sensing for Dexterous Manipulation"</em></a>, and <a href="https://www.linkedin.com/in/lucas-feng/">Lucas Feng</a> presented our <a href="https://lucasfeng7.github.io/lc-3-axis/">LC 3-Axis</a> force sensor at the <em>"Sensors and Actuators for Dexterous Manipulation"</em> workshop. Earlier this year, I also presented <em>Open-Tactile CAD</em>, which automatically designs high-density tactile skins for any geometry, at IEEE Haptics Symposium 2026.', highlighted: true },
             { imageKey: "newsCoRL", text: '<strong>Sep 2026:</strong> Excited that our demo <em>"Scalable 3D Force-Sensing Tactile Skins for Robot Learning"</em> was accepted at <a href="https://www.corl.org/">CoRL 2026</a>! Visitors can press, slide, and twist our skins on UMI and AgileX grippers and watch the normal and shear forces in real time.', highlighted: true },
             { imageKey: "newsMIT", isLogo: true, text: '<strong>Jul 2026:</strong> Excited to start as an <strong>ICoN Postdoctoral Fellow at MIT</strong> (CSAIL and BCS), working with <a href="https://people.csail.mit.edu/pulkitag/">Pulkit Agrawal</a> and <a href="https://www.seethapathilab.org/">Nidhi Seethapathi</a>!', highlighted: true },
@@ -131,6 +134,17 @@
           intro: "<p style='margin-bottom: 6px;'>I develop scalable tactile sensing systems and study how rich tactile and proprioceptive feedback can support fast, fluid sensorimotor control. My work spans three connected directions:</p><ul style='margin-top: 0; padding-left: 20px;'><li><strong>Scalable tactile sensing:</strong> sensor architectures, electronics, and sampling methods for dense, high-speed touch over large and complex surfaces.</li><li><strong>Deployable tactile systems:</strong> customizable tactile skins that measure normal and shear forces and can be integrated with robot hands, grippers, wearables, and other surfaces.</li><li><strong>Sensorimotor intelligence:</strong> learning fast, fluid, reusable manipulation behaviors from tactile and proprioceptive feedback, including high-bandwidth human sensorimotor data.</li></ul>",
           items: [
             {
+              imageKey: "researchOpenTac",
+              selected: true,
+              title: "OpenTac: An Open Ecosystem for Customizable, Scalable, and Transferable 3D Tactile Sensing",
+              url: "https://arxiv.org/abs/2610.31661",
+              authors: "<strong>A. Slepyan</strong>, G. C. R. Bethala, J. Gu, A. Dangle, Y. Zhou, H. Fu, J. Sim, T. Basu, X. Yin, F. Karim, G. Hager, H. Bharadhwaj, A. Bhattad, K. M. Jatavallabhula, and N. Thakor",
+              venue: "<em>arXiv preprint</em>, 2026",
+              links: [{ text: "project page", url: "https://opentac.github.io/" }, { text: "arXiv", url: "https://arxiv.org/abs/2610.31661" }, { text: "code", url: "https://github.com/opentac/opentac" }],
+              description: "An open-source tactile skin and the ecosystem around it. A structured deformable overlay converts shear into pressure differences between neighboring taxels, so each skin measures distributed normal and shear forces. OpenTac-CAD generates fabrication files from 2D outlines, developable 3D surfaces, or text descriptions; we built more than 30 sensors across robot embodiments and used them for feedback control and policy learning on four robots. Adaptive acquisition reads partial frames at kilohertz rates, 19.2&times; faster than full-array raster scanning at 16 sampled taxels per update on a 1024-taxel skin.",
+              highlighted: true
+            },
+            {
               imageKey: "researchRodentArena",
               type: "workshop",
               title: "A High-Density Tactile Arena for Neuroengineering Research: Continuous Gait Tracking in Freely Behaving Rodents",
@@ -160,7 +174,7 @@
               url: null,
               authors: "<strong>A. Slepyan</strong>, G. C. R. Bethala, J. Gu, A. Dangle, Y. Zhou, H. Fu, J. Sim, T. Basu, X. Yin, F. Karim, G. Hager, A. Bhattad, H. Bharadhwaj, K. M. Jatavallabhula, and N. Thakor",
               venue: "<em>Conference on Robot Learning (CoRL), Demo Track</em>, 2026",
-              links: [],
+              links: [{ text: "project page", url: "https://opentac.github.io/" }],
               description: "Thin, flexible tactile skins that measure distributed normal and shear forces, demonstrated on UMI and AgileX grippers for teleoperation, data collection, and robot learning.",
               highlighted: true
             },
@@ -562,6 +576,11 @@
         document.getElementById('bio').innerHTML = siteContent.bio.map(p => `<p>${p}</p>`).join('');
         document.getElementById('social-links').innerHTML = siteContent.socialLinks.map(link => `<a href="${link.url}">${link.text}</a>`).join('  /  ');
 
+        // Image, or a muted looping video for .mp4 paths
+        const mediaHTML = (key, alt, attrs) => imagePaths[key].endsWith('.mp4')
+            ? `<video autoplay muted loop playsinline aria-label="${alt}" ${attrs} data-img-key="${key}"></video>`
+            : `<img alt="${alt}" ${attrs} data-img-key="${key}">`;
+
         // Build News
         document.getElementById('news-title').innerHTML = siteContent.news.title;
         const newsList = document.getElementById('news-list');
@@ -570,9 +589,8 @@
             newsList.innerHTML += `
                 <tr ${item.highlighted ? 'bgcolor="#ffffd0"' : ''} ${hidden ? 'class="news-extra" style="display:none;"' : ''}>
                     <td style="padding:16px; width:20%; text-align:center; vertical-align:middle;">
-                        ${imagePaths[item.imageKey] ? `<img alt="${item.text.substring(0, 30)}"
-                            style="max-height: ${item.isLogo ? '45px' : '90px'}; max-width: ${item.isLogo ? '75%' : '100%'}; width: auto; height: auto;"
-                            data-img-key="${item.imageKey}">` : ''}
+                        ${imagePaths[item.imageKey] ? mediaHTML(item.imageKey, item.text.substring(0, 30),
+                            `style="max-height: ${item.isLogo ? '45px' : '90px'}; max-width: ${item.isLogo ? '75%' : '100%'}; width: auto; height: auto;"`) : ''}
                     </td>
                     <td style="padding:8px; width:80%; vertical-align:middle;">
                         <p>${item.text}</p>
@@ -588,7 +606,7 @@
             ? `<a href="${item.url}"><span class="papertitle">${item.title}</span></a>`
             : `<span class="papertitle">${item.title}</span>`;
         const paperImageHTML = (item, width) => imagePaths[item.imageKey]
-            ? `<img alt="${item.title}" width="${width}" data-img-key="${item.imageKey}">` : '';
+            ? mediaHTML(item.imageKey, item.title, `width="${width}"`) : '';
         const sectionHeaderRow = (title, intro) => `
             <tr><td colspan="2" style="padding: 16px 16px 0 16px;">
                 <h2 style="margin-bottom: 0;">${title}</h2>
