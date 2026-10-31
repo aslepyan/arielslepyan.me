@@ -44,8 +44,11 @@
         newsPhD: 'images/phd_defense_2026.jpg',
         newsOpenTactileCAD: 'images/open_tactile_cad.jpg',
         newsOpenTac: 'images/opentac_concept.mp4',
+        newsCoRLWorkshops: 'images/opentac_skins.jpg',
+        newsTactileArena: 'images/tactile_arena.mp4',
 
         researchOpenTac: 'images/opentac_concept.mp4',
+        researchTactileArena: 'images/tactile_arena.mp4',
         researchCoRL: 'images/corl2026_umi.gif',
         researchLC3Axis: 'images/lc3axis_handguiding.gif',
         researchFingertips: 'images/biomimetic_fingertip.jpg',
@@ -103,6 +106,8 @@
           title: "Recent News",
           visibleCount: 8,
           items: [
+            { imageKey: "newsCoRLWorkshops", text: '<strong>Oct 2026:</strong> OpenTac will be at <a href="https://2026.corl.org/">CoRL 2026</a> in Austin! Along with our live demo, we are presenting two workshop papers on November 12: one at the <a href="https://beneath-the-policy.github.io/">Workshop on Everything Beneath the Policy</a> (20 papers accepted from 92 submissions) and one at the <a href="https://dex-manipulation.github.io/corl2026/">3rd Workshop on Dexterous Manipulation</a>.', highlighted: true },
+            { imageKey: "newsTactileArena", text: '<strong>Oct 2026:</strong> Our <a href="https://tactilearena.github.io/"><strong>TactileArena</strong></a> paper is on <a href="https://www.biorxiv.org/content/10.64898/2026.10.22.760735v1">bioRxiv</a>! We built a modular tactile floor with 16,384 sensors at 2-mm pitch that measures the ground-contact forces of freely moving rats at about 1 kHz. After sciatic nerve injury, it measured reduced loading of the injured hindlimb and increased loading of the opposite limb. The <a href="https://tactilearena.github.io/">project website</a> has videos, a build guide, and the open hardware designs, software, and data.', highlighted: true },
             { imageKey: "newsOpenTac", text: '<strong>Oct 2026:</strong> Excited to release <a href="https://opentac.github.io/"><strong>OpenTac</strong></a>, an open ecosystem for customizable, scalable, and transferable 3D tactile sensing! OpenTac-CAD automatically designs skins that measure normal and shear forces from a 2D outline, a developable 3D surface, or a text description, and we have built more than 30 of them for different robots. The paper is on <a href="https://arxiv.org/abs/2610.31661">arXiv</a>, and all hardware, software, and design tools are <a href="https://github.com/opentac/opentac">open source</a>.', highlighted: true },
             { imageKey: "newsOpenTactileCAD", text: '<strong>Sep 2026:</strong> A great IROS 2026! I co-organized the workshop <a href="https://tactile-dexterity-iros.github.io/"><em>"Scalable Tactile Sensing for Dexterous Manipulation"</em></a>, and <a href="https://www.linkedin.com/in/lucas-feng/">Lucas Feng</a> presented our <a href="https://lucasfeng7.github.io/lc-3-axis/">LC 3-Axis</a> force sensor at the <em>"Sensors and Actuators for Dexterous Manipulation"</em> workshop. Earlier this year, I also presented <em>Open-Tactile CAD</em>, which automatically designs high-density tactile skins for any geometry, at IEEE Haptics Symposium 2026.', highlighted: true },
             { imageKey: "newsCoRL", text: '<strong>Sep 2026:</strong> Excited that our demo <em>"Scalable 3D Force-Sensing Tactile Skins for Robot Learning"</em> was accepted at <a href="https://www.corl.org/">CoRL 2026</a>! Visitors can press, slide, and twist our skins on UMI and AgileX grippers and watch the normal and shear forces in real time.', highlighted: true },
@@ -139,9 +144,20 @@
               title: "OpenTac: An Open Ecosystem for Customizable, Scalable, and Transferable 3D Tactile Sensing",
               url: "https://arxiv.org/abs/2610.31661",
               authors: "<strong>A. Slepyan</strong>, G. C. R. Bethala, J. Gu, A. Dangle, Y. Zhou, H. Fu, J. Sim, T. Basu, X. Yin, F. Karim, G. Hager, H. Bharadhwaj, A. Bhattad, K. M. Jatavallabhula, and N. Thakor",
-              venue: "<em>arXiv preprint</em>, 2026",
+              venue: "<em>arXiv preprint</em>, 2026<br>Also presented at the CoRL 2026 <a href=\"https://beneath-the-policy.github.io/\">Workshop on Everything Beneath the Policy</a> and <a href=\"https://dex-manipulation.github.io/corl2026/\">Workshop on Dexterous Manipulation</a>",
               links: [{ text: "project page", url: "https://opentac.github.io/" }, { text: "arXiv", url: "https://arxiv.org/abs/2610.31661" }, { text: "code", url: "https://github.com/opentac/opentac" }],
               description: "An open-source tactile skin and the ecosystem around it. A structured deformable overlay converts shear into pressure differences between neighboring taxels, so each skin measures distributed normal and shear forces. OpenTac-CAD generates fabrication files from 2D outlines, developable 3D surfaces, or text descriptions; we built more than 30 sensors across robot embodiments and used them for feedback control and policy learning on four robots. Adaptive acquisition reads partial frames at kilohertz rates, 19.2&times; faster than full-array raster scanning at 16 sampled taxels per update on a 1024-taxel skin.",
+              highlighted: true
+            },
+            {
+              imageKey: "researchTactileArena",
+              selected: true,
+              title: "Scalable high-density tactile arenas for measuring ground-contact forces in freely moving animals",
+              url: "https://www.biorxiv.org/content/10.64898/2026.10.22.760735v1",
+              authors: "W. Lu*, <strong>A. Slepyan</strong>*, P. Perkins, A. Ascani Orsini, K. Quinn, and N. Thakor",
+              venue: "<em>bioRxiv preprint</em>, 2026",
+              links: [{ text: "project page", url: "https://tactilearena.github.io/" }, { text: "bioRxiv", url: "https://www.biorxiv.org/content/10.64898/2026.10.22.760735v1" }, { text: "code", url: "https://github.com/tactilearena/tactilearena.github.io" }, { text: "data", url: "https://doi.org/10.5281/zenodo.23286364" }],
+              description: "A modular tactile floor with 16,384 sensors at 2-mm pitch across a 512&times;128 mm runway, acquired at a nominal 1 kHz. Adaptive compressive sampling concentrates measurements around active contacts, and synchronized overhead video assigns each contact to a paw. In a longitudinal rat model of sciatic nerve injury, it measured reduced loading of the injured hindlimb and increased loading of the contralateral limb, including changes that conventional gait timing measures underestimated. Hardware designs, software, and data are openly available.",
               highlighted: true
             },
             {
@@ -151,7 +167,7 @@
               url: null,
               authors: "<strong>A. Slepyan</strong>, A. Orsini, K. Quinn, and N. Thakor",
               venue: "<em>IEEE EMBS Conference on Neural Engineering (NER)</em>, 2025   <font color=\"red\"><strong>(Winner of Best Demo Award)</strong></font>",
-              links: [],
+              links: [{ text: "project page", url: "https://tactilearena.github.io/" }],
               description: "Large-area compressive tactile floors (up to 128&times;128 = 16,000+ sensors) for cages and runways that continuously track the footprints and gait of freely behaving rodents.",
               highlighted: true
             },
@@ -512,7 +528,7 @@
             workshops: [
                 'Co-organizer, <a href="https://tactile-dexterity-iros.github.io/"><strong>"Scalable Tactile Sensing for Dexterous Manipulation"</strong></a> workshop at IROS 2026 (September 27, Pittsburgh), with Homanga Bharadhwaj, Irmak Guzey, Haozhi Qi, Wenzhen Yuan, and Gregory Hager'
             ],
-            reviewing: "IEEE RA-L, IEEE T-MECH, IEEE TVLSI, IROS (2025, 2026), ISCAS 2026, World Haptics 2025, ICECS (2022, 2024, 2025), BioRob (2022, 2024)",
+            reviewing: "IEEE RA-L, IEEE T-MECH, IEEE TVLSI, ICRA 2027, RSS 2027, IROS (2025, 2026), ISCAS 2026, World Haptics 2025, ICECS (2022, 2024, 2025), BioRob (2022, 2024)",
             leadership: "Co-President, JHU ECE Graduate Student Association (2023 – 2025)"
         },
 
